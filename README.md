@@ -2,9 +2,10 @@
 
 Autores:
 
-    Luis Eduardo <luis.lucena@aluno.ifsp.edu.br>
-    Gabriel Carlos <>
-    Gabriel Teixeira <>
-
+    
+- Luis Eduardo  - <luis.lucena@aluno.ifsp.edu.br>
+- Gabriel Carlos  - <>
+- Gabriel Teixeira  - <>
+   
 IFSP - Campus Caraguatatuba - Brasil
 
