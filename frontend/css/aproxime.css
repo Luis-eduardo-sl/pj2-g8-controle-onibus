@@ -1,3 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
 body{
-    background-color: yellow;
+    background-color: #FFF09E;
+}
+body p{
+    color: #262626;
+}
+
+
+.info1{
+    text-align: center;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 150px;
+    background-color: #FFE76B;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.img{
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.img img{
+    width: 230px;
 }
