@@ -8,5 +8,10 @@
 
 .nav-pills .nav-link.active {
   color: #fff;
+  background-color: #010407;
+}
+
+.subscribe btn btn-primary {
+  color: #010407;
 }
 
