@@ -37,6 +37,22 @@ Googel Fonts  */
 .bg-flat-color-6 {
   background: #5c6bc0; }
 
+  /*AREA DAS CORES ONBUS*/
+
+  .onBus-cor-1 {
+    color: #212529;
+  }
+
+  .onBus-cor-2{
+    color: #F2F3F4;
+  }
+
+  .onBus-cor-3{
+    color: #1167D1;
+  }
+
+    /*AREA DAS CORES ONBUS end*/
+
 .bg-transparent {
   background-color: transparent; }
 
