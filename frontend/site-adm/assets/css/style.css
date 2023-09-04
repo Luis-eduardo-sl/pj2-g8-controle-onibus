@@ -479,6 +479,10 @@ canvas {
     background: #00c292; }
   .order-table .badge-pending {
     background: #fb9678; }
+    .order-table .badge-complete {
+      background: #00c292; }
+    .order-table .badge-inactive {
+      background: #474747; }
 
 .messenger-box {
   padding-top: 15px; }
