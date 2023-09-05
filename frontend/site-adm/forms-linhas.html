@@ -36,23 +36,14 @@
                     <li class="active">
                         <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Início</a>
                     </li>
-                <li class="menu-title">Motoristas e Clientes</li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Listas</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="tabela-motoristas.html">Motoristas</a></li>
-                            <li><i class="fa fa-table"></i><a href="tabela-clientes.html">Clientes</a></li>
-                            <li><i class="fa fa-table"></i><a href="tabela-linhas.html">Linhas</a></li>
-                        </ul>
-                </li>
                 <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-plus"></i>Adicionar</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-motoristas.html">Adicionar Motoristas</a></li>
-                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-clientes.html">Adicionar Clientes</a></li>
-                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-linhas.html">Adicionar Linhas</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-motoristas.html"> Motoristas</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-clientes.html"> Clientes</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-linhas.html"> Linhas</a></li>
                         </ul>
-                </li>
+
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Estatísticas</a>
@@ -67,13 +58,8 @@
         </nav>
     </aside>
     <!-- /#left-panel -->
-
-    <!-- Left Panel -->
-
     <!-- Right Panel -->
-
     <div id="right-panel" class="right-panel">
-
         <!-- Header-->
         <header id="header" class="header">
             <div class="top-left">
@@ -95,7 +81,7 @@
                         </div>
 
 
-                    </div>
+                      
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -103,16 +89,17 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
+                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </header><!-- /header -->
+        </header>
         <!-- Header-->
 
 
@@ -214,7 +201,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <strong class="card-title">Clientes</strong>
+                                            <strong class="card-title">Linhas</strong>
                                         </div>
                                         <div class="card-body">
                                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -611,6 +598,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src="assets/js/main.js"></script>
+
+<script src="assets/js/lib/data-table/datatables.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/jszip.min.js"></script>
+<script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="assets/js/init/datatables-init.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#bootstrap-data-table-export').DataTable();
+  } );
+</script>
 
 
 </body>
