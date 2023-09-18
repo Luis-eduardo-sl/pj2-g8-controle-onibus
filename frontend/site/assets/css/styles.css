@@ -78,3 +78,8 @@ body {
   padding-left: 0;
 }
 
+.span-required{
+color: red;
+  margin: 3px 0 0 1px;
+  display: none;
+}
