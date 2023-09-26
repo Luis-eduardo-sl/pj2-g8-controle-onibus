@@ -2,8 +2,6 @@ const mysql = require('mysql2/promise')
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const mysql = require('mysql2/promise');
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
