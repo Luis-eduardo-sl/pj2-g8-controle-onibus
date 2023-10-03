@@ -1,15 +1,17 @@
 const mysql = require('mysql2/promise')
 const express = require('express');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const porta = 666;
+const porta = 3000;
 
 const dbConfig = ({
     host: 'localhost',
-    port: 3306,
+    port: 3307,
     database: 'onbus1',
     user: 'root',
     password: ''
