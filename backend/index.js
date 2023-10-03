@@ -7,13 +7,13 @@ app.use(bodyParser.json());
 
 const porta = 666;
 
-// const dbConfig = ({
-//     host: 'localhost',
-//     port: 3306,
-//     database: 'onbus',
-//     user: 'root',
-//     password: ''
-//   });
+const dbConfig = ({
+    host: 'localhost',
+    port: 3306,
+    database: 'onbus1',
+    user: 'root',
+    password: ''
+  });
   
   const pool = mysql.createPool(dbConfig);
 
@@ -90,12 +90,12 @@ app.get('/usuarios/:id', async (req, res, next) => {
 
 
   // Rota para criar um novo usuário
-app.post('/usuarios', async (req, res, next) => {
+app.post('/usuario', async (req, res, next) => {
     const { nome, telefone, nascimento, cpf, email, senha, tipo, observacoes } = req.body;
   
     try {
       const [result] = await pool.execute(
-        'INSERT INTO usuarios (nome, telefone, nascimento, cpf, email, senha, tipo, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        'INSERT INTO usuario (nome, telefone, nascimento, cpf, email, senha, tipo, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
         [nome, telefone, nascimento, cpf, email, senha, tipo, observacoes]
       );
   
