@@ -13,23 +13,31 @@ usuario_cadastrado_id INT,
 CONSTRAINT FK_USUARIO_CADASTRADO FOREIGN KEY (usuario_cadastrado_id) REFERENCES usuario(id_usuario)
 );
 
+create table cartao(
+id_cartao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+saldo DECIMAL(2),
+tipo VARCHAR(20)
+)
+
 create table usuario(
 id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100),
-saldo DECIMAL(2),
+telefone VARCHAR(14),
+email VARCHAR(200),
 cpf VARCHAR(14),
-tipo VARCHAR(20),
 observacoes VARCHAR(535)
+cartao_id INT NOT NULL
+
+CONSTRAINT FK_CARTAO FOREIGN KEY (cartão_id) REFERENCES cartao(id_cartao)
 );
 
 create table linha(
 id_linha INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(200),
 inicio DATETIME,
-localinicio VARCHAR(45),
+intervalo DATETIME
 termino DATETIME,
-localtermino VARCHAR(45),
-observacoes VARCHAR(535)
+rota VARCHAR(535)
 );
 
 create table motorista(
