@@ -34,8 +34,8 @@ nome VARCHAR(100),
 telefone VARCHAR(14),
 email VARCHAR(200),
 cpf VARCHAR(14),
-observacoes VARCHAR(535)
-cartao_id INT NOT NULL
+observacoes VARCHAR(535),
+cartao_id INT NOT NULL,
 
 CONSTRAINT FK_CARTAO FOREIGN KEY (cartão_id) REFERENCES cartao(id_cartao)
 );
@@ -44,7 +44,7 @@ create table linha(
 id_linha INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(200),
 inicio DATETIME,
-intervalo DATETIME
+intervalo DATETIME,
 termino DATETIME,
 rota VARCHAR(535)
 );
