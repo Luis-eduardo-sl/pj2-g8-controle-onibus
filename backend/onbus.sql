@@ -19,6 +19,7 @@ token                   VARCHAR(45),
 email                   VARCHAR(200),
 senha                   VARCHAR(45),
 usuario_cadastrado_id   INT,
+
 CONSTRAINT FK_USUARIO_CADASTRADO FOREIGN KEY (usuario_cadastrado_id) REFERENCES usuario(id_usuario)
 );
 
@@ -44,7 +45,6 @@ create table linha(
 id_linha INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(200),
 inicio DATETIME,
-intervalo DATETIME,
 termino DATETIME,
 rota VARCHAR(535)
 );
@@ -66,10 +66,13 @@ placa     VARCHAR (7)
 
 create table viagem(
 id_viagem       INT     NOT NULL AUTO_INCREMENT PRIMARY KEY,
-data            DATE    NOT NULL,
+inicio          DATETIME,
+duracao         DATETIME,
 linha_id        INT     NOT NULL,
 motorista_id    INT     NOT NULL,
 onibus_id       INT     NOT NULL,
+
+
 CONSTRAINT FK_LINHA FOREIGN KEY (linha_id) REFERENCES linha(id_linha),
 CONSTRAINT FK_MOTORISTA FOREIGN KEY (motorista_id) REFERENCES motorista(id_motorista),
 CONSTRAINT FK_ONIBUS FOREIGN KEY (onibus_id) REFERENCES onibus(id_onibus)
