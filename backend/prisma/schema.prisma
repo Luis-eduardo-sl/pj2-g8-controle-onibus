@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cliente {
+  id_cliente            Int      @id @default(autoincrement())
+  nome                  String?  @db.VarChar(100)
+  token                 String?  @db.VarChar(45)
+  email                 String?  @db.VarChar(200)
+  senha                 String?  @db.VarChar(45)
+  usuario_cadastrado_id Int?
+  usuario               usuario? @relation(fields: [usuario_cadastrado_id], references: [id_usuario], onDelete: Restrict, onUpdate: Restrict, map: "FK_USUARIO_CADASTRADO")
+
+  @@index([usuario_cadastrado_id], map: "FK_USUARIO_CADASTRADO")
+}
+
+model linha {
+  id_linha  Int       @id @default(autoincrement())
+  nome      String?   @db.VarChar(200)
+  inicio    DateTime? @db.DateTime(0)
+  intervalo DateTime? @db.DateTime(0)
+  termino   DateTime? @db.DateTime(0)
+  rota      String?   @db.VarChar(535)
+  viagem    viagem[]
+}
+
+model motorista {
+  id_motorista Int      @id @default(autoincrement())
+  nome         String?  @db.VarChar(200)
+  cpf          String?  @db.VarChar(14)
+  telefone     String?  @db.VarChar(14)
+  email        String?  @db.VarChar(200)
+  foto         String?  @db.VarChar(200)
+  observacoes  String?  @db.VarChar(535)
+  viagem       viagem[]
+}
+
+model onibus {
+  id_onibus Int      @id @default(autoincrement())
+  placa     String?  @db.VarChar(7)
+  viagem    viagem[]
+}
+
+model usuario {
+  id_usuario         Int                  @id @default(autoincrement())
+  nome               String?              @db.VarChar(100)
+  saldo              Decimal?             @db.Decimal(2, 0)
+  cpf                String?              @db.VarChar(14)
+  tipo               String               @default("comum") @db.VarChar(20)
+  observacoes        String?              @db.VarChar(535)
+  cliente            cliente[]
+  viagem_has_usuario viagem_has_usuario[] @ignore
+}
+
+model viagem {
+  id_viagem          Int                  @id @default(autoincrement())
+  data               DateTime             @db.Date
+  linha_id           Int
+  motorista_id       Int
+  onibus_id          Int
+  linha              linha                @relation(fields: [linha_id], references: [id_linha], onUpdate: Restrict, map: "fk_viagem_linha1")
+  motorista          motorista            @relation(fields: [motorista_id], references: [id_motorista], onUpdate: Restrict, map: "fk_viagem_motorista1")
+  onibus             onibus               @relation(fields: [onibus_id], references: [id_onibus], onUpdate: Restrict, map: "fk_viagem_onibus1")
+  viagem_has_usuario viagem_has_usuario[] @ignore
+
+  @@index([linha_id], map: "FK_LINHA")
+  @@index([motorista_id], map: "FK_MOTORISTA")
+  @@index([onibus_id], map: "FK_ONIBUS")
+}
+
+model cartao {
+  id_cartao Int      @id @default(autoincrement())
+  saldo     Decimal? @db.Decimal(2, 0)
+  tipo      String?  @db.VarChar(20)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model viagem_has_usuario {
+  tarifa     Decimal? @db.Decimal(10, 2)
+  data       DateTime @db.Date
+  viagem_id  Int
+  usuario_id Int
+  usuario    usuario  @relation(fields: [usuario_id], references: [id_usuario], onUpdate: Restrict, map: "FK_USUARIO")
+  viagem     viagem   @relation(fields: [viagem_id], references: [id_viagem], onUpdate: Restrict, map: "FK_VIAGEM")
+
+  @@index([usuario_id], map: "FK_USUARIO")
+  @@index([viagem_id], map: "FK_VIAGEM")
+  @@ignore
+}
