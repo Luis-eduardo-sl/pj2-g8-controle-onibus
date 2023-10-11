@@ -2,17 +2,6 @@ create database onbus_data;
 
 use onbus_data;
 
-create table cliente(
-id_cliente              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-nome                    VARCHAR(100),
-token                   VARCHAR(45),
-email                   VARCHAR(200),
-senha                   VARCHAR(45),
-usuario_cadastrado_id   INT,
-
-CONSTRAINT FK_USUARIO_CADASTRADO FOREIGN KEY (usuario_cadastrado_id) REFERENCES usuario(id_usuario)
-);
-
 create table cartao(
 id_cartao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 saldo DECIMAL(2),
@@ -25,10 +14,22 @@ nome VARCHAR(100),
 telefone VARCHAR(14),
 email VARCHAR(200),
 cpf VARCHAR(14),
+senha VARCHAR(100),
 observacoes VARCHAR(535),
 cartao_id INT,
 
 CONSTRAINT FK_CARTAO FOREIGN KEY (cartão_id) REFERENCES cartao(id_cartao)
+);
+
+create table cliente(
+id_cliente              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome                    VARCHAR(100),
+token                   VARCHAR(45),
+email                   VARCHAR(200),
+senha                   VARCHAR(45),
+usuario_cadastrado_id   INT,
+
+CONSTRAINT FK_USUARIO_CADASTRADO FOREIGN KEY (usuario_cadastrado_id) REFERENCES usuario(id_usuario)
 );
 
 create table linha(
