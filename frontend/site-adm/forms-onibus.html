@@ -40,8 +40,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-plus"></i>Adicionar</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-plus"></i><a href="forms-motoristas.html"> Motoristas</a></li>
-                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-clientes.html"> Clientes</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-usuarios.html"> Usuarios</a></li>
                             <li><i class="menu-icon fa fa-plus"></i><a href="forms-linhas.html"> Linhas</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-onibus.html"> Ônibus</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="recarga.html"> Recarga</a></li>
                         </ul>
 
 
@@ -109,36 +111,16 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Cadastro</strong> Clientes
+                            <strong>Cadastro</strong> Ônibus
                         </div>
                         <div class="card-body card-block">
                             <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
 
-                                <!--/Form motorista-->
+                                <!--/Form ônibus-->
                                 <div class="row form-group">
-                                    <div class="col col-md-2"><label for="text-input" class=" form-control-label">Nome Completo</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="" class="form-control"></div>
+                                    <div class="col col-md-2"><label for="text-input" class=" form-control-label">Placa do Onibus</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="0A0A0A0" class="form-control"></div>
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-2"><label for="text-input" class=" form-control-label">CPF</label></div>
-                                    <div class="col-12 col-md-9"><input type="number" id="text-input" name="CPF" placeholder="" class="form-control"></div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-2"><label for="text-input" class=" form-control-label">Telefone</label></div>
-                                    <div class="col-12 col-md-9"><input type="number" id="text-input" name="CPF" placeholder="" class="form-control"></div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-2"><label for="email-input" class=" form-control-label">Email </label></div>
-                                    <div class="col-12 col-md-9"><input type="email" id="email-input" name="email-input" placeholder="" class="form-control"></div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Observações</label></div>
-                                    <div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="9" placeholder="" class="form-control"></textarea></div>
-                                </div>
-
-
-
                             </form>
                         </div>
                         
@@ -167,7 +149,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Clientes</strong>
+                            <strong class="card-title">Ônibus</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -181,7 +163,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Tiger Nixon</td>
+                                        <td>Tiger Nixon
+                                        <!--Botões-->
+                                        <a type="button" class="btn btn-primary btn-sm ml-5" href="#"><i class="fa fa-pencil"></i></a>
+                                        <button type="button" class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash-o"></i></button>
+                                        <!--!Botões-->
+                                        </td>
                                         <td>System Architect</td>
                                         <td>Edinburgh</td>
                                         <td>$320,800</td>
@@ -524,11 +511,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <div class="row">                                       
-                                <div href="#" class="col col-md-2"><button type="button" class="btn btn-danger btn-sm">excluir</button></div>
-                                <div href="#" class="col col-md-2"><button type="button" class="btn btn-info btn-sm">editar</button></div>
-                            </div>
 
                         </div>
                     </div>
