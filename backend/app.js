@@ -13,6 +13,7 @@ var usuarioRouter = require('./routes/usuario');
 var viagemRouter = require('./routes/viagem');
 var cartaoRouter = require('./routes/cartao');
 var viagemHasUsuarioRouter = require('./routes/viagem_has_usuario');
+var clienteRouter = require('./routes/cliente');
 
 var app = express();
 
@@ -32,5 +33,6 @@ app.use('/api/usuario', usuarioRouter);
 app.use('/api/viagem', viagemRouter);
 app.use('/api/cartao', cartaoRouter);
 app.use('/api/viagem_has_usuario', viagemHasUsuarioRouter);
+app.use('/api/cliente',clienteRouter );
 
 module.exports = app;
