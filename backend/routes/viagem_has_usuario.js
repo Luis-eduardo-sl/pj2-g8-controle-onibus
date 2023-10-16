@@ -1,21 +1,26 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 
+const router = express.Router();
 const prisma = new PrismaClient();
 
-// Rota para listar todos os registros de viagem_has_usuario
-router.get("/viagem_has_usuario", async function (req, res, next) {
-  const registros = await prisma.viagem_has_usuario.findMany();
-  res.json(registros);
+// Rota para listar todas as relações viagem_has_usuario
+router.get("/viagem_has_usuario", async (req, res) => {
+  try {
+    const viagemHasUsuarios = await prisma.viagem_has_usuario.findMany();
+    res.json(viagemHasUsuarios);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar as relações viagem_has_usuario." });
+  }
 });
 
-// Rota para criar um novo registro de viagem_has_usuario
-router.post("/viagem_has_usuario", async (req, res, next) => {
+// Rota para criar uma nova relação viagem_has_usuario
+router.post("/viagem_has_usuario", async (req, res) => {
   try {
     const { tarifa, data, viagem_id, usuario_id } = req.body;
 
-    const novoRegistro = await prisma.viagem_has_usuario.create({
+    const novaViagemHasUsuario = await prisma.viagem_has_usuario.create({
       data: {
         tarifa,
         data,
@@ -24,21 +29,21 @@ router.post("/viagem_has_usuario", async (req, res, next) => {
       },
     });
 
-    res.json(novoRegistro);
+    res.status(201).json(novaViagemHasUsuario);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao criar o registro de viagem_has_usuario." });
+    res.status(500).json({ error: "Erro ao criar a relação viagem_has_usuario." });
   }
 });
 
-// Rota para atualizar um registro de viagem_has_usuario existente
-router.put("/viagem_has_usuario/:id", async (req, res, next) => {
+// Rota para atualizar uma relação viagem_has_usuario existente
+router.put("/viagem_has_usuario/:id", async (req, res) => {
   const { id } = req.params;
   const { tarifa, data, viagem_id, usuario_id } = req.body;
 
   try {
-    const registro = await prisma.viagem_has_usuario.update({
-      where: { id: Number(id) },
+    const viagemHasUsuario = await prisma.viagem_has_usuario.update({
+      where: { id_viagem_has_usuario: Number(id) },
       data: {
         tarifa,
         data,
@@ -47,26 +52,26 @@ router.put("/viagem_has_usuario/:id", async (req, res, next) => {
       },
     });
 
-    res.json(registro);
+    res.json(viagemHasUsuario);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao atualizar o registro de viagem_has_usuario." });
+    res.status(500).json({ error: "Erro ao atualizar a relação viagem_has_usuario." });
   }
 });
 
-// Rota para excluir um registro de viagem_has_usuario
-router.delete("/viagem_has_usuario/:id", async (req, res, next) => {
+// Rota para excluir uma relação viagem_has_usuario
+router.delete("/viagem_has_usuario/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
     await prisma.viagem_has_usuario.delete({
-      where: { id: Number(id) },
+      where: { id_viagem_has_usuario: Number(id) },
     });
 
-    res.json({ message: "Registro de viagem_has_usuario excluído com sucesso." });
+    res.json({ message: "Relação viagem_has_usuario excluída com sucesso." });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao excluir o registro de viagem_has_usuario." });
+    res.status(500).json({ error: "Erro ao excluir a relação viagem_has_usuario." });
   }
 });
 

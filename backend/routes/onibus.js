@@ -1,17 +1,22 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 
+const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todos os ônibus
-router.get("/onibus", async function (req, res, next) {
-  const onibus = await prisma.onibus.findMany();
-  res.json(onibus);
+router.get("/onibus", async (req, res) => {
+  try {
+    const onibus = await prisma.onibus.findMany();
+    res.json(onibus);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar os ônibus." });
+  }
 });
 
 // Rota para criar um novo ônibus
-router.post("/onibus", async (req, res, next) => {
+router.post("/onibus", async (req, res) => {
   try {
     const { placa } = req.body;
 
@@ -21,7 +26,7 @@ router.post("/onibus", async (req, res, next) => {
       },
     });
 
-    res.json(novoOnibus);
+    res.status(201).json(novoOnibus);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao criar o ônibus." });
@@ -29,7 +34,7 @@ router.post("/onibus", async (req, res, next) => {
 });
 
 // Rota para atualizar um ônibus existente
-router.put("/onibus/:id", async (req, res, next) => {
+router.put("/onibus/:id", async (req, res) => {
   const { id } = req.params;
   const { placa } = req.body;
 
@@ -49,7 +54,7 @@ router.put("/onibus/:id", async (req, res, next) => {
 });
 
 // Rota para excluir um ônibus
-router.delete("/onibus/:id", async (req, res, next) => {
+router.delete("/onibus/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -65,4 +70,3 @@ router.delete("/onibus/:id", async (req, res, next) => {
 });
 
 module.exports = router;
-

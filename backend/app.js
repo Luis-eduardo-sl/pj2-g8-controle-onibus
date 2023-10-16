@@ -11,7 +11,6 @@ var motoristaRouter = require('./routes/motorista');
 var onibusRouter = require('./routes/onibus');
 var usuarioRouter = require('./routes/usuario');
 var viagemRouter = require('./routes/viagem');
-var cartaoRouter = require('./routes/cartao');
 var viagemHasUsuarioRouter = require('./routes/viagem_has_usuario');
 var clienteRouter = require('./routes/cliente');
 
@@ -31,7 +30,6 @@ app.use('/api/motorista', motoristaRouter);
 app.use('/api/onibus', onibusRouter);
 app.use('/api/usuario', usuarioRouter);
 app.use('/api/viagem', viagemRouter);
-app.use('/api/cartao', cartaoRouter);
 app.use('/api/viagem_has_usuario', viagemHasUsuarioRouter);
 app.use('/api/cliente',clienteRouter );
 

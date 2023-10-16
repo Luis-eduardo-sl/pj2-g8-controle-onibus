@@ -1,18 +1,22 @@
-
-var express = require("express");
-var router = express.Router();
+const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 
+const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todos os motoristas
-router.get("/motoristas", async function (req, res, next) {
-  const motoristas = await prisma.motorista.findMany();
-  res.json(motoristas);
+router.get("/motoristas", async (req, res) => {
+  try {
+    const motoristas = await prisma.motorista.findMany();
+    res.json(motoristas);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar os motoristas." });
+  }
 });
 
 // Rota para criar um novo motorista
-router.post("/motoristas", async (req, res, next) => {
+router.post("/motoristas", async (req, res) => {
   try {
     const { nome, cpf, telefone, email, foto, observacoes } = req.body;
 
@@ -27,7 +31,7 @@ router.post("/motoristas", async (req, res, next) => {
       },
     });
 
-    res.json(novoMotorista);
+    res.status(201).json(novoMotorista);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao criar o motorista." });
@@ -35,7 +39,7 @@ router.post("/motoristas", async (req, res, next) => {
 });
 
 // Rota para atualizar um motorista existente
-router.put("/motoristas/:id", async (req, res, next) => {
+router.put("/motoristas/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, cpf, telefone, email, foto, observacoes } = req.body;
 
@@ -60,7 +64,7 @@ router.put("/motoristas/:id", async (req, res, next) => {
 });
 
 // Rota para excluir um motorista
-router.delete("/motoristas/:id", async (req, res, next) => {
+router.delete("/motoristas/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

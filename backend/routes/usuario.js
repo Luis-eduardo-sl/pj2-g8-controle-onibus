@@ -1,31 +1,39 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 
+const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todos os usuários
-router.get("/usuarios", async function (req, res, next) {
-  const usuarios = await prisma.usuario.findMany();
-  res.json(usuarios);
+router.get("/usuarios", async (req, res) => {
+  try {
+    const usuarios = await prisma.usuario.findMany();
+    res.json(usuarios);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar os usuários." });
+  }
 });
 
 // Rota para criar um novo usuário
-router.post("/usuarios", async (req, res, next) => {
+router.post("/usuarios", async (req, res) => {
   try {
-    const { nome, saldo, cpf, tipo, observacoes } = req.body;
+    const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo } = req.body;
 
     const novoUsuario = await prisma.usuario.create({
       data: {
         nome,
-        saldo,
+        telefone,
+        email,
         cpf,
-        tipo,
+        senha,
         observacoes,
+        saldo,
+        tipo,
       },
     });
 
-    res.json(novoUsuario);
+    res.status(201).json(novoUsuario);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao criar o usuário." });
@@ -33,19 +41,22 @@ router.post("/usuarios", async (req, res, next) => {
 });
 
 // Rota para atualizar um usuário existente
-router.put("/usuarios/:id", async (req, res, next) => {
+router.put("/usuarios/:id", async (req, res) => {
   const { id } = req.params;
-  const { nome, saldo, cpf, tipo, observacoes } = req.body;
+  const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo } = req.body;
 
   try {
     const usuario = await prisma.usuario.update({
       where: { id_usuario: Number(id) },
       data: {
         nome,
-        saldo,
+        telefone,
+        email,
         cpf,
-        tipo,
+        senha,
         observacoes,
+        saldo,
+        tipo,
       },
     });
 
@@ -57,7 +68,7 @@ router.put("/usuarios/:id", async (req, res, next) => {
 });
 
 // Rota para excluir um usuário
-router.delete("/usuarios/:id", async (req, res, next) => {
+router.delete("/usuarios/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

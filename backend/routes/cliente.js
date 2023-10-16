@@ -1,17 +1,22 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 
+const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todos os clientes
-router.get("/clientes", async function (req, res, next) {
-  const clientes = await prisma.cliente.findMany();
-  res.json(clientes);
+router.get("/clientes", async (req, res) => {
+  try {
+    const clientes = await prisma.cliente.findMany();
+    res.json(clientes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar os clientes." });
+  }
 });
 
 // Rota para criar um novo cliente
-router.post("/clientes", async (req, res, next) => {
+router.post("/clientes", async (req, res) => {
   try {
     const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
 
@@ -25,7 +30,7 @@ router.post("/clientes", async (req, res, next) => {
       },
     });
 
-    res.json(novoCliente);
+    res.status(201).json(novoCliente);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao criar o cliente." });
@@ -33,7 +38,7 @@ router.post("/clientes", async (req, res, next) => {
 });
 
 // Rota para atualizar um cliente existente
-router.put("/clientes/:id", async (req, res, next) => {
+router.put("/clientes/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
 
@@ -57,7 +62,7 @@ router.put("/clientes/:id", async (req, res, next) => {
 });
 
 // Rota para excluir um cliente
-router.delete("/clientes/:id", async (req, res, next) => {
+router.delete("/clientes/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
