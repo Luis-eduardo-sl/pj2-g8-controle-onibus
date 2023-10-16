@@ -34,7 +34,7 @@ router.post("/cadastrar", async (req, res) => {
 });
 
 // Rota para atualizar um ônibus existente
-router.put("/onibus/:id", async (req, res) => {
+router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
   const { placa } = req.body;
 
@@ -54,7 +54,7 @@ router.put("/onibus/:id", async (req, res) => {
 });
 
 // Rota para excluir um ônibus
-router.delete("/onibus/:id", async (req, res) => {
+router.delete("/excluir/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
