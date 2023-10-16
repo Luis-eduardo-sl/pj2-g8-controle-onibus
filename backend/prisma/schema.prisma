@@ -1,90 +1,90 @@
-// Definição das configurações iniciais
 generator client {
   provider = "prisma-client-js"
 }
 
-// Definição da fonte de dados
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-// Definição do modelo para a tabela 'usuario'
-model usuario {
-  id_usuario    Int      @id @default(autoincrement())
-  nome          String?  @db.VarChar(100)
-  telefone      String?  @db.VarChar(14)
-  email         String?  @db.VarChar(200)
-  cpf           String?  @db.VarChar(14)
-  senha         String?  @db.VarChar(100)
-  observacoes   String?  @db.VarChar(535)
-  saldo         Decimal? @db.Decimal(10, 2)
-  tipo          String   @default("comum") @db.VarChar(20)
-  cliente       cliente[]
-  id_cliente    Int?     @map("usuario_cadastrado_id") @db.Int
-  cliente_cadastrado cliente? @relation("FK_USUARIO_CADASTRADO", fields: [id_cliente], references: [id_cliente])
-}
-
-// Definição do modelo para a tabela 'cliente'
 model cliente {
-  id_cliente       Int      @id @default(autoincrement())
-  nome             String?  @db.VarChar(100)
-  token            String?  @db.VarChar(45)
-  email            String?  @db.VarChar(200)
-  senha            String?  @db.VarChar(45)
-  usuario_cadastrado_id Int? @map("usuario_cadastrado_id") @db.Int
-  usuario_cadastrado   usuario? @relation("FK_USUARIO_CADASTRADO", fields: [usuario_cadastrado_id], references: [id_usuario])
+  id_cliente            Int      @id @default(autoincrement())
+  nome                  String?  @db.VarChar(100)
+  token                 String?  @db.VarChar(45)
+  email                 String?  @db.VarChar(200)
+  senha                 String?  @db.VarChar(45)
+  usuario_cadastrado_id Int?
+  usuario               usuario? @relation(fields: [usuario_cadastrado_id], references: [id_usuario], onDelete: Restrict, onUpdate: Restrict, map: "FK_USUARIO_CADASTRADO")
+
+  @@index([usuario_cadastrado_id], map: "FK_USUARIO_CADASTRADO")
 }
 
-// Definição do modelo para a tabela 'linha'
 model linha {
-  id_linha    Int      @id @default(autoincrement())
-  nome        String?  @db.VarChar(200)
-  inicio      DateTime? @db.DateTime(0)
-  termino     DateTime? @db.DateTime(0)
-  rota        String?  @db.VarChar(535)
-  viagem      viagem[]
+  id_linha Int       @id @default(autoincrement())
+  nome     String?   @db.VarChar(200)
+  inicio   DateTime? @db.DateTime(0)
+  termino  DateTime? @db.DateTime(0)
+  rota     String?   @db.VarChar(535)
+  viagem   viagem[]
 }
 
-// Definição do modelo para a tabela 'motorista'
 model motorista {
-  id_motorista  Int      @id @default(autoincrement())
-  nome          String?  @db.VarChar(200)
-  cpf           String?  @db.VarChar(14)
-  telefone      String?  @db.VarChar(14)
-  email         String?  @db.VarChar(200)
-  foto          String?  @db.VarChar(200)
-  observacoes   String?  @db.VarChar(535)
-  viagem        viagem[]
+  id_motorista Int      @id @default(autoincrement())
+  nome         String?  @db.VarChar(200)
+  cpf          String?  @db.VarChar(14)
+  telefone     String?  @db.VarChar(14)
+  email        String?  @db.VarChar(200)
+  foto         String?  @db.VarChar(200)
+  observacoes  String?  @db.VarChar(535)
+  viagem       viagem[]
 }
 
-// Definição do modelo para a tabela 'onibus'
 model onibus {
   id_onibus Int      @id @default(autoincrement())
   placa     String?  @db.VarChar(7)
   viagem    viagem[]
 }
 
-// Definição do modelo para a tabela 'viagem'
-model viagem {
-  id_viagem  Int      @id @default(autoincrement())
-  inicio     DateTime? @db.DateTime(0)
-  duracao    DateTime? @db.DateTime(0)
-  linha_id   Int
-  motorista_id Int
-  onibus_id  Int
-  linha      linha    @relation("FK_LINHA", fields: [linha_id], references: [id_linha])
-  motorista  motorista @relation("FK_MOTORISTA", fields: [motorista_id], references: [id_motorista])
-  onibus     onibus   @relation("FK_ONIBUS", fields: [onibus_id], references: [id_onibus])
+model usuario {
+  id_usuario         Int                  @id @default(autoincrement())
+  nome               String?              @db.VarChar(100)
+  telefone           String?              @db.VarChar(14)
+  email              String?              @db.VarChar(200)
+  cpf                String?              @db.VarChar(14)
+  senha              String?              @db.VarChar(100)
+  observacoes        String?              @db.VarChar(535)
+  saldo              Decimal?             @db.Decimal(10, 2)
+  tipo               String               @default("comum") @db.VarChar(20)
+  cliente            cliente[]
   viagem_has_usuario viagem_has_usuario[]
 }
 
-// Definição do modelo para a tabela 'viagem_has_usuario'
+model viagem {
+  id_viagem          Int                  @id @default(autoincrement())
+  inicio             DateTime?            @db.DateTime(0)
+  duracao            DateTime?            @db.DateTime(0)
+  linha_id           Int
+  motorista_id       Int
+  onibus_id          Int
+  linha              linha                @relation(fields: [linha_id], references: [id_linha], onUpdate: Restrict, map: "FK_LINHA")
+  motorista          motorista            @relation(fields: [motorista_id], references: [id_motorista], onUpdate: Restrict, map: "FK_MOTORISTA")
+  onibus             onibus               @relation(fields: [onibus_id], references: [id_onibus], onUpdate: Restrict, map: "FK_ONIBUS")
+  viagem_has_usuario viagem_has_usuario[]
+
+  @@index([linha_id], map: "FK_LINHA")
+  @@index([motorista_id], map: "FK_MOTORISTA")
+  @@index([onibus_id], map: "FK_ONIBUS")
+}
+
 model viagem_has_usuario {
-  tarifa     Decimal? @db.Decimal(10, 2)
-  data       DateTime @db.Date
-  viagem_id  Int
-  usuario_id Int
-  usuario    usuario  @relation("FK_USUARIO", fields: [usuario_id], references: [id_usuario])
-  viagem     viagem   @relation("FK_VIAGEM", fields: [viagem_id], references: [id_viagem])
+  tarifa                Decimal? @db.Decimal(10, 2)
+  data                  DateTime @db.Date
+  viagem_id             Int
+  usuario_id            Int
+  id_viagem_has_usuario Int      @id
+  usuario               usuario  @relation(fields: [usuario_id], references: [id_usuario], onUpdate: Restrict, map: "FK_USUARIO")
+  viagem                viagem   @relation(fields: [viagem_id], references: [id_viagem], onUpdate: Restrict, map: "FK_VIAGEM")
+
+  @@index([usuario_id], map: "FK_USUARIO")
+  @@index([viagem_id], map: "FK_VIAGEM")
 }

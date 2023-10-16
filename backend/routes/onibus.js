@@ -5,7 +5,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todos os ônibus
-router.get("/onibus", async (req, res) => {
+router.get("/listar", async (req, res) => {
   try {
     const onibus = await prisma.onibus.findMany();
     res.json(onibus);
@@ -16,7 +16,7 @@ router.get("/onibus", async (req, res) => {
 });
 
 // Rota para criar um novo ônibus
-router.post("/onibus", async (req, res) => {
+router.post("/cadastrar", async (req, res) => {
   try {
     const { placa } = req.body;
 
