@@ -5,7 +5,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todos os clientes
-router.get("/clientes", async (req, res) => {
+router.get("/listar", async (req, res) => {
   try {
     const clientes = await prisma.cliente.findMany();
     res.json(clientes);
@@ -16,7 +16,7 @@ router.get("/clientes", async (req, res) => {
 });
 
 // Rota para criar um novo cliente
-router.post("/clientes", async (req, res) => {
+router.post("/cadastrar", async (req, res) => {
   try {
     const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
 
@@ -38,7 +38,7 @@ router.post("/clientes", async (req, res) => {
 });
 
 // Rota para atualizar um cliente existente
-router.put("/clientes/:id", async (req, res) => {
+router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
 
@@ -62,7 +62,7 @@ router.put("/clientes/:id", async (req, res) => {
 });
 
 // Rota para excluir um cliente
-router.delete("/clientes/:id", async (req, res) => {
+router.delete("/excluir/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

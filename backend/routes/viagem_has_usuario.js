@@ -5,7 +5,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todas as relações viagem_has_usuario
-router.get("/viagem_has_usuario", async (req, res) => {
+router.get("/listar", async (req, res) => {
   try {
     const viagemHasUsuarios = await prisma.viagem_has_usuario.findMany();
     res.json(viagemHasUsuarios);
@@ -16,7 +16,7 @@ router.get("/viagem_has_usuario", async (req, res) => {
 });
 
 // Rota para criar uma nova relação viagem_has_usuario
-router.post("/viagem_has_usuario", async (req, res) => {
+router.post("/cadastrar", async (req, res) => {
   try {
     const { tarifa, data, viagem_id, usuario_id } = req.body;
 
@@ -37,7 +37,7 @@ router.post("/viagem_has_usuario", async (req, res) => {
 });
 
 // Rota para atualizar uma relação viagem_has_usuario existente
-router.put("/viagem_has_usuario/:id", async (req, res) => {
+router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
   const { tarifa, data, viagem_id, usuario_id } = req.body;
 
@@ -60,7 +60,7 @@ router.put("/viagem_has_usuario/:id", async (req, res) => {
 });
 
 // Rota para excluir uma relação viagem_has_usuario
-router.delete("/viagem_has_usuario/:id", async (req, res) => {
+router.delete("/excluir/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

@@ -5,7 +5,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todas as viagens
-router.get("/viagens", async (req, res) => {
+router.get("/listar", async (req, res) => {
   try {
     const viagens = await prisma.viagem.findMany();
     res.json(viagens);
@@ -16,7 +16,7 @@ router.get("/viagens", async (req, res) => {
 });
 
 // Rota para criar uma nova viagem
-router.post("/viagens", async (req, res) => {
+router.post("/cadastrar", async (req, res) => {
   try {
     const { inicio, duracao, linha_id, motorista_id, onibus_id } = req.body;
 
@@ -38,7 +38,7 @@ router.post("/viagens", async (req, res) => {
 });
 
 // Rota para atualizar uma viagem existente
-router.put("/viagens/:id", async (req, res) => {
+router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
   const { inicio, duracao, linha_id, motorista_id, onibus_id } = req.body;
 
@@ -62,7 +62,7 @@ router.put("/viagens/:id", async (req, res) => {
 });
 
 // Rota para excluir uma viagem
-router.delete("/viagens/:id", async (req, res) => {
+router.delete("/excluir/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

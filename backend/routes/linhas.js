@@ -5,7 +5,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todas as linhas
-router.get("/linhas", async (req, res) => {
+router.get("/listar", async (req, res) => {
   try {
     const linhas = await prisma.linha.findMany();
     res.json(linhas);
@@ -16,7 +16,7 @@ router.get("/linhas", async (req, res) => {
 });
 
 // Rota para criar uma nova linha
-router.post("/linhas", async (req, res) => {
+router.post("/cadastrar", async (req, res) => {
   try {
     const { nome, inicio, termino, rota } = req.body;
 
@@ -37,7 +37,7 @@ router.post("/linhas", async (req, res) => {
 });
 
 // Rota para atualizar uma linha existente
-router.put("/linhas/:id", async (req, res) => {
+router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, inicio, termino, rota } = req.body;
 
@@ -60,7 +60,7 @@ router.put("/linhas/:id", async (req, res) => {
 });
 
 // Rota para excluir uma linha
-router.delete("/linhas/:id", async (req, res) => {
+router.delete("/excluir/:id", async (req, res) => {
   const { id } = req.params;
 
   try {

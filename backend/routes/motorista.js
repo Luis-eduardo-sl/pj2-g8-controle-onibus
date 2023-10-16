@@ -5,7 +5,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota para listar todos os motoristas
-router.get("/motoristas", async (req, res) => {
+router.get("/listar", async (req, res) => {
   try {
     const motoristas = await prisma.motorista.findMany();
     res.json(motoristas);
@@ -16,7 +16,7 @@ router.get("/motoristas", async (req, res) => {
 });
 
 // Rota para criar um novo motorista
-router.post("/motoristas", async (req, res) => {
+router.post("/cadastrar", async (req, res) => {
   try {
     const { nome, cpf, telefone, email, foto, observacoes } = req.body;
 
@@ -39,7 +39,7 @@ router.post("/motoristas", async (req, res) => {
 });
 
 // Rota para atualizar um motorista existente
-router.put("/motoristas/:id", async (req, res) => {
+router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, cpf, telefone, email, foto, observacoes } = req.body;
 
@@ -64,7 +64,7 @@ router.put("/motoristas/:id", async (req, res) => {
 });
 
 // Rota para excluir um motorista
-router.delete("/motoristas/:id", async (req, res) => {
+router.delete("/excluir/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
