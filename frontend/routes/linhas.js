@@ -2,23 +2,23 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/listar", function (req, res, next) {
-  res.render("onibus/listar");
+  res.render("linhas/listar");
 });
 
 router.get("/cadastrar", function (req, res, next) {
-  res.render("onibus/cadastrar");
+  res.render("linhas/cadastrar");
 });
 
 router.get("/exibir/:id", function (req, res, next) {
-  res.render("onibus/exibir");
+  res.render("linhas/exibir");
 });
 
 router.get("/editar/:id", function (req, res, next) {
-  res.render("onibus/editar");
+  res.render("linhas/editar");
 });
 
 router.get("/excluir/:id", function (req, res, next) {
-  res.render("onibus/excluir");
+  res.render("linhas/excluir");
 });
 
 

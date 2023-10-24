@@ -8,6 +8,10 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const onibusRouter = require('./routes/onibus');
 
+const motoristasRouter = require('./routes/motoristas');
+const linhasRouter = require('./routes/linhas');
+const usuariosRouter = require('./routes/usuarios');
+
 const app = express();
 
 // view engine setup
@@ -23,6 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/onibus', onibusRouter);
+
+app.use('/motoristas', motoristasRouter);
+app.use('/linhas', linhasRouter);
+app.use('/usuarios', usuariosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
