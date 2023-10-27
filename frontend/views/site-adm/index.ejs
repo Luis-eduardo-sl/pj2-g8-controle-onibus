@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/public/site-adm/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/frontend/public/site-adm/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/public/site-adm/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/frontend/public/site-adm/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
@@ -80,9 +80,9 @@
                 <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-plus"></i>Adicionar</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-motoristas.html"> Motoristas</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-motoristas"> Motoristas</a></li>
                             <li><i class="menu-icon fa fa-plus"></i><a href="forms-usuarios.html"> Usuarios</a></li>
-                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-linhas.html"> Linhas</a></li>
+                            <li><i class="menu-icon fa fa-plus"></i><a href="forms-linhas.ejs"> Linhas</a></li>
                             <li><i class="menu-icon fa fa-plus"></i><a href="forms-onibus.html"> Ônibus</a></li>
                             <li><i class="menu-icon fa fa-plus"></i><a href="recarga.html"> Recarga</a></li>
                         </ul>
@@ -100,7 +100,7 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="/frontend/public/site-adm/images/logo.png" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -112,7 +112,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="/frontend/public/site-adm/images/admin.jpg" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -156,7 +156,7 @@
                                     <div class="stat-icon dib flat-color-3">
                                         <i class="pe-7s-browser"></i>
                                     </div>
-                                   <a href="forms-linhas.html"> <div class="stat-content">
+                                   <a href="forms-linhas.ejs"> <div class="stat-content">
                                         <div class="text-left dib">
                                             <div class="stat-text"><span class="count">12</span></div>
                                             <div class="stat-heading">Linhas Registradas</div>
@@ -174,7 +174,7 @@
                                     <div class="stat-icon dib flat-color-4">
                                         <i class="pe-7s-users"></i>
                                     </div>
-                                  <a href="forms-usuarios.html">  <div class="stat-content">
+                                  <a href="/usuarios">  <div class="stat-content">
                                         <div class="text-left dib">
                                             <div class="stat-text"><span class="count">100000</span></div>
                                             <div class="stat-heading">Usuários</div>
@@ -326,7 +326,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="/frontend/public/site-adm/assets/js/main.js"></script>
 
     <!--  Chart js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
@@ -340,11 +340,11 @@
     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-    <script src="assets/js/init/weather-init.js"></script>
+    <script src="/frontend/public/site-adm/assets/js/init/weather-init.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-    <script src="assets/js/init/fullcalendar-init.js"></script>
+    <script src="/frontend/public/site-adm/assets/js/init/fullcalendar-init.js"></script>
 
 
     <!--Local Stuff-->

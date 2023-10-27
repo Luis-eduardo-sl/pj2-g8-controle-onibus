@@ -11,20 +11,18 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/public/site-adm/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/frontend/public/site-adm/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-
 
 </head>
 <body>
@@ -45,20 +43,17 @@
                             <li><i class="menu-icon fa fa-plus"></i><a href="forms-onibus.html"> Ônibus</a></li>
                             <li><i class="menu-icon fa fa-plus"></i><a href="recarga.html"> Recarga</a></li>
                         </ul>
-
-
                </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside>
-    <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="index.html"><img src="/frontend/public/site-adm/images/logo.png" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -70,7 +65,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="/frontend/public/site-adm/images/admin.jpg" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -88,93 +83,33 @@
 
         <div class="content">
             <div class="animated fadeIn">
-                
+
                 <div id="flashMessageContainer" class="col-lg-12 text-center"></div>
 
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Cadastro</strong> Usuários
+                            <strong>Cadastro</strong> Ônibus
                         </div>
                         <div class="card-body card-block">
-                            <form form id="form" class="needs-validation" novalidate>
+                            <form id="form" class="needs-validation" novalidate>
 
                                 <div class="row form-group">
                                     <div class="col col-md-2">
-                                        <label for="text-input" class=" form-control-label">Nome Completo</label>
+                                    <label for="text-input" class=" form-control-label">Placa do Onibus</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="nome" name="text-input" minlength="4" class="form-control" required>
-                                        <div class="invalid-feedback">O nome precisa de no minimo 4 letras</div>
+                                        <input type="text" id="placa" placeholder="0A0A0A0" maxlength="7" class="form-control" required>
+                                        <div class="invalid-feedback">Placa é obrigatoria.</div>
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
-                                    <div class="col col-md-2">
-                                        <label for="text-input" class=" form-control-label">CPF</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="number" id="cpf" name="CPF" placeholder="" class="form-control" required>
-                                        <div class="invalid-feedback">CPF inválido</div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col col-md-2">
-                                        <label for="text-input" class=" form-control-label">Telefone</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="number" id="telefone" name="telefone" placeholder="" class="form-control" required>
-                                        <div class="invalid-feedback">Telefone inválido</div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col col-md-2">
-                                        <label for="email-input" class=" form-control-label">Email </label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="email" id="email" name="email-input" placeholder="" class="form-control" required>
-                                        <div class="invalid-feedback">Email inválido</div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col col-md-2">
-                                        <label for="email-input" class=" form-control-label">Senha </label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="text" id="senha" name="email-input" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col col-md-2">
-                                        <label for="select" class=" form-control-label">Tipo</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <select name="select" id="tipo" class="form-control">
-                                            <option value="Comum">Comum</option>
-                                            <option value="Idoso">Idoso</option>
-                                            <option value="Deficiente">Deficiente</option>
-                                            <option value="Estudante">Estudante</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Observações</label></div>
-                                    <div class="col-12 col-md-9"><textarea name="textarea-input" id="observacoes" rows="9" placeholder="" class="form-control"></textarea></div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
-
-
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                     Cadastrar
+                                </button>
                             </form>
                         </div>
-                        
+
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                         crossorigin="anonymous"></script>
@@ -182,9 +117,13 @@
                         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
                         <script src="flashMessage.js"></script>
-                        <script src="cadastrar-usuario.js"></script>
+                        <script src="/frontend/public/site-adm/js/onibus/cadastrar-onibus.js"></script>
+                        
 
         </div>
+
+
+
 
         </div><!-- .animated -->
     </div><!-- .content -->
@@ -192,8 +131,7 @@
 
 
 
-    
-    <!-- ... corpo do HTML ... -->
+<!-- ... corpo do HTML ... -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
@@ -201,20 +139,12 @@
     $(document).ready(function () {
         $('#tabela').DataTable({
             "ajax": {
-                "url": "http://localhost:3000/api/usuario/listar",
+                "url": "http://localhost:3000/api/onibus/listar",
                 "dataSrc": ""
             },
             "columns": [
-                { "data": "id_usuario" },
-                { "data": "nome" },
-                { "data": "cpf" },
-                { "data": "telefone" },
-                { "data": "email" },
-                { "data": "tipo" },
-                { "data": "saldo" },
-                { "data": "observacoes" },
-
-                
+                { "data": "id_onibus" },
+                { "data": "placa" },
             ],
             "language": {
           "lengthMenu": "Mostrar _MENU_ registros por página",
@@ -230,7 +160,6 @@
             "previous": "Anterior"
           }
         }
-            
         });
     });
 </script>
@@ -243,7 +172,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Usuários</strong>
+                        <strong class="card-title">Onibus</strong>
                     </div>
                     <div class="card-body">
                         <div class="container">
@@ -251,13 +180,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nome</th>
-                                        <th>Cpf</th>
-                                        <th>Telefone</th>
-                                        <th>Email</th>
-                                        <th>Tipo</th>
-                                        <th>Saldo</th>
-                                        <th>Observações</th>
+                                        <th>placa</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -269,7 +192,7 @@
         </div>
     </div>
 </div>
-    
+
 
 
 
@@ -281,6 +204,7 @@
                 <div class="col-sm-6">
                     Copyright &copy; 2023 OnBus
                 </div>
+              
             </div>
         </div>
     </footer>
@@ -294,18 +218,20 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="/frontend/public/site-adm/assets/js/main.js"></script>
 
-<script src="assets/js/lib/data-table/datatables.min.js"></script>
-<script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-<script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-<script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-<script src="assets/js/lib/data-table/jszip.min.js"></script>
-<script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-<script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-<script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-<script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-<script src="assets/js/init/datatables-init.js"></script>
+
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/datatables.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/jszip.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="/frontend/public/site-adm/assets/js/init/datatables-init.js"></script>
+
 
 
 
