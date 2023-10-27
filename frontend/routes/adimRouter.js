@@ -99,6 +99,19 @@ router.get("/excluir/:id", function (req, res, next) {
   res.render("site-adm/usuario/excluir");
 });
 
+
+/*-------------------rotas para recarga------------------------------*/
+
+router.get("/recarga", function (req, res, next) {
+  res.render("site-adm/recarga");
+});
+
+/*-------------------rotas para flash message------------------------------*/
+
+router.get("/mesage", function (req, res, next) {
+  res.render("site-adm/flashMessage");
+});
+
 /*-------------------rotas para register------------------------------*/
 
 router.get("/login", function (req, res, next) {
@@ -110,7 +123,7 @@ router.get("/registro", function (req, res, next) {
 });
 
 router.get("/senha", function (req, res, next) {
-  res.render("site-adm/page-forget");
+  res.render("site-adm/pages-forget");
 });
 
 

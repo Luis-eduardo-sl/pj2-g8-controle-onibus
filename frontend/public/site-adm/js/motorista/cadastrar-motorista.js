@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
           storeFlashMessage("success", "Cadastro realizado sucesso");
   
           const id = response.data.id;
-          window.location.href = `http://localhost:5500/frontend/site-adm/forms-motoristas.html?`;
+          window.location.href = `http://localhost:3001/motoristas`;
         } catch (error) {
           triggerFlashMessage("danger", error.message);
         }
