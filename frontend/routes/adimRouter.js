@@ -31,20 +31,12 @@ router.get("/motoristas", function (req, res, next) {
   res.render("site-adm/forms-motoristas");
 });
 
-router.get("/cadastrar", function (req, res, next) {
-  res.render("site-adm/motorista/cadastrar");
+router.get("motoristas/editar/:id", function (req, res, next) {
+  res.render("site-adm/editar-motorista");
 });
 
-router.get("/exibir/:id", function (req, res, next) {
-  res.render("site-adm/motorista/exibir");
-});
-
-router.get("/editar/:id", function (req, res, next) {
-  res.render("site-adm/motorista/editar");
-});
-
-router.get("/excluir/:id", function (req, res, next) {
-  res.render("site-adm/motorista/excluir");
+router.get("motoristas/excluir/:id", function (req, res, next) {
+  res.render("site-adm/excluir-motorista");
 });
 
 /*-------------------rotas para onibus------------------------------*/
@@ -53,21 +45,14 @@ router.get("/onibus", function (req, res, next) {
   res.render("site-adm/forms-onibus");
 });
 
-router.get("/cadastrar", function (req, res, next) {
-  res.render("site-adm/onibus/cadastrar");
+router.get("onibus/editar/:id", function (req, res, next) {
+  res.render("site-adm/editar-onibus");
 });
 
-router.get("/exibir/:id", function (req, res, next) {
-  res.render("site-adm/onibus/exibir");
+router.get("onibus/excluir/:id", function (req, res, next) {
+  res.render("site-adm/excluir-onibus");
 });
 
-router.get("/editar/:id", function (req, res, next) {
-  res.render("site-adm/onibus/editar");
-});
-
-router.get("/excluir/:id", function (req, res, next) {
-  res.render("site-adm/onibus/excluir");
-});
 
 /*-------------------rotas para usuario------------------------------*/
 
@@ -75,20 +60,12 @@ router.get("/usuarios", function (req, res, next) {
   res.render("site-adm/forms-usuarios");
 });
 
-router.get("/cadastrar", function (req, res, next) {
-  res.render("site-adm/usuario/cadastrar");
+router.get("usuarios/editar/:id", function (req, res, next) {
+  res.render("site-adm/editar-usuarios");
 });
 
-router.get("/exibir/:id", function (req, res, next) {
-  res.render("site-adm/usuario/exibir");
-});
-
-router.get("/editar/:id", function (req, res, next) {
-  res.render("site-adm/usuario/editar");
-});
-
-router.get("/excluir/:id", function (req, res, next) {
-  res.render("site-adm/usuario/excluir");
+router.get("usuarios/excluir/:id", function (req, res, next) {
+  res.render("site-adm/excluir-usuarios");
 });
 
 
