@@ -91,7 +91,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong>Cadastro</strong> Linhas
+                                <strong>Editar</strong> Linha
                             </div>
                             <div class="card-body card-block">
                                 <form id="form" class="needs-validation" novalidate>
@@ -141,7 +141,7 @@
 
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm"> Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary btn-sm"> Salvar Alterações</button>
 
                                 </form>
                             </div>
@@ -154,82 +154,13 @@
                             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
                             <script src="site-adm/assets/js/flashMessage.js"></script>
-                            <script src="site-adm/js/linha/cadastrar-linha.js"></script>
+                            <script src="site-adm/js/linha/editar-linha.js"></script>
                             
                     </div>
             </div>
 
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#tabela').DataTable({
-                        "ajax": {
-                            "url": "http://localhost:3000/api/linhas/listar",
-                            "dataSrc": ""
-                        },
-                        "columns": [
-                            { "data": "id_linha" },
-                            { "data": "nome" },
-                            { "data": "inicio" },
-                            { "data": "termino" },
-                            { "data": "rota" },
-                        ],
-
-                        "language": {
-                      "lengthMenu": "Mostrar _MENU_ registros por página",
-                      "zeroRecords": "Nenhum registro encontrado",
-                      "info": "Mostrando página _PAGE_ de _PAGES_",
-                      "infoEmpty": "Nenhum registro disponível",
-                      "infoFiltered": "(filtrado de _MAX_ registros no total)",
-                      "search": "Buscar",
-                      "paginate": {
-                        "first": "Primeiro",
-                        "last": "Último",
-                        "next": "Próximo",
-                        "previous": "Anterior"
-                      }
-                    }
-                        
-                    });
-                });
-            </script>
-            
-            
-            <div class="content">
-                <div class="animated fadeIn">
-                    <div class="row">
-            
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <strong class="card-title">Linhas</strong>
-                                </div>
-                                <div class="card-body">
-                                    <div class="container">
-                                        <table id="tabela" class="table table-striped table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Nome</th>
-                                                    <th>Inicio</th>
-                                                    <th>Termino</th>
-                                                    <th>Rota</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>  
-            
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-
+           
 
         </div><!-- .animated -->
     </div><!-- .content -->
@@ -258,24 +189,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src="site-adm/assets/js/main.js"></script>
 
-
-<script src="site-adm/assets/js/lib/data-table/datatables.min.js"></script>
-<script src="site-adm/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-<script src="site-adm/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-<script src="site-adm/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-<script src="site-adm/assets/js/lib/data-table/jszip.min.js"></script>
-<script src="site-adm/assets/js/lib/data-table/vfs_fonts.js"></script>
-<script src="site-adm/assets/js/lib/data-table/buttons.html5.min.js"></script>
-<script src="site-adm/assets/js/lib/data-table/buttons.print.min.js"></script>
-<script src="site-adm/assets/js/lib/data-table/buttons.colVis.min.js"></script>
-<script src="site-adm/assets/js/init/datatables-init.js"></script>
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('#bootstrap-data-table-export').DataTable();
-  } );
-</script>
 
 
 </body>

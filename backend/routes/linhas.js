@@ -23,8 +23,8 @@ router.post("/cadastrar", async (req, res) => {
     const novaLinha = await prisma.linha.create({
       data: {
         nome,
-        inicio,
-        termino,
+        inicio: `1900-01-01T${inicio}:00Z`,
+        termino: `1900-01-01T${termino}:00Z`,
         rota,
       },
     });
@@ -37,18 +37,20 @@ router.post("/cadastrar", async (req, res) => {
 });
 
 // Rota para atualizar uma linha existente
-router.put("/atualizar/:id", async (req, res) => {
-  const { id } = req.params;
+router.put("/editar/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
   const { nome, inicio, termino, rota } = req.body;
 
   try {
     const linha = await prisma.linha.update({
-      where: { id_linha: Number(id) },
+      where: {
+        id: id,
+        },
       data: {
-        nome,
-        inicio,
-        termino,
-        rota,
+        nome: nome,
+        inicio: `1900-01-01T${inicio}:00Z`,
+        termino: `1900-01-01T${termino}:00Z`,
+        rota: rota,
       },
     });
 

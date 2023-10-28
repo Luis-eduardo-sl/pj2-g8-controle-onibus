@@ -17,20 +17,12 @@ router.get("/linhas", function (req, res, next) {
   res.render("site-adm/forms-linhas");
 });
 
-router.get("/cadastrar", function (req, res, next) {
-  res.render("site-adm/linhas/cadastrar");
-});
-
-router.get("/exibir/:id", function (req, res, next) {
-  res.render("site-adm/linhas/exibir");
-});
-
-router.get("/editar/:id", function (req, res, next) {
-  res.render("site-adm/linhas/editar");
+router.get("/linhas/editar:id", function (req, res, next) {
+  res.render("site-adm/editar-linha");
 });
 
 router.get("/excluir/:id", function (req, res, next) {
-  res.render("site-adm/linhas/excluir");
+  res.render("site-adm/excluir-linha");
 });
 
 /*-------------------rotas para motorista------------------------------*/
