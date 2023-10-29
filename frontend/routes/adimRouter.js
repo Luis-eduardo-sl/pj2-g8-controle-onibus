@@ -17,7 +17,7 @@ router.get("/linhas", function (req, res, next) {
   res.render("site-adm/forms-linhas");
 });
 
-router.get("/linhas/editar:id", function (req, res, next) {
+router.get("/linhas/editar/:id", function (req, res, next) {
   res.render("site-adm/editar-linha");
 });
 

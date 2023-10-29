@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const siteadmRouter = require('./routes/adimRouter');
+const siteRouter = require('./routes/siteRouter');
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', siteadmRouter);
+app.use('/site', siteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
