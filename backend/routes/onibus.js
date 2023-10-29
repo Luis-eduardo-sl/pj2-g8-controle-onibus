@@ -15,6 +15,26 @@ router.get("/listar", async (req, res) => {
   }
 });
 
+// Rota para buscar um ônibus por ID
+router.get("/buscar/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const onibus = await prisma.onibus.findUnique({
+      where: { id_onibus: Number(id) },
+    });
+
+    if (onibus) {
+      res.json(onibus);
+    } else {
+      res.status(404).json({ error: "Ônibus não encontrado." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar o ônibus." });
+  }
+});
+
 // Rota para criar um novo ônibus
 router.post("/cadastrar", async (req, res) => {
   try {

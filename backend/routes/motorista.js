@@ -15,6 +15,27 @@ router.get("/listar", async (req, res) => {
   }
 });
 
+// Rota para buscar um motorista por ID
+router.get("/buscar/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const motorista = await prisma.motorista.findUnique({
+      where: { id_motorista: Number(id) },
+    });
+
+    if (motorista) {
+      res.json(motorista);
+    } else {
+      res.status(404).json({ error: "Motorista não encontrado." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar o motorista." });
+  }
+});
+
+
 // Rota para criar um novo motorista
 router.post("/cadastrar", async (req, res) => {
   try {

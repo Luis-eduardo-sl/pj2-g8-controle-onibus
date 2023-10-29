@@ -15,6 +15,28 @@ router.get("/listar", async (req, res) => {
   }
 });
 
+// Rota para buscar um cliente por ID
+router.get("/buscar/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const cliente = await prisma.cliente.findUnique({
+      where: { id_cliente: Number(id) },
+    });
+
+    if (cliente) {
+      res.json(cliente);
+    } else {
+      res.status(404).json({ error: "Cliente não encontrado." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar o cliente." });
+  }
+});
+
+
+
 // Rota para criar um novo cliente
 router.post("/cadastrar", async (req, res) => {
   try {

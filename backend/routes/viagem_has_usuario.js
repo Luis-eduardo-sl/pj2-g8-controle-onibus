@@ -15,6 +15,27 @@ router.get("/listar", async (req, res) => {
   }
 });
 
+// Rota para buscar uma relação "viagem_has_usuario" por ID
+router.get("/buscar/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const viagemHasUsuario = await prisma.viagem_has_usuario.findUnique({
+      where: { id_viagem_has_usuario: Number(id) },
+    });
+
+    if (viagemHasUsuario) {
+      res.json(viagemHasUsuario);
+    } else {
+      res.status(404).json({ error: "Relação viagem_has_usuario não encontrada." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar a relação viagem_has_usuario." });
+  }
+});
+
+
 // Rota para criar uma nova relação viagem_has_usuario
 router.post("/cadastrar", async (req, res) => {
   try {

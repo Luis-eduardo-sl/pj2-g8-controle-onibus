@@ -15,6 +15,27 @@ router.get("/listar", async (req, res) => {
   }
 });
 
+// Rota para buscar um usuário por ID
+router.get("/buscar/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const usuario = await prisma.usuario.findUnique({
+      where: { id_usuario: Number(id) },
+    });
+
+    if (usuario) {
+      res.json(usuario);
+    } else {
+      res.status(404).json({ error: "Usuário não encontrado." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar o usuário." });
+  }
+});
+
+
 // Rota para criar um novo usuário
 router.post("/cadastrar", async (req, res) => {
   try {

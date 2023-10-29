@@ -15,6 +15,27 @@ router.get("/listar", async (req, res) => {
   }
 });
 
+// Rota para buscar uma linha por ID
+router.get("/buscar/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const linha = await prisma.linha.findUnique({
+      where: { id_linha: Number(id) },
+    });
+
+    if (linha) {
+      res.json(linha);
+    } else {
+      res.status(404).json({ error: "Linha não encontrada." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar a linha." });
+  }
+});
+
+
 // Rota para criar uma nova linha
 router.post("/cadastrar", async (req, res) => {
   try {
