@@ -61,11 +61,11 @@ router.post("/cadastrar", async (req, res) => {
 router.put("/editar/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   const { nome, inicio, termino, rota } = req.body;
-
+console.log(inicio)
   try {
     const linha = await prisma.linha.update({
       where: {
-        id: id,
+        id_linha: id,
         },
       data: {
         nome: nome,
