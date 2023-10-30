@@ -91,24 +91,66 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong>Excluir</strong> Linha
+                                <strong>Editar</strong> Linha
                             </div>
-                            
+                            <div class="card-body card-block">
+                                <form id="form" class="needs-validation" novalidate>
+                                    <input type="hidden" name="id_motorista" id="id_motorista">
+                                    
+                                    <div class="row form-group">
+                                        <div class="col col-md-2">
+                                            <label for="text-input" class=" form-control-label">Nome Completo</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="text" id="nome" name="nome" minlength="4" class="form-control" required>
+                                            <div class="invalid-feedback">O nome precisa de no minimo 4 letras</div>
+                                        </div>
+                                    </div>
 
-                            <div class="container my-3">
-                                <ul>
-                                    <li><strong>Id:</strong> <span id="id"></span></li>
-                                    <li><strong>Nome:</strong> <span id="nome"></span></li>
-                                    <li><strong>Inicio:</strong> <span id="inicio"></span></li>
-                                    <li><strong>Termino:</strong> <span id="termino"></span></li>
-                                    <li><strong>Rota</strong> <span id="rota"></span></li>
-                                </ul>
-                        
-                                <form id="form">
-                                    <input type="submit" value="Confirmar" class="btn btn-danger">
-                                    <a href="/linhas" class="btn btn-info my-2">Cancelar</a>
-                                </form>        
-                            </div>   
+                                    <div class="row form-group">
+                                        <div class="col col-md-2">
+                                            <label for="text-input" class=" form-control-label">CPF</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="number" id="cpf" name="CPF" placeholder="" class="form-control" maxlength="11" required>
+                                            <div class="invalid-feedback">CPF inválido</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-2">
+                                            <label for="text-input" class=" form-control-label">Telefone</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="number" id="telefone" name="telefone" placeholder="" class="form-control" required>   
+                                            <div class="invalid-feedback">Telefone inválido</div>                              
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-2">
+                                            <label for="email-input" class=" form-control-label">Email </label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="email" id="email" name="email" placeholder="" class="form-control" required>
+                                            <div class="invalid-feedback">Email inválido</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-2"><label for="file-input" class=" form-control-label">Foto</label></div>
+                                        <div class="col-12 col-md-9"><input type="file" id="foto" name="file-input" class="form-control-file"></div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Observações</label></div>
+                                        <div class="col-12 col-md-9"><textarea name="textarea-input" id="observacoes" rows="9" placeholder="" class="form-control"></textarea></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm"> Salvar Alterações</button>
+
+                                </form>
+                            </div>
                             
 
                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -118,7 +160,7 @@
                             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
                             <script src="/site-adm/assets/js/flashMessage.js"></script>
-                            <script src="/site-adm/js/linha/excluir-linha.js"></script>
+                            <script src="/site-adm/js/motorista/editar-motorista.js"></script>
                             
                     </div>
             </div>
