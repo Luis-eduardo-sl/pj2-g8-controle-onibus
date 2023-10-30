@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         storeFlashMessage("success", "Cadastro realizado sucesso");
 
         const id = response.data.id;
-        window.location.href = `http://localhost:3001/linhas`;
+        window.location.href = `http://localhost:3001/onibus`;
       } catch (error) {
         triggerFlashMessage("danger", error.message);
       }
