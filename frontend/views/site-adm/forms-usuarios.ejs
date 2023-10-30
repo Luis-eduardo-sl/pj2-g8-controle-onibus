@@ -211,6 +211,13 @@
                 { "data": "tipo" },
                 { "data": "saldo" },
                 { "data": "observacoes" },
+                {
+                            "data": "ações",
+                            "render": function(data, type, row, meta) {
+                            return '' +
+                                '<a href="http://localhost:3001/usuarios/editar/' + row.id_usuario + '">Editar</a> / ' +
+                                '<a href="http://localhost:3001/usuarios/excluir/' + row.id_usuario + '">Excluir</a>';
+                             }},
 
                 
             ],
@@ -256,6 +263,7 @@
                                         <th>Tipo</th>
                                         <th>Saldo</th>
                                         <th>Observações</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                             </table>

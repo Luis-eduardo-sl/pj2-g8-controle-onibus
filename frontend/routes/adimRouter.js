@@ -31,11 +31,11 @@ router.get("/motoristas", function (req, res, next) {
   res.render("site-adm/forms-motoristas");
 });
 
-router.get("motoristas/editar/:id", function (req, res, next) {
+router.get("/motoristas/editar/:id", function (req, res, next) {
   res.render("site-adm/editar-motorista");
 });
 
-router.get("motoristas/excluir/:id", function (req, res, next) {
+router.get("/motoristas/excluir/:id", function (req, res, next) {
   res.render("site-adm/excluir-motorista");
 });
 
@@ -45,11 +45,11 @@ router.get("/onibus", function (req, res, next) {
   res.render("site-adm/forms-onibus");
 });
 
-router.get("onibus/editar/:id", function (req, res, next) {
+router.get("/onibus/editar/:id", function (req, res, next) {
   res.render("site-adm/editar-onibus");
 });
 
-router.get("onibus/excluir/:id", function (req, res, next) {
+router.get("/onibus/excluir/:id", function (req, res, next) {
   res.render("site-adm/excluir-onibus");
 });
 
@@ -60,12 +60,12 @@ router.get("/usuarios", function (req, res, next) {
   res.render("site-adm/forms-usuarios");
 });
 
-router.get("usuarios/editar/:id", function (req, res, next) {
-  res.render("site-adm/editar-usuarios");
+router.get("/usuarios/editar/:id", function (req, res, next) {
+  res.render("site-adm/editar-usuario");
 });
 
-router.get("usuarios/excluir/:id", function (req, res, next) {
-  res.render("site-adm/excluir-usuarios");
+router.get("/usuarios/excluir/:id", function (req, res, next) {
+  res.render("site-adm/excluir-usuario");
 });
 
 
