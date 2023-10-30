@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       const response = await axios.get(`http://localhost:3000/api/motorista/buscar/${urlId}`);
       const motorista = response.data;
     
-      document.querySelector("#id").value = motorista.id;
-      document.querySelector("#nome").value = motorista.nome;
-      document.querySelector("#cpf").value = motorista.cpf;
-      document.querySelector("#telefone").value = motorista.telefone;
-      document.querySelector("#email").value = motorista.email;
-      document.querySelector("#foto").value = motorista.foto;
-      document.querySelector("#observacoes").value = motorista.observacoes;
+      document.querySelector("#id").textContent = motorista.id_motorista;
+      document.querySelector("#nome").textContent = motorista.nome;
+      document.querySelector("#cpf").textContent = motorista.cpf;
+      document.querySelector("#telefone").textContent = motorista.telefone;
+      document.querySelector("#email").textContent = motorista.email;
+      document.querySelector("#foto").textContent = motorista.foto;
+      document.querySelector("#observacoes").textContent = motorista.observacoes;
     } catch (error) {
       triggerFlashMessage("danger", error.message);
     }

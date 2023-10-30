@@ -186,6 +186,13 @@
                 { "data": "telefone" },
                 { "data": "email" },
                 { "data": "observacoes" },
+                {
+                            "data": "ações",
+                            "render": function(data, type, row, meta) {
+                            return '' +
+                                '<a href="http://localhost:3001/motoristas/editar/' + row.id_motorista + '">Editar</a> / ' +
+                                '<a href="http://localhost:3001/motoristas/excluir/' + row.id_motorista + '">Excluir</a>';
+                             }},
 
                 
             ],
@@ -230,6 +237,7 @@
                                         <th>Telefone</th>
                                         <th>Email</th>
                                         <th>Observações</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                             </table>

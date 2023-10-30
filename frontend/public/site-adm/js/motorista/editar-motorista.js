@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       const response = await axios.get(`http://localhost:3000/api/motorista/buscar/${urlId}`);
       const motorista = response.data;
     
-      document.querySelector("#id").value = motorista.id;
+      document.querySelector("#id_motorista").value = motorista.id_motorista;
       document.querySelector("#nome").value = motorista.nome;
       document.querySelector("#cpf").value = motorista.cpf;
       document.querySelector("#telefone").value = motorista.telefone;
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       event.preventDefault();
   
       if (form.checkValidity()) {
-          const id = document.querySelector("#id").value;
+          const id = document.querySelector("#id_motorista").value;
           const nome = document.querySelector("#nome").value;
           const cpf = document.querySelector("#cpf").value;
           const telefone = document.querySelector("#telefone").value;
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
           const data = { id, nome, cpf, telefone, email, foto, observacoes };
   
           try {
-            const response = await axios.put(`http://localhost:3000/api/motorista/atualizar/${data.id}`, data);
+            const response = await axios.put(`http://localhost:3000/api/motorista/atualizar/${urlId}`, data);
   
             storeFlashMessage("success", "Edição realizada com sucesso");
           
