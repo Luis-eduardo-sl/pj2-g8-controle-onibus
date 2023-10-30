@@ -7,23 +7,23 @@ router.get("/", function (req, res, next) {
     res.render("site/index");
 });
 
-router.get("/site/horarios", function (req, res, next) {
+router.get("/horarios", function (req, res, next) {
     res.render("site/horarios");
 });
 
-router.get("/site/cadastro", function (req, res, next) {
+router.get("/cadastro", function (req, res, next) {
     res.render("site/cadastro");
 });
 
-router.get("/site/login", function (req, res, next) {
+router.get("/login", function (req, res, next) {
     res.render("site/login");
 });
 
-router.get("/site/recarga", function (req, res, next) {
+router.get("/recarga", function (req, res, next) {
     res.render("site/recarga");
 });
 
-router.get("/site/sobre", function (req, res, next) {
+router.get("/sobre", function (req, res, next) {
     res.render("site/sobre");
 });
 
