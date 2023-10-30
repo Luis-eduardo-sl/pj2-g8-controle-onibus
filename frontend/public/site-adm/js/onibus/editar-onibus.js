@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       const response = await axios.get(`http://localhost:3000/api/onibus/buscar/${urlId}`);
       const onibus = response.data;
     
-      document.querySelector("#id").value = onibus.id;
+      document.querySelector("#id_onibus").value = onibus.id_onibus;
       document.querySelector("#placa").value = onibus.placa;
     } catch (error) {
       triggerFlashMessage("danger", error.message);
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       event.preventDefault();
   
       if (form.checkValidity()) {
-          const id = document.querySelector("#id").value;
+          const id = document.querySelector("#id_onibus").value;
           const placa = document.querySelector("#placa").value;
   
           const data = { id, placa };

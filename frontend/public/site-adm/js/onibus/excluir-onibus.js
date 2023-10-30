@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       const response = await axios.get(`http://localhost:3000/api/onibus/buscar/${urlId}`);
       const onibus = response.data;
     
-      document.querySelector("#id").value = onibus.id;
-      document.querySelector("#placa").value = onibus.placa;
+      document.querySelector("#id").textContent = onibus.id_onibus;
+      document.querySelector("#placa").textContent = onibus.placa;
 
     } catch (error) {
       triggerFlashMessage("danger", error.message);

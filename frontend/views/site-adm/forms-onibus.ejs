@@ -146,6 +146,13 @@
             "columns": [
                 { "data": "id_onibus" },
                 { "data": "placa" },
+                {
+                            "data": "ações",
+                            "render": function(data, type, row, meta) {
+                            return '' +
+                                '<a href="http://localhost:3001/onibus/editar/' + row.id_onibus + '">Editar</a> / ' +
+                                '<a href="http://localhost:3001/onibus/excluir/' + row.id_onibus + '">Excluir</a>';
+                             }},
             ],
             "language": {
           "lengthMenu": "Mostrar _MENU_ registros por página",
@@ -182,6 +189,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>placa</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                             </table>
