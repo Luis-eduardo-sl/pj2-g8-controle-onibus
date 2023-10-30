@@ -214,7 +214,7 @@
                 {
                             "data": "ações",
                             "render": function(data, type, row, meta) {
-                            return '' +
+                            return '<a href="http://localhost:3001/usuarios/recarga/' + row.id_usuario + '">Recarga</a> /' +
                                 '<a href="http://localhost:3001/usuarios/editar/' + row.id_usuario + '">Editar</a> / ' +
                                 '<a href="http://localhost:3001/usuarios/excluir/' + row.id_usuario + '">Excluir</a>';
                              }},

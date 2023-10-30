@@ -68,6 +68,10 @@ router.get("/usuarios/excluir/:id", function (req, res, next) {
   res.render("site-adm/excluir-usuario");
 });
 
+router.get("/usuarios/recarga/:id", function (req, res, next) {
+  res.render("site-adm/recarga");
+});
+
 
 /*-------------------rotas para recarga------------------------------*/
 
