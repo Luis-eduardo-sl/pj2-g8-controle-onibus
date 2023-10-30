@@ -21,7 +21,7 @@ router.get("/linhas/editar/:id", function (req, res, next) {
   res.render("site-adm/editar-linha");
 });
 
-router.get("/excluir/:id", function (req, res, next) {
+router.get("linhas/excluir/:id", function (req, res, next) {
   res.render("site-adm/excluir-linha");
 });
 

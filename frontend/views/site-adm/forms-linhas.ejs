@@ -176,6 +176,13 @@
                             { "data": "inicio" },
                             { "data": "termino" },
                             { "data": "rota" },
+                            {
+            "data": "ações",
+            "render": function(data, type, row, meta) {
+              return '' +
+                '<a href="http://localhost:3001/linhas/editar/:id' + row.id + '">Editar</a> / ' +
+                '<a href="http://localhost:3001/linhas/excluir/:id' + row.id + '">Excluir</a>';
+            }}
                         ],
 
                         "language": {
@@ -217,6 +224,7 @@
                                                     <th>Inicio</th>
                                                     <th>Termino</th>
                                                     <th>Rota</th>
+                                                    <th>Ações</th>
                                                 </tr>
                                             </thead>
                                         </table>
