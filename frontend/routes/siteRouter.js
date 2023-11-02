@@ -27,6 +27,10 @@ router.get("/sobre", function (req, res, next) {
     res.render("site/sobre");
 });
 
+router.get("/perfil", function (req, res, next) {
+    res.render("site/perfil");
+});
+
   
 
 
