@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       document.querySelector("#cpf").value = motorista.cpf;
       document.querySelector("#telefone").value = motorista.telefone;
       document.querySelector("#email").value = motorista.email;
-      document.querySelector("#foto").value = motorista.foto;
+      document.querySelector("#foto").textContent = motorista.foto;
       document.querySelector("#observacoes").value = motorista.observacoes;
     } catch (error) {
       triggerFlashMessage("danger", error.message);
