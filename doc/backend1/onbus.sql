@@ -98,7 +98,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- Table `onbus_data`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
-  `id_usuario` INT(11) NOT NULL,
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NULL DEFAULT NULL,
   `telefone` VARCHAR(14) NULL DEFAULT NULL,
   `email` VARCHAR(200) NULL DEFAULT NULL,
@@ -110,7 +110,6 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
   `cliente_id` INT(11) NOT NULL,
   `cartão_id` VARCHAR(45) NULL,
   PRIMARY KEY (`id_usuario`),
-  INDEX `FK_CLIENTE` (`cliente_id` ASC) VISIBLE,
   CONSTRAINT `FK_CLIENTE`
     FOREIGN KEY (`cliente_id`)
     REFERENCES `onbus_data`.`cliente` (`id_cliente`)
@@ -131,9 +130,6 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`viagem` (
   `motorista_id` INT(11) NOT NULL,
   `onibus_id` INT(11) NOT NULL,
   PRIMARY KEY (`id_viagem`),
-  INDEX `FK_LINHA` (`linha_id` ASC) VISIBLE,
-  INDEX `FK_MOTORISTA` (`motorista_id` ASC) VISIBLE,
-  INDEX `FK_ONIBUS` (`onibus_id` ASC) VISIBLE,
   CONSTRAINT `FK_LINHA`
     FOREIGN KEY (`linha_id`)
     REFERENCES `onbus_data`.`linha` (`id_linha`),
@@ -157,8 +153,6 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`viagem_has_usuario` (
   `usuario_id` INT(11) NOT NULL,
   `id_viagem_has_usuario` INT(11) NOT NULL,
   PRIMARY KEY (`id_viagem_has_usuario`),
-  INDEX `FK_USUARIO` (`usuario_id` ASC) VISIBLE,
-  INDEX `FK_VIAGEM` (`viagem_id` ASC) VISIBLE,
   CONSTRAINT `FK_USUARIO`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `onbus_data`.`usuario` (`id_usuario`),

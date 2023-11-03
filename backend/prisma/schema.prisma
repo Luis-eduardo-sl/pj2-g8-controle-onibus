@@ -47,7 +47,7 @@ model onibus {
 }
 
 model usuario {
-  id_usuario         Int                  @id
+  id_usuario         Int                  @id @default(autoincrement())
   nome               String?              @db.VarChar(100)
   telefone           String?              @db.VarChar(14)
   email              String?              @db.VarChar(200)
@@ -57,7 +57,7 @@ model usuario {
   saldo              Decimal?             @db.Decimal(10, 2)
   tipo               String               @default("comum") @db.VarChar(20)
   cliente_id         Int
-  cartao_id          String?              @map("cartao_id") @db.VarChar(45)
+  cart_o_id          String?              @map("cartão_id") @db.VarChar(45)
   cliente            cliente              @relation(fields: [cliente_id], references: [id_cliente], onDelete: NoAction, onUpdate: NoAction, map: "FK_CLIENTE")
   viagem_has_usuario viagem_has_usuario[]
 
