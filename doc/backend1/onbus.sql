@@ -7,6 +7,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema onbus_data
 -- -----------------------------------------------------
@@ -15,6 +20,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema onbus_data
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `onbus_data` DEFAULT CHARACTER SET utf8mb4 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`comentario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`comentario` (
+  `id_comentario` INT NOT NULL AUTO_INCREMENT,
+  `texto` VARCHAR(2000) NULL,
+  `email` VARCHAR(200) NULL,
+  `nome` VARCHAR(100) NULL,
+  PRIMARY KEY (`id_comentario`))
+ENGINE = InnoDB;
+
 USE `onbus_data` ;
 
 -- -----------------------------------------------------
@@ -25,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`cliente` (
   `nome` VARCHAR(100) NULL DEFAULT NULL,
   `token` VARCHAR(45) NULL DEFAULT NULL,
   `email` VARCHAR(200) NULL DEFAULT NULL,
-  `senha` VARCHAR(45) NULL DEFAULT NULL,
+  `senha` VARCHAR(535) NULL DEFAULT NULL,
   PRIMARY KEY (`id_cliente`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -39,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`linha` (
   `nome` VARCHAR(200) NULL DEFAULT NULL,
   `inicio` DATETIME NULL DEFAULT NULL,
   `termino` DATETIME NULL DEFAULT NULL,
-  `rota` VARCHAR(535) NULL DEFAULT NULL,
+  `rota` VARCHAR(2000) NULL DEFAULT NULL,
+  `freq_semanal` VARCHAR(45) NULL,
   PRIMARY KEY (`id_linha`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -67,11 +86,9 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `onbus_data`.`onibus` (
   `id_onibus` INT(11) NOT NULL AUTO_INCREMENT,
   `placa` VARCHAR(7) NULL DEFAULT NULL,
-  `modelo` VARCHAR(45) NULL,
-  `capacidade` VARCHAR(45) NULL,
-  `observacoes` VARCHAR(535) NULL,
-  `frequencia_semanal` VARCHAR(45) NULL,
-  `onibuscol` VARCHAR(45) NULL,
+  `modelo` VARCHAR(45) NULL DEFAULT NULL,
+  `capacidade` VARCHAR(45) NULL DEFAULT NULL,
+  `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   PRIMARY KEY (`id_onibus`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -86,13 +103,14 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
   `telefone` VARCHAR(14) NULL DEFAULT NULL,
   `email` VARCHAR(200) NULL DEFAULT NULL,
   `cpf` VARCHAR(14) NULL DEFAULT NULL,
-  `senha` VARCHAR(100) NULL DEFAULT NULL,
+  `senha` VARCHAR(535) NULL DEFAULT NULL,
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   `saldo` DECIMAL(10,2) NULL DEFAULT NULL,
   `tipo` VARCHAR(20) NOT NULL DEFAULT 'comum',
   `cliente_id` INT(11) NOT NULL,
+  `cartão_id` VARCHAR(45) NULL,
   PRIMARY KEY (`id_usuario`),
-  INDEX `FK_CLIENTE_idx` (`cliente_id` ASC) VISIBLE,
+  INDEX `FK_CLIENTE` (`cliente_id` ASC) VISIBLE,
   CONSTRAINT `FK_CLIENTE`
     FOREIGN KEY (`cliente_id`)
     REFERENCES `onbus_data`.`cliente` (`id_cliente`)
@@ -139,8 +157,8 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`viagem_has_usuario` (
   `usuario_id` INT(11) NOT NULL,
   `id_viagem_has_usuario` INT(11) NOT NULL,
   PRIMARY KEY (`id_viagem_has_usuario`),
-  INDEX `FK_VIAGEM` (`viagem_id` ASC) VISIBLE,
   INDEX `FK_USUARIO` (`usuario_id` ASC) VISIBLE,
+  INDEX `FK_VIAGEM` (`viagem_id` ASC) VISIBLE,
   CONSTRAINT `FK_USUARIO`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `onbus_data`.`usuario` (`id_usuario`),
