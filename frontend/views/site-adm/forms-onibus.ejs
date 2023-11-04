@@ -95,14 +95,42 @@
                         <div class="card-body card-block">
                             <form id="form" class="needs-validation" novalidate>
 
+
+                                
                                 <div class="row form-group">
                                     <div class="col col-md-2">
-                                    <label for="text-input" class=" form-control-label">Placa do Onibus</label>
+                                        <label for="text-input" class=" form-control-label">Modelo</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="modelo" name="modelo" minlength="4" class="form-control" required>
+                                        <div class="invalid-feedback">O modelo precisa de no minimo 4 letras</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-2">
+                                    <label for="text-input" class=" form-control-label">Placa </label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <input type="text" id="placa" placeholder="0A0A0A0" maxlength="7" class="form-control" required>
                                         <div class="invalid-feedback">Placa é obrigatoria.</div>
                                     </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-2">
+                                        <label for="text-input" class=" form-control-label">Capacidade</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="capacidade" name="capacidade" placeholder="ex: 44" class="form-control" minlength="1" required>
+                                        <div class="invalid-feedback">Capacidade inválida</div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Observações</label></div>
+                                    <div class="col-12 col-md-9"><textarea name="textarea-input" id="observacoes" rows="9" placeholder="" class="form-control"></textarea></div>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-sm">
@@ -145,7 +173,10 @@
             },
             "columns": [
                 { "data": "id_onibus" },
+                { "data": "modelo" },
                 { "data": "placa" },
+                { "data": "capacidade" },
+                { "data": "observacoes" },
                 {
                             "data": "ações",
                             "render": function(data, type, row, meta) {
@@ -189,7 +220,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>placa</th>
+                                        <th>Modelo</th>
+                                        <th>Placa</th>
+                                        <th>Capacidade</th>
+                                        <th>Observações</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>

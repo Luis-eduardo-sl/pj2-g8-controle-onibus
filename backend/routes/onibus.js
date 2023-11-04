@@ -38,11 +38,14 @@ router.get("/buscar/:id", async (req, res) => {
 // Rota para criar um novo ônibus
 router.post("/cadastrar", async (req, res) => {
   try {
-    const { placa } = req.body;
+    const { placa, modelo, capacidade, observacoes } = req.body;
 
     const novoOnibus = await prisma.onibus.create({
       data: {
         placa,
+        modelo,
+        capacidade,
+        observacoes,
       },
     });
 
@@ -56,13 +59,16 @@ router.post("/cadastrar", async (req, res) => {
 // Rota para atualizar um ônibus existente
 router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
-  const { placa } = req.body;
+  const { placa, modelo, capacidade, observacoes } = req.body;
 
   try {
     const onibus = await prisma.onibus.update({
       where: { id_onibus: Number(id) },
       data: {
         placa,
+        modelo,
+        capacidade,
+        observacoes,
       },
     });
 
