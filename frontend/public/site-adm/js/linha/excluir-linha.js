@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       document.querySelector("#nome").textContent = linha.nome;
       document.querySelector("#inicio").textContent = linha.inicio.substring(11, 16);
       document.querySelector("#termino").textContent = linha.termino.substring(11, 16);
+      document.querySelector("#freq_semanal").textContent = linha.freq_semanal;
       document.querySelector("#rota").textContent = linha.rota;
     } catch (error) {
       triggerFlashMessage("danger", error.message);

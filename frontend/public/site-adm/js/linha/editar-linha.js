@@ -8,17 +8,14 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       `http://localhost:3000/api/linhas/buscar/${urlId}`
     );
     const linha = response.data;
-    
-    // console.log(linha);
-    // console.log(linha.inicio.substring(11, 16));
 
     document.querySelector("#id_linha").value = linha.id_linha;
     document.querySelector("#nome").value = linha.nome;
     document.querySelector("#inicio").value = linha.inicio.substring(11, 16);
     document.querySelector("#termino").value = linha.termino.substring(11, 16);
     document.querySelector("#rota").value = linha.rota;
+    document.querySelector("#freq_semanal").value = linha.freq_semanal; // Adicione esta linha
   } catch (error) {
-    console.log("teste");
     triggerFlashMessage("danger", error.message);
   }
 
@@ -32,8 +29,9 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       const inicio = document.querySelector("#inicio").value;
       const termino = document.querySelector("#termino").value;
       const rota = document.querySelector("#rota").value;
+      const freq_semanal = document.querySelector("#freq_semanal").value; // Adicione esta linha
 
-      const data = { id, nome, inicio, termino, rota };
+      const data = { id, nome, inicio, termino, rota, freq_semanal }; // Adicione freq_semanal
 
       try {
         const response = await axios.put(
