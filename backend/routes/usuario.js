@@ -39,7 +39,7 @@ router.get("/buscar/:id", async (req, res) => {
 // Rota para criar um novo usuário
 router.post("/cadastrar", async (req, res) => {
   try {
-    const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo } = req.body;
+    const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo, cartao_id } = req.body;
 
     const novoUsuario = await prisma.usuario.create({
       data: {
@@ -51,6 +51,7 @@ router.post("/cadastrar", async (req, res) => {
         observacoes,
         saldo,
         tipo,
+        cartao_id,
       },
     });
 
@@ -64,7 +65,7 @@ router.post("/cadastrar", async (req, res) => {
 // Rota para atualizar um usuário existente
 router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
-  const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo } = req.body;
+  const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo, cartao_id  } = req.body;
 
   try {
     const usuario = await prisma.usuario.update({
@@ -78,6 +79,7 @@ router.put("/atualizar/:id", async (req, res) => {
         observacoes,
         saldo,
         tipo,
+        cartao_id,
       },
     });
 

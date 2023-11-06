@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const email = document.querySelector("#email").value;
         const senha = document.querySelector("#senha").value;
         const tipo = document.querySelector("#tipo").value;
+        const cartao_id = document.querySelector("#cartao_id").value;
         const observacoes = document.querySelector("#observacoes").value;
   
-        const data = { nome, cpf, telefone, email, senha , tipo , observacoes };
+        const data = { nome, cpf, telefone, email, senha , tipo, cartao_id , observacoes };
   
         try {
           const response = await axios.post("http://localhost:3000/api/usuario/cadastrar", data);
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
           storeFlashMessage("success", "Cadastro realizado sucesso");
   
           const id = response.data.id;
-          window.location.href = `http://localhost:3001/linhas`;
+          window.location.href = `http://localhost:3001/usuarios`;
         } catch (error) {
           triggerFlashMessage("danger", error.message);
         }

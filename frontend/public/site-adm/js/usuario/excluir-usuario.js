@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       document.querySelector("#senha").textContent = usuario.senha;
       document.querySelector("#observacoes").textContent = usuario.observacoes;
       document.querySelector("#tipo").textContent = usuario.tipo;
+      document.querySelector("#cartao_id").textContent = usuario.cartao_id;
     } catch (error) {
       triggerFlashMessage("danger", error.message);
     }
