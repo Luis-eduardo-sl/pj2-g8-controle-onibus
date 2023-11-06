@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`comentario` (
   PRIMARY KEY (`id_comentario`))
 ENGINE = InnoDB;
 
-USE `onbus_data` ;
 
 -- -----------------------------------------------------
 -- Table `onbus_data`.`cliente`
@@ -104,17 +103,18 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
   `email` VARCHAR(200) NULL DEFAULT NULL,
   `cpf` VARCHAR(14) NULL DEFAULT NULL,
   `senha` VARCHAR(535) NULL DEFAULT NULL,
+  `carteirinha` VARCHAR(535) NULL DEFAULT NULL,
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   `saldo` DECIMAL(10,2) NULL DEFAULT NULL,
   `tipo` VARCHAR(20) NOT NULL DEFAULT 'comum',
-  `cliente_id` INT(11) NOT NULL,
-  `cartão_id` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_usuario`),
-  CONSTRAINT `FK_CLIENTE`
-    FOREIGN KEY (`cliente_id`)
-    REFERENCES `onbus_data`.`cliente` (`id_cliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `id_cliente` INT(11) NOT NULL DEFAULT 1,
+  `cartao_id` VARCHAR(200) NULL,
+  PRIMARY KEY (`id_usuario`))
+ # CONSTRAINT `FK_CLIENTE`
+  #  FOREIGN KEY (`cliente_id`)
+   # REFERENCES `onbus_data`.`cliente` (`id_cliente`)
+    #ON DELETE NO ACTION
+    #ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 

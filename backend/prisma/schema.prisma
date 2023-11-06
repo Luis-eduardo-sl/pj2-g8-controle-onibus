@@ -8,12 +8,11 @@ datasource db {
 }
 
 model cliente {
-  id_cliente Int       @id @default(autoincrement())
-  nome       String?   @db.VarChar(100)
-  token      String?   @db.VarChar(45)
-  email      String?   @db.VarChar(200)
-  senha      String?   @db.VarChar(535)
-  usuario    usuario[]
+  id_cliente Int     @id @default(autoincrement())
+  nome       String? @db.VarChar(100)
+  token      String? @db.VarChar(45)
+  email      String? @db.VarChar(200)
+  senha      String? @db.VarChar(535)
 }
 
 model linha {
@@ -53,15 +52,13 @@ model usuario {
   email              String?              @db.VarChar(200)
   cpf                String?              @db.VarChar(14)
   senha              String?              @db.VarChar(535)
+  carteirinha        String?              @db.VarChar(535)
   observacoes        String?              @db.VarChar(535)
   saldo              Decimal?             @db.Decimal(10, 2)
   tipo               String               @default("comum") @db.VarChar(20)
-  cliente_id         Int
-  cart_o_id          String?              @map("cartão_id") @db.VarChar(45)
-  cliente            cliente              @relation(fields: [cliente_id], references: [id_cliente], onDelete: NoAction, onUpdate: NoAction, map: "FK_CLIENTE")
+  id_cliente         Int                  @default(1)
+  cartao_id          String?              @db.VarChar(200)
   viagem_has_usuario viagem_has_usuario[]
-
-  @@index([cliente_id], map: "FK_CLIENTE")
 }
 
 model viagem {
