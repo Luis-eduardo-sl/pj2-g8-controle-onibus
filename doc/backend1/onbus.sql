@@ -25,7 +25,7 @@ USE `mydb` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`comentario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`comentario` (
+CREATE TABLE IF NOT EXISTS `onbus_data`.`comentario` (
   `id_comentario` INT NOT NULL AUTO_INCREMENT,
   `texto` VARCHAR(2000) NULL,
   `email` VARCHAR(200) NULL,
@@ -107,14 +107,14 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   `saldo` DECIMAL(10,2) NULL DEFAULT NULL,
   `tipo` VARCHAR(20) NOT NULL DEFAULT 'comum',
-  `id_cliente` INT(11) NULL ,
+  `cliente_id` INT(11) NULL ,
   `cartao_id` VARCHAR(200) NULL,
-  PRIMARY KEY (`id_usuario`))
- # CONSTRAINT `FK_CLIENTE`
-  #  FOREIGN KEY (`cliente_id`)
-   # REFERENCES `onbus_data`.`cliente` (`id_cliente`)
-    #ON DELETE NO ACTION
-    #ON UPDATE NO ACTION)
+  PRIMARY KEY (`id_usuario`),
+ CONSTRAINT `FK_CLIENTE`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `onbus_data`.`cliente` (`id_cliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
