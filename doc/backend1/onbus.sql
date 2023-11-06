@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   `saldo` DECIMAL(10,2) NULL DEFAULT NULL,
   `tipo` VARCHAR(20) NOT NULL DEFAULT 'comum',
-  `id_cliente` INT(11) NOT NULL DEFAULT 1,
+  `id_cliente` INT(11) NULL ,
   `cartao_id` VARCHAR(200) NULL,
   PRIMARY KEY (`id_usuario`))
  # CONSTRAINT `FK_CLIENTE`
