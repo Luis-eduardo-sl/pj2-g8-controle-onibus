@@ -90,6 +90,25 @@ router.put("/atualizar/:id", async (req, res) => {
   }
 });
 
+
+router.patch("/recarregar/:id", async (req, res) => {
+  const { id } = req.params;
+  const {  saldo  } = req.body;
+
+  try {
+    const usuario = await prisma.usuario.update({
+      where: { id_usuario: Number(id) },
+      data: {
+        saldo,
+      },
+    });
+
+    res.json(usuario);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao atualizar o usuário." });
+  }
+});
 // Rota para excluir um usuário
 router.delete("/excluir/:id", async (req, res) => {
   const { id } = req.params;

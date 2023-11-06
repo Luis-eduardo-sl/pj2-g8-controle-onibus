@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   
     const url = window.location.href;
     const urlId = url.split("/").pop();
-  
+    let usuario ;
+
     try {
       const response = await axios.get(`http://localhost:3000/api/usuario/buscar/${urlId}`);
-      const usuario = response.data;
+       usuario = response.data;
     
       document.querySelector("#id").textContent = usuario.id_usuario;
       document.querySelector("#nome").textContent = usuario.nome;
@@ -19,16 +20,14 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       event.preventDefault();
   
       if (form.checkValidity()) {
-        const response = await axios.get(`http://localhost:3000/api/usuario/buscar/${urlId}`);
-        const usuario = response.data;
-
-        const saldo = document.querySelector("#saldo").value;
-        const novoSaldo = Number(usuario.saldo) + Number(saldo);
-        
-        const data = { novoSaldo };
 
           try {
-            const response = await axios.put(`http://localhost:3000/api/usuario/atualizar/${urlId}`, data);
+            const saldo = document.querySelector("#saldo").value;
+            const novoSaldo = Number(usuario.saldo) + Number(saldo);
+            
+            const data = { saldo: novoSaldo };
+
+            const response = await axios.patch(`http://localhost:3000/api/usuario/recarregar/${urlId}`, data);
   
             storeFlashMessage("success", "Recarga realizada com sucesso");
           
