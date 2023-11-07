@@ -417,24 +417,56 @@
             });
             // Line Chart  #flotLine5 End
             // Traffic Chart using chartist
+            // if ($('#traffic-chart').length) {
+            //     var chart = new Chartist.Line('#traffic-chart', {
+            //       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            //       series: [
+            //       [0, 18000, 35000,  25000,  22000,  0],
+            //       [0, 3000, 15000,  20000,  15000,  300],
+            //       [0, 15000, 28000,  15000,  30000,  5000]
+            //       ]
+            //   }, {
+            //       low: 0,
+            //       showArea: true,
+            //       showLine: false,
+            //       showPoint: false,
+            //       fullWidth: true,
+            //       axisX: {
+            //         showGrid: true
+            //     }
+            // });
+
             if ($('#traffic-chart').length) {
-                var chart = new Chartist.Line('#traffic-chart', {
-                  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                  series: [
-                  [0, 18000, 35000,  25000,  22000,  0],
-                  [0, 3000, 15000,  20000,  15000,  300],
-                  [0, 15000, 28000,  15000,  30000,  5000]
-                  ]
-              }, {
-                  low: 0,
-                  showArea: true,
-                  showLine: false,
-                  showPoint: false,
-                  fullWidth: true,
-                  axisX: {
-                    showGrid: true
-                }
-            });
+                // Fazer uma solicitação AJAX para a API
+                $.ajax({
+                    url: 'http://localhost:3000/api/usuario/dados',
+                    method: 'GET',
+                    success: function (data) {
+                    // Processar os dados recebidos da API
+                    var labels = data.labels; // Suponha que a API forneça um array de rótulos
+                    var seriesData = data.series; // Suponha que a API forneça os dados da série
+
+                    // Criar o gráfico Chartist com os dados da API
+                    var chart = new Chartist.Line('#traffic-chart', {
+                        labels: labels,
+                        series: seriesData,
+                    }, {
+                        low: 0,
+                        showArea: true,
+                        showLine: false,
+                        showPoint: false,
+                        fullWidth: true,
+                        axisX: {
+                        showGrid: true,
+                        },
+                    });
+                    },
+                    error: function (error) {
+                    console.error('Erro ao obter dados da API:', error);
+                    },
+                });
+                
+
 
                 chart.on('draw', function(data) {
                     if(data.type === 'line' || data.type === 'area') {
