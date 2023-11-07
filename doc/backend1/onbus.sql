@@ -4,14 +4,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema onbus_data
 -- -----------------------------------------------------
@@ -20,7 +13,7 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 -- Schema onbus_data
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `onbus_data` DEFAULT CHARACTER SET utf8mb4 ;
-USE `mydb` ;
+USE `onbus_data` ;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`comentario`
@@ -92,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`onibus` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-
 -- -----------------------------------------------------
 -- Table `onbus_data`.`usuario`
 -- -----------------------------------------------------
@@ -107,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   `saldo` DECIMAL(10,2) NULL DEFAULT NULL,
   `tipo` VARCHAR(20) NOT NULL DEFAULT 'comum',
+  `cadastro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `cliente_id` INT(11) NULL ,
   `cartao_id` VARCHAR(200) NULL,
   PRIMARY KEY (`id_usuario`),

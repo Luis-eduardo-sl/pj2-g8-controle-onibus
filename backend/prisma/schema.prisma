@@ -57,6 +57,7 @@ model usuario {
   observacoes        String?              @db.VarChar(535)
   saldo              Decimal?             @db.Decimal(10, 2)
   tipo               String               @default("comum") @db.VarChar(20)
+  cadastro           DateTime             @default(now()) @db.Timestamp(0)
   cliente_id         Int?
   cartao_id          String?              @db.VarChar(200)
   cliente            cliente?             @relation(fields: [cliente_id], references: [id_cliente], onDelete: NoAction, onUpdate: NoAction, map: "FK_CLIENTE")
