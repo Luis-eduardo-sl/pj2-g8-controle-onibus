@@ -117,21 +117,26 @@ router.get('/dados', async (req, res) => {
     const dados = await prisma.$queryRaw`
       SELECT 
         DATE_FORMAT(cadastro, '%Y-%m') as ano_mes,
+        tipo,
         COUNT(*) as total
       FROM 
         onbus_data.usuario
       WHERE 
-        cadastro >= DATE_FORMAT(NOW() - INTERVAL 3 MONTH, '%Y-%m-01')
+        cadastro >= DATE_FORMAT(NOW() - INTERVAL 7 MONTH, '%Y-%m-01')
       GROUP BY 
-        DATE_FORMAT(cadastro, '%Y-%m')
+        DATE_FORMAT(cadastro, '%Y-%m'), tipo
       ORDER BY 
-        cadastro DESC
-      LIMIT 3;
+        tipo, cadastro ASC;
     `;
 
     // Mapear os dados para o formato desejado
-    const labels = dados.map((item) => item.ano_mes);
-    const series = dados.map((item) => Number(item.total)); // Converter BigInt para número
+    const labels = [...new Set(dados.map((item) => item.ano_mes))]; // Obter rótulos únicos
+    const tiposUsuario = [...new Set(dados.map((item) => item.tipo))]; // Obter tipos de usuário únicos
+    const series = tiposUsuario.map((tipo) => {
+      return dados
+        .filter((item) => item.tipo === tipo)
+        .map((item) => Number(item.total));
+    });
 
     const jsonResult = {
       labels,
@@ -144,6 +149,7 @@ router.get('/dados', async (req, res) => {
     res.status(500).json({ error: 'Erro ao obter dados' });
   }
 });
+
 
 
 // Rota para excluir um usuário
