@@ -1,5 +1,8 @@
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
+const bcrypt = require ('bcryptjs');
+const { generateAccessToken, authenticateToken } = require('../middleware/auth');
+
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -42,6 +45,7 @@ router.post("/cadastrar", async (req, res) => {
   try {
     const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
 
+
     const novoCliente = await prisma.cliente.create({
       data: {
         nome,
@@ -51,6 +55,8 @@ router.post("/cadastrar", async (req, res) => {
         usuario_cadastrado_id,
       },
     });
+    const jwt = generateAccessToken(novoCliente);
+    novoCliente.accessToken = jwt;
 
     res.status(201).json(novoCliente);
   } catch (error) {
@@ -60,9 +66,21 @@ router.post("/cadastrar", async (req, res) => {
 });
 
 // Rota para atualizar um cliente existente
-router.put("/atualizar/:id", async (req, res) => {
+router.put("/atualizar/:id", authenticateToken, async (req, res) => {
   const { id } = req.params;
   const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
+  const tokenQuery = req.accessToken;
+  // busca o usuario pelo id + email no token validado
+  const checkUser = await prisma.cliente.findUnique({
+    where: {
+      id:id,
+      email: tokenQuery.email
+    }
+  });
+  //Nega acesso se não existe cliente no DB ou id do parametro é diferente do id ou token
+  if(checkUser === null || id !== tokenQuery.id) {
+    return res.sendStatus(403); // 403 forbidden
+  }
 
   try {
     const cliente = await prisma.cliente.update({
