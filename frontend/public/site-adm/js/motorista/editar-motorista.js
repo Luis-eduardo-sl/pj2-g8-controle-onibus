@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       document.querySelector("#telefone").value = motorista.telefone;
       document.querySelector("#email").value = motorista.email;
       
-      console.log("teste:");
-      console.log(motorista.foto);
       const fotoPreview = document.querySelector("#foto-preview");
       fotoPreview.innerHTML = `<img src="http://localhost:3000/${motorista.foto}" alt="${motorista.nome}" width="70">`;
 

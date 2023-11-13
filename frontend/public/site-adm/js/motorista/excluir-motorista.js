@@ -13,8 +13,11 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       document.querySelector("#cpf").textContent = motorista.cpf;
       document.querySelector("#telefone").textContent = motorista.telefone;
       document.querySelector("#email").textContent = motorista.email;
-      document.querySelector("#foto").textContent = motorista.foto;
       document.querySelector("#observacoes").textContent = motorista.observacoes;
+
+      const fotoPreview = document.querySelector("#foto-preview");
+      fotoPreview.innerHTML = `<img src="http://localhost:3000/${motorista.foto}" alt="${motorista.nome}" width="70">`;
+
     } catch (error) {
       triggerFlashMessage("danger", error.message);
     }
