@@ -25,7 +25,7 @@ router.get("/buscar/:id", async (req, res) => {
       where: { id_motorista: Number(id) },
     });
 
-    motorista.foto = `http://127.0.01:5000${motorista.foto}`
+    // motorista.foto = `http://127.0.01:5000${motorista.foto}`
     if (motorista) {
       res.json(motorista);
     } else {
@@ -73,9 +73,10 @@ router.post("/cadastrar", upload.single("foto"), async (req, res) => {
 });
 
 // Rota para atualizar um motorista existente
-router.put("/atualizar/:id", async (req, res) => {
+router.put("/atualizar/:id",upload.single("foto"), async (req, res) => {
   const { id } = req.params;
-  const { nome, cpf, telefone, email, foto, observacoes } = req.body;
+  const foto = req.file?.path;
+  const { nome, cpf, telefone, email, observacoes } = req.body;
 
   try {
     const motorista = await prisma.motorista.update({

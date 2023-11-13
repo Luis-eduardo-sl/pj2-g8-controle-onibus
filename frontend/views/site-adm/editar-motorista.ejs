@@ -94,8 +94,10 @@
                                 <strong>Editar</strong> Motorista
                             </div>
                             <div class="card-body card-block">
-                                <form id="form" class="needs-validation" novalidate>
+                                <form id="form" class="needs-validation" enctype="multipart/form-data" novalidate>
                                     <input type="hidden" name="id_motorista" id="id_motorista">
+
+                                   
                                     
                                     <div class="row form-group">
                                         <div class="col col-md-2">
@@ -112,7 +114,7 @@
                                             <label for="text-input" class=" form-control-label">CPF</label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <input type="number" id="cpf" name="CPF" placeholder="" class="form-control" maxlength="11" required>
+                                            <input type="number" id="cpf" name="cpf" placeholder="" class="form-control" maxlength="11" required>
                                             <div class="invalid-feedback">CPF inválido</div>
                                         </div>
                                     </div>
@@ -136,11 +138,19 @@
                                             <div class="invalid-feedback">Email inválido</div>
                                         </div>
                                     </div>
-
+                                    <div class="row form-group">
+                                        <div class="col col-md-2">
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <div id="foto-preview" class=""></div>
+                                        </div>
+                                    </div>
 
                                     <div class="row form-group">
+                                       
+
                                         <div class="col col-md-2"><label for="file-input" class=" form-control-label">Foto</label></div>
-                                        <div class="col-12 col-md-9"><input type="file" id="foto" name="file-input" class="form-control-file"></div>
+                                        <div class="col-12 col-md-9"><input type="file" id = "foto" name="foto"  class="form-control-file"></div>
                                     </div>
 
                                     <div class="row form-group">
