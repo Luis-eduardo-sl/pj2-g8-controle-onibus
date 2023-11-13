@@ -94,7 +94,7 @@
                                 <strong>Cadastro</strong> Motoristas
                             </div>
                             <div class="card-body card-block">
-                                <form id="form" class="needs-validation" novalidate>
+                                <form id="form" enctype="multipart/form-data"  class="needs-validation" novalidate>
 
                                     <div class="row form-group">
                                         <div class="col col-md-2">
@@ -139,7 +139,7 @@
 
                                     <div class="row form-group">
                                         <div class="col col-md-2"><label for="file-input" class=" form-control-label">Foto</label></div>
-                                        <div class="col-12 col-md-9"><input type="file" id="foto" name="file-input" class="form-control-file"></div>
+                                        <div class="col-12 col-md-9"><input type="file" id = "foto" name="foto" class="form-control-file"></div>
                                     </div>
 
                                     <div class="row form-group">
@@ -180,7 +180,10 @@
             },
             "columns": [
                 { "data": "id_motorista" },
-                { "data": "foto" },
+                { "data": "foto",
+                "render": function(data, type, row, meta) {
+                    return '<img src="http://localhost:3000/' + row.foto + '" alt="Foto do Motorista" style="max-width: 50px; max-height: 50px;">';
+                } },
                 { "data": "nome" },
                 { "data": "cpf" },
                 { "data": "telefone" },

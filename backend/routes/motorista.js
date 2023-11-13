@@ -1,5 +1,6 @@
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
+const upload = require('../middleware/uploadSingle');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -24,6 +25,7 @@ router.get("/buscar/:id", async (req, res) => {
       where: { id_motorista: Number(id) },
     });
 
+    motorista.foto = `http://127.0.01:5000${motorista.foto}`
     if (motorista) {
       res.json(motorista);
     } else {
@@ -37,9 +39,18 @@ router.get("/buscar/:id", async (req, res) => {
 
 
 // Rota para criar um novo motorista
-router.post("/cadastrar", async (req, res) => {
+router.post("/cadastrar", upload.single("foto"), async (req, res) => {
   try {
-    const { nome, cpf, telefone, email, foto, observacoes } = req.body;
+    const data = req.body;
+    const foto = req.file?.path;
+    const { nome, cpf, telefone, email, observacoes } = req.body;
+
+    // const upload= req.upload || null;
+    // if(upload){
+    //   console.log(upload);
+    //   data.foto = upload.path;
+    // }
+    console.log(req.file);
 
     const novoMotorista = await prisma.motorista.create({
       data: {
@@ -48,7 +59,9 @@ router.post("/cadastrar", async (req, res) => {
         telefone,
         email,
         foto,
-        observacoes,
+        observacoes
+         
+
       },
     });
 
