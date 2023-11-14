@@ -224,9 +224,9 @@
                 {
                             "data": "ações",
                             "render": function(data, type, row, meta) {
-                            return '<a href="http://localhost:3001/usuarios/recarga/' + row.id_usuario + '">Recarga</a> /' +
-                                '<a href="http://localhost:3001/usuarios/editar/' + row.id_usuario + '">Editar</a> / ' +
-                                '<a href="http://localhost:3001/usuarios/excluir/' + row.id_usuario + '">Excluir</a>';
+                            return '<a href="http://localhost:3001/usuarios/recarga/' + row.id_usuario + '"><span class="ti-money border  border-success text-black btn btn-outline-success rounded p-2"></span></a>   ' +
+                                '<a href="http://localhost:3001/usuarios/editar/' + row.id_usuario + '"><span class="ti-pencil border border-dark text-black btn btn-outline-primary rounded p-2"></span></a>  ' +
+                                '<a href="http://localhost:3001/usuarios/excluir/' + row.id_usuario + '"><span class="ti-trash border  border-danger text-black btn btn-outline-danger rounded p-2"></span></a>';
                              }},
 
                 
