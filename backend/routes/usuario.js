@@ -109,8 +109,6 @@ router.patch("/recarregar/:id", async (req, res) => {
     res.status(500).json({ error: "Erro ao atualizar o usuário." });
   }
 });
-
-
 router.get('/dados', async (req, res) => {
   try {
     // Consulta Prisma para obter os dados
@@ -126,21 +124,28 @@ router.get('/dados', async (req, res) => {
       GROUP BY 
         DATE_FORMAT(cadastro, '%Y-%m'), tipo
       ORDER BY 
-        tipo, cadastro ASC;
+        ano_mes ASC, tipo ASC;  -- Ordenar por ano_mes e tipo
     `;
 
     // Mapear os dados para o formato desejado
     const labels = [...new Set(dados.map((item) => item.ano_mes))]; // Obter rótulos únicos
     const tiposUsuario = [...new Set(dados.map((item) => item.tipo))]; // Obter tipos de usuário únicos
-    const series = tiposUsuario.map((tipo) => {
-      return dados
+
+    // Inicializar um objeto para armazenar os dados por tipo de usuário
+    const dadosPorTipo = {};
+
+    // Organizar os dados por tipo de usuário
+    tiposUsuario.forEach((tipo) => {
+      const dadosTipo = dados
         .filter((item) => item.tipo === tipo)
         .map((item) => Number(item.total));
+
+      dadosPorTipo[tipo] = dadosTipo;
     });
 
     const jsonResult = {
       labels,
-      series,
+      series: dadosPorTipo, // Agora os dados são organizados diretamente por tipo
     };
 
     res.json(jsonResult);
@@ -149,6 +154,7 @@ router.get('/dados', async (req, res) => {
     res.status(500).json({ error: 'Erro ao obter dados' });
   }
 });
+
 
 
 
