@@ -144,7 +144,7 @@
                                             <label for="textarea-input" class=" form-control-label">Rota</label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <textarea name="textarea-input" id="rota" rows="9" placeholder="" class="form-control" required>
+                                            <textarea name="textarea-input" id="rota" rows="3" placeholder="" class="form-control" required>
 
                                             </textarea>
                                             <div class="invalid-feedback">Rota inválida</div>
@@ -212,8 +212,8 @@
                             "data": "ações",
                             "render": function(data, type, row, meta) {
                             return '' +
-                                '<a href="http://localhost:3001/linhas/editar/' + row.id_linha + '">Editar</a> / ' +
-                                '<a href="http://localhost:3001/linhas/excluir/' + row.id_linha + '">Excluir</a>';
+                                '<a href="http://localhost:3001/linhas/editar/' + row.id_linha + '"><span class="ti-pencil border border-dark text-black btn btn-outline-primary rounded p-2"></span></a> / ' +
+                                '<a href="http://localhost:3001/linhas/excluir/' + row.id_linha + '"><span class="ti-trash border  border-danger text-black btn btn-outline-danger rounded p-2"></span></a>';
                              }}
                         ],
 

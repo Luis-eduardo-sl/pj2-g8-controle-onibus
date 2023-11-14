@@ -143,7 +143,7 @@
 
                                     <div class="row form-group">
                                         <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Observações</label></div>
-                                        <div class="col-12 col-md-9"><textarea name="textarea-input" id="observacoes" rows="9" placeholder="" class="form-control"></textarea></div>
+                                        <div class="col-12 col-md-9"><textarea name="textarea-input" id="observacoes" rows="3" placeholder="" class="form-control"></textarea></div>
                                     </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
 
@@ -192,8 +192,8 @@
                             "data": "ações",
                             "render": function(data, type, row, meta) {
                             return '' +
-                                '<a href="http://localhost:3001/motoristas/editar/' + row.id_motorista + '">Editar</a> / ' +
-                                '<a href="http://localhost:3001/motoristas/excluir/' + row.id_motorista + '">Excluir</a>';
+                                '<a href="http://localhost:3001/motoristas/editar/' + row.id_motorista + '"><span class="ti-pencil border border-dark text-black btn btn-outline-primary rounded p-2"></a> / ' +
+                                '<a href="http://localhost:3001/motoristas/excluir/' + row.id_motorista + '"><span class="ti-trash border  border-danger text-black btn btn-outline-danger rounded p-2"></span></a>';
                              }},
 
                 
