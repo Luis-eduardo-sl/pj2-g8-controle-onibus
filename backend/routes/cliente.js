@@ -1,8 +1,7 @@
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
-const bcrypt = require ('bcryptjs');
-const { generateAccessToken, authenticateToken } = require('../middleware/auth');
-
+const bcrypt = require('bcryptjs');
+const { generateAccessToken } = require('../middleware/auth');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -38,23 +37,21 @@ router.get("/buscar/:id", async (req, res) => {
   }
 });
 
-
-
 // Rota para criar um novo cliente
 router.post("/cadastrar", async (req, res) => {
   try {
-    const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
+    const { nome, email, senha } = req.body;
 
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     const novoCliente = await prisma.cliente.create({
       data: {
         nome,
-        token,
         email,
-        senha,
-        usuario_cadastrado_id,
+        senha: senhaCriptografada,
       },
     });
+
     const jwt = generateAccessToken(novoCliente);
     novoCliente.accessToken = jwt;
 
@@ -66,31 +63,22 @@ router.post("/cadastrar", async (req, res) => {
 });
 
 // Rota para atualizar um cliente existente
-router.put("/atualizar/:id", authenticateToken, async (req, res) => {
+router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
-  const { nome, token, email, senha, usuario_cadastrado_id } = req.body;
+  const { nome, email, senha } = req.body;
   const tokenQuery = req.accessToken;
-  // busca o usuario pelo id + email no token validado
-  const checkUser = await prisma.cliente.findUnique({
-    where: {
-      id:id,
-      email: tokenQuery.email
-    }
-  });
-  //Nega acesso se não existe cliente no DB ou id do parametro é diferente do id ou token
-  if(checkUser === null || id !== tokenQuery.id) {
-    return res.sendStatus(403); // 403 forbidden
-  }
 
   try {
+    // Criptografa a nova senha, se fornecida
+    const senhaCriptografada = senha ? await bcrypt.hash(senha, 10) : undefined;
+
+    // Atualiza o cliente no banco de dados
     const cliente = await prisma.cliente.update({
       where: { id_cliente: Number(id) },
       data: {
         nome,
-        token,
         email,
-        senha,
-        usuario_cadastrado_id,
+        senha: senhaCriptografada,
       },
     });
 
