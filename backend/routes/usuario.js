@@ -109,6 +109,92 @@ router.patch("/recarregar/:id", async (req, res) => {
     res.status(500).json({ error: "Erro ao atualizar o usuário." });
   }
 });
+
+
+// Rota para cobrar automaticamente com base no tipo de usuário
+router.patch("/cobrar/:cartao_id", async (req, res) => {
+  const { cartao_id } = req.params;
+
+  try {
+    // Obtemos as informações do cartão e do usuário
+    const cartao = await prisma.cartao.findUnique({
+      where: { id_cartao: Number(cartao_id) },
+      include: {
+        usuario: true,
+      },
+    });
+
+    if (!cartao || !cartao.usuario) {
+      return res.status(404).json({ error: "Cartão ou usuário não encontrado." });
+    }
+
+    const usuario = cartao.usuario;
+
+    // Calcula o valor da cobrança com base no tipo de usuário
+    let valorCobranca = 0;
+
+    switch (usuario.tipo) {
+      case "Comum":
+        valorCobranca = 5; // Valor para usuários comuns
+        break;
+      case "Idoso":
+      case "Deficiente":
+        valorCobranca = 0; // Passagens grátis para idosos e deficientes
+        break;
+      case "Estudante":
+        // Verifica quantas passagens o estudante já utilizou no dia
+        const hoje = new Date();
+        const inicioDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+        const fimDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() + 1);
+
+        const passagensUtilizadasHoje = await prisma.passagem.count({
+          where: {
+            usuario: {
+              tipo: "Estudante",
+              id_usuario: usuario.id_usuario,
+            },
+            data: {
+              gte: inicioDoDia,
+              lt: fimDoDia,
+            },
+          },
+        });
+
+        if (passagensUtilizadasHoje < 2) {
+          valorCobranca = 0; // Passagens grátis se ainda não utilizou o limite
+        } else {
+          valorCobranca = 5; // Valor da cobrança após exceder o limite
+        }
+        break;
+      default:
+        return res.status(400).json({ error: "Tipo de usuário inválido." });
+    }
+
+    // Verifica se o saldo é suficiente para a cobrança
+    if (cartao.saldo < valorCobranca) {
+      return res.status(400).json({ error: "Saldo insuficiente." });
+    }
+
+    // Atualiza o saldo do cartão após a cobrança
+    const novoSaldo = cartao.saldo - valorCobranca;
+
+    await prisma.cartao.update({
+      where: { id_cartao: Number(cartao_id) },
+      data: {
+        saldo: novoSaldo,
+      },
+    });
+
+    res.json({ message: "Cobrança realizada com sucesso." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao processar a cobrança." });
+  }
+});
+
+
+
+
 router.get('/dados', async (req, res) => {
   try {
     // Consulta Prisma para obter os dados
