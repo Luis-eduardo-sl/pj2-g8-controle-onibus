@@ -1,10 +1,26 @@
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require('bcryptjs');
-const { generateAccessToken } = require('../middleware/auth');
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 const prisma = new PrismaClient();
+
+const secretKey = process.env.SECRET_KEY;
+
+// Função para gerar token de acesso
+const generateAccessToken = (cliente) => {
+  const payload = {
+    id: cliente.id_cliente,
+    email: cliente.email,
+  };
+
+  const options = {
+    expiresIn: "1h",
+  };
+
+  return jwt.sign(payload, secretKey, options);
+};
 
 // Rota para listar todos os clientes
 router.get("/listar", async (req, res) => {
@@ -37,6 +53,33 @@ router.get("/buscar/:id", async (req, res) => {
   }
 });
 
+// Rota para realizar o login e gerar o token
+router.post("/login", async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    const cliente = await prisma.cliente.findUnique({
+      where: { email },
+    });
+
+    if (!cliente) {
+      return res.status(401).json({ error: "Credenciais inválidas." });
+    }
+
+    const senhaCorreta = await bcrypt.compare(senha, cliente.senha);
+
+    if (!senhaCorreta) {
+      return res.status(401).json({ error: "Credenciais inválidas." });
+    }
+
+    const jwtToken = generateAccessToken(cliente);
+    res.json({ cliente, accessToken: jwtToken });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao realizar o login." });
+  }
+});
+
 // Rota para criar um novo cliente
 router.post("/cadastrar", async (req, res) => {
   try {
@@ -52,9 +95,6 @@ router.post("/cadastrar", async (req, res) => {
       },
     });
 
-    const jwt = generateAccessToken(novoCliente);
-    novoCliente.accessToken = jwt;
-
     res.status(201).json(novoCliente);
   } catch (error) {
     console.error(error);
@@ -66,13 +106,10 @@ router.post("/cadastrar", async (req, res) => {
 router.put("/atualizar/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, email, senha } = req.body;
-  const tokenQuery = req.accessToken;
 
   try {
-    // Criptografa a nova senha, se fornecida
     const senhaCriptografada = senha ? await bcrypt.hash(senha, 10) : undefined;
 
-    // Atualiza o cliente no banco de dados
     const cliente = await prisma.cliente.update({
       where: { id_cliente: Number(id) },
       data: {

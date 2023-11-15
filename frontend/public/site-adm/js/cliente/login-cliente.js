@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const formData = new FormData(form);
                 const data = {
-                    email: formData.get('email'),
-                    senha: formData.get('senha')
+                    email: formData.get('#email'),
+                    senha: formData.get('#senha')
                 };
 
                 const response = await axios.post('http://localhost:3000/api/auth/entrar', data);
