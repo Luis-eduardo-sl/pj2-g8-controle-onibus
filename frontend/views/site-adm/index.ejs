@@ -414,156 +414,62 @@
                     show: false
                 }
             });
-            // Line Chart  #flotLine5 End
-            // Traffic Chart using chartist
-            // if ($('#traffic-chart').length) {
-            //     var chart = new Chartist.Line('#traffic-chart', {
-            //       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            //       series: [
-            //       [0, 18000, 35000,  25000,  22000,  0],
-            //       [0, 3000, 15000,  20000,  15000,  300],
-            //       [0, 15000, 28000,  15000,  30000,  5000]
-            //       ]
-            //   }, {
-            //       low: 0,
-            //       showArea: true,
-            //       showLine: false,
-            //       showPoint: false,
-            //       fullWidth: true,
-            //       axisX: {
-            //         showGrid: true
-            //     }
-            // });
 
-            if ($('#traffic-chart').length) {
-    // Fazer uma solicitação AJAX para a API
-    $.ajax({
-        url: 'http://localhost:3000/api/usuario/dados',
-        method: 'GET',
-        success: function (data) {
-            // Processar os dados recebidos da API
-            var labels = data.labels; // Suponha que a API forneça um array de rótulos
-            var seriesData = data.series; // Suponha que a API forneça os dados da série
 
-            // Criar o gráfico Chartist com os dados da API
-            var chart = new Chartist.Line('#traffic-chart', {
-                labels: labels,
-                series: seriesData,
-            }, {
-                low: 0,
-                showArea: true,
-                showLine: false,
-                showPoint: false,
-                fullWidth: true,
-                axisX: {
-                    showGrid: true,
-                },
-            });
+if ($('#traffic-chart').length) {
+   // Fazer uma solicitação AJAX para a API
+$.ajax({
+    url: 'http://localhost:3000/api/usuario/dados',
+    method: 'GET',
+    success: function (data) {
+        // Processar os dados recebidos da API
+        var labels = data.labels;
+        var seriesData = data.series;
 
-            // Mapeamento de cores para tipos de usuário
-            var colorMapping = {
-                'Comum': '#33FF6E', // Verde para Comum
-                'Idoso': '#8A2BE2', // Lilás para Idoso
-                'Estudante': '#87CEFA', // Azul Claro para Estudante
-                'Deficiente': '#FFA500', // Laranja para Deficiente
+        // Converter o formato do objeto para um array de objetos
+        var seriesArray = Object.keys(seriesData).map(function (tipoUsuario) {
+            return {
+                name: tipoUsuario,
+                data: seriesData[tipoUsuario],
             };
+        });
 
-            // Definir cores com base no mapeamento de tipos de usuário
-            chart.on('created', function (data) {
-                data.svg
-                    .querySelectorAll('.ct-series .ct-line, .ct-series .ct-point')
-                    .forEach(function (path, i) {
-                        var tipoUsuario = Object.keys(colorMapping)[i];
-                        var color = colorMapping[tipoUsuario];
-                        path.style.stroke = color;
-                    });
-            });
-        },
-        error: function (error) {
-            console.error('Erro ao obter dados da API:', error);
-        },
-    });
+        // Criar o gráfico Chartist com os dados da API
+        var chart = new Chartist.Line('#traffic-chart', {
+            labels: labels,
+            series: seriesArray,
+        }, {
+            low: 0,
+            showArea: true,
+            fullWidth: true,
+            axisX: {
+                showGrid: true,
+            },
+        });
 
-    chart.on('draw', function (data) {
-        if (data.type === 'line' || data.type === 'area') {
-            data.element.animate({
-                d: {
-                    begin: 2000 * data.index,
-                    dur: 2000,
-                    from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-                    to: data.path.clone().stringify(),
-                    easing: Chartist.Svg.Easing.easeOutQuint
-                }
-            });
-        }
-    });
+        // Adicionar animação
+        chart.on('draw', function (data) {
+            if (data.type === 'line' || data.type === 'area') {
+                data.element.animate({
+                    d: {
+                        begin: 2000 * data.index,
+                        dur: 2000,
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                        to: data.path.clone().stringify(),
+                        easing: Chartist.Svg.Easing.easeOutQuint
+                    }
+                });
+            }
+        });
+    },
+    error: function (error) {
+        console.error('Erro ao obter dados da API:', error);
+    },
+ });
+ 
 }
 
-            // Traffic Chart using chartist End
-            //Traffic chart chart-js
-            if ($('#TrafficChart').length) {
-                var ctx = document.getElementById( "TrafficChart" );
-                ctx.height = 150;
-                var myChart = new Chart( ctx, {
-                    type: 'line',
-                    data: {
-                        labels: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" ],
-                        datasets: [
-                        {
-                            label: "Visit",
-                            borderColor: "rgba(4, 73, 203,.09)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(4, 73, 203,.5)",
-                            data: [ 0, 2900, 5000, 3300, 6000, 3250, 0 ]
-                        },
-                        {
-                            label: "Bounce",
-                            borderColor: "rgba(245, 23, 66, 0.9)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(245, 23, 66,.5)",
-                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
-                            data: [ 0, 4200, 4500, 1600, 4200, 1500, 4000 ]
-                        },
-                        {
-                            label: "Targeted",
-                            borderColor: "rgba(40, 169, 46, 0.9)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(40, 169, 46, .5)",
-                            pointHighlightStroke: "rgba(40, 169, 46,.5)",
-                            data: [1000, 5200, 3600, 2600, 4200, 5300, 0 ]
-                        }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        tooltips: {
-                            mode: 'index',
-                            intersect: false
-                        },
-                        hover: {
-                            mode: 'nearest',
-                            intersect: true
-                        }
-
-                    }
-                } );
-            }
-            //Traffic chart chart-js  End
-            // Bar Chart #flotBarChart
-            $.plot("#flotBarChart", [{
-                data: [[0, 18], [2, 8], [4, 5], [6, 13],[8,5], [10,7],[12,4], [14,6],[16,15], [18, 9],[20,17], [22,7],[24,4], [26,9],[28,11]],
-                bars: {
-                    show: true,
-                    lineWidth: 0,
-                    fillColor: '#ffffff8a'
-                }
-            }], {
-                grid: {
-                    show: false
-                }
-            });
-            // Bar Chart #flotBarChart End
-        });
+});
     </script>
 </body>
 </html>
