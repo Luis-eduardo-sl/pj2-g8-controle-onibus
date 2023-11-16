@@ -11,7 +11,7 @@ model cliente {
   id_cliente Int       @id @default(autoincrement())
   nome       String?   @db.VarChar(100)
   token      String?   @db.VarChar(45)
-  email      String?   @db.VarChar(200)
+  email      String?   @unique(map: "email_UNIQUE") @db.VarChar(200)
   senha      String?   @db.VarChar(535)
   usuario    usuario[]
 }
@@ -57,9 +57,9 @@ model usuario {
   observacoes        String?              @db.VarChar(535)
   saldo              Decimal?             @db.Decimal(10, 2)
   tipo               String               @default("comum") @db.VarChar(20)
-  cadastro           DateTime             @default(now()) @db.Timestamp(0)
   cliente_id         Int?
   cartao_id          String?              @db.VarChar(200)
+  cadastro           DateTime             @default(now()) @db.Timestamp(0)
   cliente            cliente?             @relation(fields: [cliente_id], references: [id_cliente], onDelete: NoAction, onUpdate: NoAction, map: "FK_CLIENTE")
   viagem_has_usuario viagem_has_usuario[]
 

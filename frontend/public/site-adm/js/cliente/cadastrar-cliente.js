@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
           storeFlashMessage("success", "Cadastro realizado sucesso");
   
           const id = response.data.id;
-          window.location.href = `http://localhost:3001/registro`;
+          window.location.href = `http://localhost:3001/`;
         } catch (error) {
           triggerFlashMessage("danger", error.message);
         }

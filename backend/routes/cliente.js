@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
 
   try {
     const cliente = await prisma.cliente.findUnique({
-      where: { email },
+      where: { email: email },
     });
 
     if (!cliente) {
@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
     if (!senhaCorreta) {
       return res.status(401).json({ error: "Credenciais inválidas." });
     }
-
+console.log(cliente);
     const jwtToken = generateAccessToken(cliente);
     res.json({ cliente, accessToken: jwtToken });
   } catch (error) {
@@ -94,7 +94,7 @@ router.post("/cadastrar", async (req, res) => {
         senha: senhaCriptografada,
       },
     });
-
+console.log(novoCliente);
     res.status(201).json(novoCliente);
   } catch (error) {
     console.error(error);
