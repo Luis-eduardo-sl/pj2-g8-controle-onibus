@@ -1,34 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
-    displayFlashMessage();
-    console.log('oi');
+document.addEventListener("DOMContentLoaded", function () {
+    const formulario = document.querySelector('#form');
 
-    const form = document.querySelector('#form');
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault()
+    formulario.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-        if (form.checkValidity()) {
-            try {
-                const formData = new FormData(form);
-                const data = {
-                    email: formData.get('email'),
-                    senha: formData.get('senha')
-                };
-console.log(data);
-                const response = await axios.post('http://localhost:3000/api/cliente/login', data);
+        const formData = new FormData(formulario);
+        const email = formData.get('email');
+        const senha = formData.get('senha');
 
-                // Cookies.set('jwt', response.data.token, { expires: 1, path: '/' });
-                // Cookies.set('flash', JSON.stringify({ type: 'success', message: 'Login realizado com sucesso!' }), { expires: 1, path: '/' });
-                console.log("Login realizado com sucesso.");
+        try {
+            const response = await axios.post('http://localhost:3000/api/auth/login', { email, senha });
+            const { token } = response.data;
 
-                window.location.href = '/';
-            } catch (error) {
-                // Cookies.set('flash', JSON.stringify({ type: 'danger', message: error.response.data.mensagem }), { expires: 1, path: '/' });
-                console.error('Ocorreu um erro ao realizar o login: ', error);
+            localStorage.setItem('token', token);
 
-                displayFlashMessage();
-            }
+            window.location.href = '/';
+        } catch (error) {
+            console.log("Credenciais Inválidas.");
         }
-
-        form.classList.add('was-validated')
-    }, false)
+    });
 });
