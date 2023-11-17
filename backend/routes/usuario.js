@@ -110,6 +110,25 @@ router.patch("/recarregar/:id", async (req, res) => {
   }
 });
 
+router.get("/buscar/cartao/:cartao_id", async (req, res) => {
+  const { cartao_id } = req.params;
+
+  try {
+    const usuario = await prisma.usuario.findFirst({
+      where: { cartao_id: (cartao_id) },
+    });
+
+    if (usuario) {
+      res.json(usuario);
+    } else {
+      res.status(404).json({ error: "Cartão não encontrado." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar o cartão." });
+  }
+});
+
 
 // Rota para cobrar automaticamente com base no tipo de usuário
 router.patch("/cobrar/:cartao_id", async (req, res) => {
@@ -117,7 +136,7 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
 
   try {
     // Obtemos as informações do cartão e do usuário
-    const cartao = await prisma.cartao.findUnique({
+    const cartao = await prisma.cartao.findFirst({
       where: { id_cartao: Number(cartao_id) },
       include: {
         usuario: true,
