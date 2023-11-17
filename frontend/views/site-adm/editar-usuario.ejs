@@ -234,7 +234,7 @@ crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script src="site-adm/js/cliente/credencial.js"></script>
+<script src="/site-adm/js/cliente/credencial.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
     try {
@@ -243,9 +243,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         
        const clienteId = await verifyToken();
         console.log("Está autorizado a ver esta página" , clienteId);
-
     } catch (error) {
         console.error("Erro ao verificar o token:", error);
+
         window.location.replace("/login");
     }
 });
