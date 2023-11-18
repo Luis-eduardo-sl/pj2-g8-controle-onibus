@@ -35,6 +35,29 @@ router.get("/buscar/:id", async (req, res) => {
   }
 });
 
+router.get("/procurar/:cpf", async (req, res) => {
+  const { cpf } = req.params;
+
+  try {
+    // Remova caracteres não numéricos do CPF
+    const cpfNumerico = cpf.replace(/\D/g, '');
+
+    // Faça a busca usando o CPF
+    const usuario = await prisma.usuario.findFirst({
+      where: { cpf: cpfNumerico },
+    });
+
+    if (usuario) {
+      res.json(usuario);
+    } else {
+      res.status(404).json({ error: "Usuário não encontrado." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar o usuário." });
+  }
+});
+
 
 // Rota para criar um novo usuário
 router.post("/cadastrar", async (req, res) => {
@@ -109,6 +132,28 @@ router.patch("/recarregar/:id", async (req, res) => {
     res.status(500).json({ error: "Erro ao atualizar o usuário." });
   }
 });
+
+router.patch("/recarregar/:cpf", async (req, res) => {
+  const { cpf } = req.params;
+  const { saldo } = req.body;
+
+  try {
+    // const saldo = parseFloat(saldo);
+
+    const usuario = await prisma.usuario.update({
+      where: { cpf: cpf },
+      data: {
+        saldo: Number(saldo)
+      }
+    });
+
+    res.json(usuario);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao atualizar o usuário." });
+  }
+});
+
 
 router.get("/buscar/cartao/:cartao_id", async (req, res) => {
   const { cartao_id } = req.params;
