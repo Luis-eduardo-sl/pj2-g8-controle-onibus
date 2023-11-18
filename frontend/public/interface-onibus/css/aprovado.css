@@ -17,10 +17,10 @@ body p{
 .info1{
     text-align: center;
     font-family: 'Inria Sans', sans-serif;
-    font-size: 150px;
+    font-size: 70px;
     background-color: #74FF79;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 160px;
+    padding-bottom: 160px;
 }
 
 .info2{
@@ -28,5 +28,5 @@ body p{
     padding-top: 120px;
     padding-bottom: 120px;
     font-family: 'Inria Sans', sans-serif;
-    font-size: 150px;
+    font-size: 70px;
 }

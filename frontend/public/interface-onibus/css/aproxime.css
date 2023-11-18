@@ -16,11 +16,13 @@ body p{
 
 .info1{
     text-align: center;
+    font-weight: bold;
+    color: #000000;
     font-family: 'Inria Sans', sans-serif;
-    font-size: 150px;
+    font-size: 80px;
     background-color: #FFE76B;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 160px;
+    padding-bottom: 160px;
 }
 
 .img{
@@ -30,5 +32,5 @@ body p{
 }
 
 .img img{
-    width: 230px;
+    width: 130px;
 }

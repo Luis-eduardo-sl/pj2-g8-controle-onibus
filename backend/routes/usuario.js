@@ -130,24 +130,22 @@ router.get("/buscar/cartao/:cartao_id", async (req, res) => {
 });
 
 
+
 // Rota para cobrar automaticamente com base no tipo de usuário
 router.patch("/cobrar/:cartao_id", async (req, res) => {
   const { cartao_id } = req.params;
 
   try {
-    // Obtemos as informações do cartão e do usuário
-    const cartao = await prisma.cartao.findFirst({
-      where: { id_cartao: Number(cartao_id) },
-      include: {
-        usuario: true,
+    // Obtemos as informações do usuário
+    const usuario = await prisma.usuario.findFirst({
+      where: {
+        cartao_id: cartao_id.toString(), // Convertendo para String
       },
     });
 
-    if (!cartao || !cartao.usuario) {
-      return res.status(404).json({ error: "Cartão ou usuário não encontrado." });
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuário não encontrado." });
     }
-
-    const usuario = cartao.usuario;
 
     // Calcula o valor da cobrança com base no tipo de usuário
     let valorCobranca = 0;
@@ -160,45 +158,53 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
       case "Deficiente":
         valorCobranca = 0; // Passagens grátis para idosos e deficientes
         break;
-      case "Estudante":
-        // Verifica quantas passagens o estudante já utilizou no dia
-        const hoje = new Date();
-        const inicioDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
-        const fimDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() + 1);
 
-        const passagensUtilizadasHoje = await prisma.passagem.count({
-          where: {
-            usuario: {
-              tipo: "Estudante",
-              id_usuario: usuario.id_usuario,
-            },
-            data: {
-              gte: inicioDoDia,
-              lt: fimDoDia,
-            },
-          },
-        });
-
-        if (passagensUtilizadasHoje < 2) {
-          valorCobranca = 0; // Passagens grátis se ainda não utilizou o limite
-        } else {
-          valorCobranca = 5; // Valor da cobrança após exceder o limite
-        }
-        break;
+        case "Estudante":
+          try {
+              // Certifique-se de que cartao_id está definido antes de consultar
+              if (!usuario.cartao_id) {
+                  throw new Error("Cartão não encontrado para o usuário.");
+              }
+      
+              // Verifica quantas passagens o estudante já utilizou hoje
+              const hoje = new Date();
+              const inicioDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+              const transacoesEstudanteHoje = await prisma.usuario.count({
+                  where: {
+                      cartao_id: usuario.cartao_id,
+                      tipo: "Estudante",
+                      cadastro: {
+                          gte: inicioDoDia,
+                      },
+                  },
+              });
+      
+              if (transacoesEstudanteHoje < 2) {
+                  valorCobranca = 0; // Passagens grátis se ainda não utilizou o limite
+              } else {
+                  valorCobranca = 5; // Valor da cobrança após exceder o limite
+              }
+          } catch (error) {
+              console.error(error);
+              return res.status(500).json({ error: "Erro ao verificar transações do estudante." });
+          }
+          break;
+      
+      
       default:
         return res.status(400).json({ error: "Tipo de usuário inválido." });
     }
 
     // Verifica se o saldo é suficiente para a cobrança
-    if (cartao.saldo < valorCobranca) {
+    if (usuario.saldo < valorCobranca) {
       return res.status(400).json({ error: "Saldo insuficiente." });
     }
 
-    // Atualiza o saldo do cartão após a cobrança
-    const novoSaldo = cartao.saldo - valorCobranca;
+    // Atualiza o saldo do usuário após a cobrança
+    const novoSaldo = usuario.saldo - valorCobranca;
 
-    await prisma.cartao.update({
-      where: { id_cartao: Number(cartao_id) },
+    await prisma.usuario.update({
+      where: { id_usuario: usuario.id_usuario },
       data: {
         saldo: novoSaldo,
       },
@@ -210,6 +216,7 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
     res.status(500).json({ error: "Erro ao processar a cobrança." });
   }
 });
+
 
 
 
