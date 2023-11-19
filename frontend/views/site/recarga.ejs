@@ -46,23 +46,23 @@
     <h2 class="text-center" style="margin-top: 41px;">Recarga</h2><div class="container py-5">
 
   <div class="row">
-    <div id="flashMessageContainer" class="col-lg-12 text-center"></div>
 
     <div class="col-lg-7 mx-auto">
+      <div id="flashMessageContainer" class="col-lg-12 text-center"></div>
       <div class="bg-white rounded-lg shadow-sm p-5">
-    
+
         <div class="tab-content">
 
           <div id="nav-tab-card" class="tab-pane fade show active">
              
-            <form id="form-recarga"  class="needs-validation" novalidate>
+            <form id="form-recarga" method="post"  class="needs-validation" novalidate>
                                 
               <div class="row form-group">
                   <div class="col col-md-2">
                       <label for="text-input" class=" form-control-label">CPF</label>
                   </div>
                   <div class="col-12 col-md-9 pb-3">
-                      <input type="number" id="cpfRecarga" name="cpfRecarga" minlength="10" class="form-control" required>
+                      <input type="number" id="cpfRecarga" name="cpfRecarga" placeholder="digite apenas os numeros" minlength="10" class="form-control" required>
                       <div class="invalid-feedback">CPF inválido</div>
                   </div>
               </div>

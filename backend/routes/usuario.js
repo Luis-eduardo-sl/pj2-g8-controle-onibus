@@ -133,26 +133,38 @@ router.patch("/recarregar/:id", async (req, res) => {
   }
 });
 
+
 router.patch("/recarregar/:cpf", async (req, res) => {
   const { cpf } = req.params;
   const { saldo } = req.body;
 
   try {
-    // const saldo = parseFloat(saldo);
+    const existingUser = await prisma.usuario.findUnique({
+      where: { cpf: cpf },
+    });
+
+    if (!existingUser) {
+      console.error('Usuário não encontrado para o CPF especificado.');
+      return res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
 
     const usuario = await prisma.usuario.update({
       where: { cpf: cpf },
       data: {
-        saldo: Number(saldo)
-      }
+        saldo: Number(saldo),
+      },
     });
 
     res.json(usuario);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao atualizar o usuário." });
+    res.status(500).json({ error: 'Erro ao atualizar o usuário.' });
   }
 });
+
+
+
+
 
 
 router.get("/buscar/cartao/:cartao_id", async (req, res) => {
