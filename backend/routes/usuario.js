@@ -278,6 +278,7 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
 
 
 
+
 router.get('/dados', async (req, res) => {
   try {
     // Consulta Prisma para obter os dados
@@ -324,6 +325,69 @@ router.get('/dados', async (req, res) => {
   }
 });
 
+
+// Rota para contar todos os usuários
+router.get('/countUsuarios', async (req, res) => {
+  try {
+    const count = await prisma.usuario.count();
+    res.json({ count });
+  } catch (error) {
+    console.error('Erro ao contar usuários:', error);
+    res.status(500).json({ error: 'Erro ao contar usuários' });
+  }
+});
+
+// Rota para contar usuários com o tipo 'Comum'
+router.get('/countUsuariosComum', async (req, res) => {
+  try {
+    const count = await prisma.usuario.count({
+      where: { tipo: 'Comum' }
+    });
+    res.json({ count });
+  } catch (error) {
+    console.error('Erro ao contar usuários comuns:', error);
+    res.status(500).json({ error: 'Erro ao contar usuários comuns' });
+  }
+});
+
+// Rota para contar usuários com o tipo 'Estudante'
+router.get('/countUsuariosEstudante', async (req, res) => {
+  try {
+    const count = await prisma.usuario.count({
+      where: { tipo: 'Estudante' }
+    });
+    res.json({ count });
+  } catch (error) {
+    console.error('Erro ao contar usuários estudantes:', error);
+    res.status(500).json({ error: 'Erro ao contar usuários estudantes' });
+  }
+});
+
+// Rota para contar usuários com o tipo 'Idoso'
+router.get('/countUsuariosIdoso', async (req, res) => {
+  try {
+    const count = await prisma.usuario.count({
+      where: { tipo: 'Idoso' }
+    });
+    res.json({ count });
+  } catch (error) {
+    console.error('Erro ao contar usuários idosos:', error);
+    res.status(500).json({ error: 'Erro ao contar usuários idosos' });
+  }
+});
+
+// Rota para contar usuários com o tipo 'Deficiente'
+router.get('/countUsuariosDeficiente', async (req, res) => {
+  try {
+    const count = await prisma.usuario.count({
+      where: { tipo: 'Deficiente' }
+    });
+    res.json({ count });
+  } catch (error) {
+    console.error('Erro ao contar usuários deficientes:', error);
+    res.status(500).json({ error: 'Erro ao contar usuários deficientes' });
+  }
+});
 
 
 

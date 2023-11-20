@@ -93,9 +93,11 @@
                                     <div class="stat-icon dib flat-color-4">
                                         <i class="pe-7s-users"></i>
                                     </div>
+                                    
                                   <a href="/usuarios">  <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">100000</span></div>
+                                            <div class="stat-text"><span class="count mb-0" id="count-usuario">
+                                            </span></div>
                                             <div class="stat-heading">Usuários</div>
                                         </div>
                                     </div></a>
@@ -113,7 +115,8 @@
                                     </div>
                                     <a href="/motoristas"><div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">17</span></div>
+                                            <div class="stat-text"><span class="count mb-0" id="count-motorista">
+                                            </span></div>
                                             <div class="stat-heading">Motoristas</div>
                                         </div>
                                     </div></a>
@@ -131,7 +134,8 @@
                                     </div>
                                    <a href="/linhas"> <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">12</span></div>
+                                            <div class="stat-text"><div class="stat-text"><span class="count mb-0" id="count-linha">
+                                            </span></div></div>
                                             <div class="stat-heading">Linhas Registradas</div>
                                         </div>
                                     </div></a>
@@ -163,28 +167,28 @@
                                     <div class="card-body">
                                         <div class="progress-box progress-1">
                                             <h4 class="por-title">Comum</h4>
-                                            <div class="por-txt">45.000 Usuarios </div>
+                                            <div class="por-txt"><span class="mb-0" id="count-usuario-comum"></span> Usuarios </div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
                                             <h4 class="por-title">Idoso</h4>
-                                            <div class="por-txt">20.000 idosos </div>
+                                            <div class="por-txt">    <span class="mb-0" id="count-usuario-idoso"></span> idosos </div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
                                             <h4 class="por-title">Estudante</h4>
-                                            <div class="por-txt">30.000 estudantes</div>
+                                            <div class="por-txt">    <span class="mb-0" id="count-usuario-estudante"></span> estudantes</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
                                             <h4 class="por-title">Deficientes</h4>
-                                            <div class="por-txt">5.000 deficientes</div>
+                                            <div class="por-txt">    <span class="mb-0" id="count-usuario-deficiente"></span> deficientes</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
@@ -288,11 +292,12 @@
     <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
 
-    <script src="site-adm/assets/js/init/weather-init.js"></script>
+    <!-- <script src="site-adm/assets/js/init/weather-init.js"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="site-adm/assets/js/init/fullcalendar-init.js"></script>
+
 
 
     <!--Local Stuff-->
@@ -440,6 +445,14 @@ $.ajax({
 
 });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/countup.js@2.0.8/dist/countUp.umd.min.js"></script>
+
+<script src="/site-adm/js/usuario/contador-usuario.js"></script>
+<script src="/site-adm/js/linha/contador-linha.js"></script>
+<script src="/site-adm/js/Motorista/contador-motorista.js"></script>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

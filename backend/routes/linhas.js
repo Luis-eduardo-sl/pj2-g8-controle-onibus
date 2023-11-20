@@ -35,6 +35,18 @@ router.get("/buscar/:id", async (req, res) => {
   }
 });
 
+
+// Rota para contar o número de linhas
+router.get('/countLinhas', async (req, res) => {
+  try {
+    const count = await prisma.linha.count();
+    res.json({ count });
+  } catch (error) {
+    console.error('Erro ao contar linhas:', error);
+    res.status(500).json({ error: 'Erro ao contar linhas' });
+  }
+});
+
 // Rota para criar uma nova linha
 router.post("/cadastrar", async (req, res) => {
   try {

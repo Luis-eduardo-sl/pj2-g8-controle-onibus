@@ -37,6 +37,17 @@ router.get("/buscar/:id", async (req, res) => {
   }
 });
 
+router.get('/countMotoristas', async (req, res) => {
+  try {
+    const count = await prisma.motorista.count();
+    res.json({ count });
+  } catch (error) {
+    console.error('Erro ao contar motoristas:', error);
+    res.status(500).json({ error: 'Erro ao contar motoristas' });
+  }
+});
+
+
 
 // Rota para criar um novo motorista
 router.post("/cadastrar", upload.single("foto"), async (req, res) => {
