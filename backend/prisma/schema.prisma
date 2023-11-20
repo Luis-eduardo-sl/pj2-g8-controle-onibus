@@ -11,39 +11,9 @@ model cliente {
   id_cliente Int       @id @default(autoincrement())
   nome       String?   @db.VarChar(100)
   token      String?   @db.VarChar(45)
-  email      String?   @unique(map: "email_UNIQUE") @db.VarChar(200)
+  email      String?   @unique(map: "email") @db.VarChar(200)
   senha      String?   @db.VarChar(535)
   usuario    usuario[]
-}
-
-model linha {
-  id_linha     Int       @id @default(autoincrement())
-  nome         String?   @db.VarChar(200)
-  inicio       DateTime? @db.DateTime(0)
-  termino      DateTime? @db.DateTime(0)
-  rota         String?   @db.VarChar(2000)
-  freq_semanal String?   @db.VarChar(45)
-  viagem       viagem[]
-}
-
-model motorista {
-  id_motorista Int      @id @default(autoincrement())
-  nome         String?  @db.VarChar(200)
-  cpf          String?  @db.VarChar(14)
-  telefone     String?  @db.VarChar(14)
-  email        String?  @db.VarChar(200)
-  foto         String?  @db.VarChar(200)
-  observacoes  String?  @db.VarChar(535)
-  viagem       viagem[]
-}
-
-model onibus {
-  id_onibus   Int      @id @default(autoincrement())
-  placa       String?  @db.VarChar(7)
-  modelo      String?  @db.VarChar(45)
-  capacidade  String?  @db.VarChar(45)
-  observacoes String?  @db.VarChar(535)
-  viagem      viagem[]
 }
 
 model usuario {
@@ -51,14 +21,13 @@ model usuario {
   nome               String?              @db.VarChar(100)
   telefone           String?              @db.VarChar(14)
   email              String?              @db.VarChar(200)
-  cpf                String?              @db.VarChar(14)
+  cpf                String?              @unique(map: "cpf") @db.VarChar(14)
   senha              String?              @db.VarChar(535)
-  carteirinha        String?              @db.VarChar(535)
   observacoes        String?              @db.VarChar(535)
   saldo              Decimal?             @db.Decimal(10, 2)
   tipo               String               @default("comum") @db.VarChar(20)
   cliente_id         Int?
-  cartao_id          String?              @db.VarChar(200)
+  cartao_id          String?              @unique(map: "cartao_id") @db.VarChar(200)
   cadastro           DateTime             @default(now()) @db.Timestamp(0)
   cliente            cliente?             @relation(fields: [cliente_id], references: [id_cliente], onDelete: NoAction, onUpdate: NoAction, map: "FK_CLIENTE")
   viagem_has_usuario viagem_has_usuario[]
@@ -101,4 +70,34 @@ model comentario {
   texto         String? @db.VarChar(2000)
   email         String? @db.VarChar(200)
   nome          String? @db.VarChar(100)
+}
+
+model linha {
+  id_linha     Int       @id @default(autoincrement())
+  nome         String?   @db.VarChar(200)
+  inicio       DateTime? @db.DateTime(0)
+  termino      DateTime? @db.DateTime(0)
+  rota         String?   @db.VarChar(2000)
+  freq_semanal String?   @db.VarChar(45)
+  viagem       viagem[]
+}
+
+model motorista {
+  id_motorista Int      @id @default(autoincrement())
+  nome         String?  @db.VarChar(200)
+  cpf          String?  @db.VarChar(14)
+  telefone     String?  @db.VarChar(14)
+  email        String?  @db.VarChar(200)
+  foto         String?  @db.VarChar(200)
+  observacoes  String?  @db.VarChar(535)
+  viagem       viagem[]
+}
+
+model onibus {
+  id_onibus   Int      @id @default(autoincrement())
+  placa       String?  @db.VarChar(7)
+  modelo      String?  @db.VarChar(45)
+  capacidade  String?  @db.VarChar(45)
+  observacoes String?  @db.VarChar(535)
+  viagem      viagem[]
 }

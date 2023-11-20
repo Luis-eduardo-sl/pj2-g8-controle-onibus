@@ -4,28 +4,11 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-
 -- -----------------------------------------------------
 -- Schema onbus_data
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema onbus_data
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `onbus_data` DEFAULT CHARACTER SET utf8mb4 ;
+CREATE SCHEMA IF NOT EXISTS `onbus_data` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
 USE `onbus_data` ;
-
--- -----------------------------------------------------
--- Table `mydb`.`comentario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `onbus_data`.`comentario` (
-  `id_comentario` INT NOT NULL AUTO_INCREMENT,
-  `texto` VARCHAR(2000) NULL,
-  `email` VARCHAR(200) NULL,
-  `nome` VARCHAR(100) NULL,
-  PRIMARY KEY (`id_comentario`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `onbus_data`.`cliente`
@@ -34,11 +17,26 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`cliente` (
   `id_cliente` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NULL DEFAULT NULL,
   `token` VARCHAR(45) NULL DEFAULT NULL,
-  `email` VARCHAR(200) NULL DEFAULT NULL,
+  `email` VARCHAR(200) NULL DEFAULT NULL UNIQUE,
   `senha` VARCHAR(535) NULL DEFAULT NULL,
   PRIMARY KEY (`id_cliente`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `onbus_data`.`comentario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `onbus_data`.`comentario` (
+  `id_comentario` INT(11) NOT NULL AUTO_INCREMENT,
+  `texto` VARCHAR(2000) NULL DEFAULT NULL,
+  `email` VARCHAR(200) NULL DEFAULT NULL,
+  `nome` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_comentario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -50,10 +48,11 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`linha` (
   `inicio` DATETIME NULL DEFAULT NULL,
   `termino` DATETIME NULL DEFAULT NULL,
   `rota` VARCHAR(2000) NULL DEFAULT NULL,
-  `freq_semanal` VARCHAR(45) NULL,
+  `freq_semanal` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id_linha`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -69,7 +68,8 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`motorista` (
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   PRIMARY KEY (`id_motorista`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -83,33 +83,35 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`onibus` (
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   PRIMARY KEY (`id_onibus`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
 
 -- -----------------------------------------------------
 -- Table `onbus_data`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `id_usuario` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NULL DEFAULT NULL,
   `telefone` VARCHAR(14) NULL DEFAULT NULL,
   `email` VARCHAR(200) NULL DEFAULT NULL,
-  `cpf` VARCHAR(14) NULL DEFAULT NULL,
+  `cpf` VARCHAR(14) NULL DEFAULT NULL UNIQUE,
   `senha` VARCHAR(535) NULL DEFAULT NULL,
-  `carteirinha` VARCHAR(535) NULL DEFAULT NULL,
   `observacoes` VARCHAR(535) NULL DEFAULT NULL,
   `saldo` DECIMAL(10,2) NULL DEFAULT NULL,
   `tipo` VARCHAR(20) NOT NULL DEFAULT 'comum',
-  `cadastro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `cliente_id` INT(11) NULL ,
-  `cartao_id` VARCHAR(200) NULL,
+  `cliente_id` INT(11) NULL DEFAULT NULL,
+  `cartao_id` VARCHAR(200) NULL DEFAULT NULL UNIQUE,
+  `cadastro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id_usuario`),
- CONSTRAINT `FK_CLIENTE`
+  CONSTRAINT `FK_CLIENTE`
     FOREIGN KEY (`cliente_id`)
     REFERENCES `onbus_data`.`cliente` (`id_cliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -133,7 +135,8 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`viagem` (
     FOREIGN KEY (`onibus_id`)
     REFERENCES `onbus_data`.`onibus` (`id_onibus`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -153,7 +156,8 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`viagem_has_usuario` (
     FOREIGN KEY (`viagem_id`)
     REFERENCES `onbus_data`.`viagem` (`id_viagem`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
