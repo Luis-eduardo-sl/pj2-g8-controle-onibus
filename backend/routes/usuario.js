@@ -254,7 +254,7 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
 
     // Verifica se o saldo é suficiente para a cobrança
     if (usuario.saldo < valorCobranca) {
-      return res.status(400).json({ error: "Saldo insuficiente." });
+      return res.status(405).json({ error: "Saldo insuficiente." });
     }
 
     // Atualiza o saldo do usuário após a cobrança

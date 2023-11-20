@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (error.response && error.response.status === 404) {
             // Erro 404 indica que o cartão não foi encontrado
             document.querySelector("#mensagem-erro").textContent = "Cartão não encontrado. Por favor, tente novamente.";
-        } else if (error.response && error.response.status === 400) {
+        } else if (error.response && error.response.status === 405) {
             // Erro 400 pode indicar um pedido inválido, como saldo insuficiente
             document.querySelector("#mensagem-erro").textContent = "Saldo insuficiente.";
         } else {
             // Outros erros não específicos
-            document.querySelector("#mensagem-erro").textContent = "Não foi possível processar a transação. Tente novamente mais tarde.";
+            document.querySelector("#mensagem-erro").textContent = "Cartão não encontrado. Por favor, tente novamente.";
         }
 
         document.querySelector("#tela-erro").style.display = "block";

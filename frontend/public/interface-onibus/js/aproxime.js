@@ -1,14 +1,15 @@
-document.addEventListener("DOMContentLoaded", async (event) => {
-    document.querySelector("#cartao_id").addEventListener("keypress", async function (event) {
+document.addEventListener("DOMContentLoaded", async () => {
+    const cartaoInput = document.querySelector("#cartao_id");
+
+    cartaoInput.addEventListener("keypress", async (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
 
-            const cartao_id = this.value.trim();
+            const cartao_id = cartaoInput.value.trim();
 
             if (cartao_id !== "") {
                 try {
-                    await axios.patch(`http://localhost:3000/api/usuario/cobrar/${cartao_id}`);
-
+                    await cobrarUsuario(cartao_id);
                     // Aguarde um pouco para a cobrança ser concluída
                     // await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -24,4 +25,12 @@ document.addEventListener("DOMContentLoaded", async (event) => {
             }
         }
     });
+
+    async function cobrarUsuario(cartao_id) {
+        try {
+            await axios.patch(`http://localhost:3000/api/usuario/cobrar/${cartao_id}`);
+        } catch (error) {
+            throw error;
+        }
+    }
 });

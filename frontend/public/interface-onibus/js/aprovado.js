@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         const cartao_id = localStorage.getItem("cartao_id");
 
         // Realiza a cobrança
-        await axios.patch(`http://localhost:3000/api/usuario/cobrar/${cartao_id}`);
+        // await axios.patch(`http://localhost:3000/api/usuario/cobrar/${cartao_id}`);
 
         // Atualiza o saldo real após a cobrança
         const responseSaldo = await axios.get(`http://localhost:3000/api/usuario/buscar/cartao/${cartao_id}`);
