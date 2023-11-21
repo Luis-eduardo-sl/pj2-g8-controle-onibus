@@ -134,11 +134,14 @@ router.patch("/recarregar/:id", async (req, res) => {
 });
 
 
-router.patch("/recarregar/:cpf", async (req, res) => {
+
+// Rota para recarregar saldo do usuário usando CPF
+router.patch("/recarregar/cpf/:cpf", async (req, res) => {
   const { cpf } = req.params;
   const { saldo } = req.body;
 
   try {
+    // Verifica se o usuário existe no banco de dados
     const existingUser = await prisma.usuario.findUnique({
       where: { cpf: cpf },
     });
@@ -148,22 +151,36 @@ router.patch("/recarregar/:cpf", async (req, res) => {
       return res.status(404).json({ error: 'Usuário não encontrado.' });
     }
 
-    const usuario = await prisma.usuario.update({
+    // Converte o saldo existente e o saldo fornecido para números
+    const saldoExistente = Number(existingUser.saldo);
+    const saldoFornecido = Number(saldo);
+
+    // Verifica se os valores são números válidos
+    if (isNaN(saldoExistente) || isNaN(saldoFornecido)) {
+      console.error("Valores de saldo inválidos.");
+      return res.status(400).json({ error: 'Valores de saldo inválidos.' });
+    }
+
+    // Calcula o novo saldo somando o saldo existente com o saldo fornecido
+    const novoSaldo = saldoExistente + saldoFornecido;
+
+    // Atualiza o saldo do usuário no banco de dados usando o CPF
+    const updatedUser = await prisma.usuario.update({
       where: { cpf: cpf },
       data: {
-        saldo: Number(saldo),
+        saldo: novoSaldo,
       },
     });
 
-    res.json(usuario);
+    // Retorna o usuário atualizado
+    res.json(updatedUser);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao atualizar o usuário.' });
+
+    // Retorna uma mensagem de erro genérica
+    res.status(500).json({ error: 'Erro ao realizar a recarga.' });
   }
 });
-
-
-
 
 
 
@@ -190,13 +207,24 @@ router.get("/buscar/cartao/:cartao_id", async (req, res) => {
 
 // Rota para cobrar automaticamente com base no tipo de usuário
 router.patch("/cobrar/:cartao_id", async (req, res) => {
-  const { cartao_id } = req.params;
-
   try {
+    const { cartao_id } = req.params;
+
+    // Certifique-se de que o cartão seja um número antes de consultar
+    const cartaoNumero = parseInt(cartao_id);
+    if (isNaN(cartaoNumero)) {
+      return res.status(400).json({ error: "Número do cartão inválido." });
+    }
+
     // Obtemos as informações do usuário
-    const usuario = await prisma.usuario.findFirst({
+    const usuario = await prisma.usuario.findUnique({
       where: {
-        cartao_id: cartao_id.toString(), // Convertendo para String
+        cartao_id: cartaoNumero.toString(), // Convertendo para String
+      },
+      select: {
+        id_usuario: true,
+        saldo: true,
+        tipo: true,
       },
     });
 
@@ -215,39 +243,36 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
       case "Deficiente":
         valorCobranca = 0; // Passagens grátis para idosos e deficientes
         break;
-
-        case "Estudante":
-          try {
-              // Certifique-se de que cartao_id está definido antes de consultar
-              if (!usuario.cartao_id) {
-                  throw new Error("Cartão não encontrado para o usuário.");
-              }
-      
-              // Verifica quantas passagens o estudante já utilizou hoje
-              const hoje = new Date();
-              const inicioDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
-              const transacoesEstudanteHoje = await prisma.usuario.count({
-                  where: {
-                      cartao_id: usuario.cartao_id,
-                      tipo: "Estudante",
-                      cadastro: {
-                          gte: inicioDoDia,
-                      },
-                  },
-              });
-      
-              if (transacoesEstudanteHoje < 2) {
-                  valorCobranca = 0; // Passagens grátis se ainda não utilizou o limite
-              } else {
-                  valorCobranca = 5; // Valor da cobrança após exceder o limite
-              }
-          } catch (error) {
-              console.error(error);
-              return res.status(500).json({ error: "Erro ao verificar transações do estudante." });
+      case "Estudante":
+        try {
+          // Certifique-se de que cartao_id está definido antes de consultar
+          if (!usuario.cartao_id) {
+            throw new Error("Cartão não encontrado para o usuário.");
           }
-          break;
-      
-      
+
+          // Verifica quantas passagens o estudante já utilizou hoje
+          const hoje = new Date();
+          const inicioDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+          const transacoesEstudanteHoje = await prisma.usuario.count({
+            where: {
+              cartao_id: usuario.cartao_id,
+              tipo: "Estudante",
+              cadastro: {
+                gte: inicioDoDia,
+              },
+            },
+          });
+
+          if (transacoesEstudanteHoje < 2) {
+            valorCobranca = 0; // Passagens grátis se ainda não utilizou o limite
+          } else {
+            valorCobranca = 5; // Valor da cobrança após exceder o limite
+          }
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json({ error: "Erro ao verificar transações do estudante." });
+        }
+        break;
       default:
         return res.status(400).json({ error: "Tipo de usuário inválido." });
     }

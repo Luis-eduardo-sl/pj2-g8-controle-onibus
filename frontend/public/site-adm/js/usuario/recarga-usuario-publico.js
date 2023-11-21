@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const saldoElement = document.querySelector("#saldo");
       const saldo = saldoElement.value;
 
-      // Verifique se o valor de saldo é um número válido
       if (isNaN(parseFloat(saldo))) {
         console.error("O valor de saldo não é um número válido.");
         return;
@@ -24,17 +23,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       try {
         const response = await axios.patch(
-          `http://localhost:3000/api/usuario/recarregar/${cpf}`,
+          `http://localhost:3000/api/usuario/recarregar/cpf/${cpf}`,
           data
         );
 
-        if (response) {
-          storeFlashMessage("success", "Recarga realizada com sucesso");
-          // Pode adicionar aqui redirecionamento ou outra ação após o cadastro
-        }
+        storeFlashMessage("success", "Recarga realizada com sucesso");
+
+        window.location.href = `http://localhost:3001/site/recarga`;         
+
+        // if (response) {
+        //   storeFlashMessage("success", "Recarga realizada com sucesso");
+        // }
       } catch (error) {
         triggerFlashMessage("danger", error.response.data.error || "Erro ao tentar realizar recarga");
-        console.error(error.message);
       }
     }
 
