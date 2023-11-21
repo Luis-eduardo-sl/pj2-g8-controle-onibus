@@ -2,9 +2,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     try {
         const cartao_id = localStorage.getItem("cartao_id");
 
-        // Realiza a cobrança
-        // await axios.patch(`http://localhost:3000/api/usuario/cobrar/${cartao_id}`);
-
         // Atualiza o saldo real após a cobrança
         const responseSaldo = await axios.get(`http://localhost:3000/api/usuario/buscar/cartao/${cartao_id}`);
         const usuario = responseSaldo.data;
@@ -21,9 +18,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
         // Aguarda 5 segundos e redireciona de volta à tela de aproximar
         setTimeout(() => {
-            console.log("Antes do redirecionamento");
             window.location.href = "http://localhost:3001/sistema/aproxime";
-            console.log("Depois do redirecionamento");
         }, 5000);
 
     } catch (error) {
