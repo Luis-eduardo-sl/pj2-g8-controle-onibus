@@ -96,15 +96,26 @@
                         <div class="card-body card-block">
                             <form id="form" class="needs-validation" novalidate>
 
-                                <li><strong>Id:</strong> <span id="id"></span></li>
-                                <li><strong>Nome:</strong> <span id="nome"></span></li>
+                                <div class="row form-group">
+                                    <div class="col col-md-2"><label for="text-input" class=" form-control-label"><strong>Nome:</strong></label></div>
+                                    <div class="col-12 col-md-9">
+                                         <span id="nome"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-2"><label for="text-input" class=" form-control-label"><strong>Id:</strong></label></div>
+                                    <div class="col-12 col-md-9">
+                                         <span id="id"></span>
+                                    </div>
+                                </div>
 
                                 <div class="row form-group">
                                     <div class="col col-md-2"><label for="text-input" class=" form-control-label">Depositar</label></div>
 
                                     
                                     <div class="col-12 col-md-9">
-                                        <input type="number" id="saldo" min="0.00" max="10000.00" step="0.01" placeholder="00.00" class="form-control" required>
+                                        <input type="number" id="saldo" min="0.00" max="10000.00" step="0.01" placeholder="00.00" class="form-control" required autofocus>
                                         <div class="invalid-feedback">Valor invalido</div>
                                     </div>
 
@@ -114,6 +125,7 @@
                                 <button type="submit" class="btn btn-primary btn-sm">
                                     Recarregar
                                 </button>
+                                <a href="/usuarios" class="btn btn-danger btn-sm">Cancelar</a>
 
 
                             </form>

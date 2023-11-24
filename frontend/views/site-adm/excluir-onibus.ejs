@@ -24,6 +24,10 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
+    
+   <style>
+    body{background-color: #edeef3;}
+    </style>
 </head>
 <body>
     <!-- Left Panel -->
@@ -93,23 +97,55 @@
                                 <strong>Excluir</strong> Onibus
                             </div>
                             
+                            <div class="card-body card-block">
+                                <label for="text-input" class=" form-control-label"><strong>Tem certeza que deseja excluir o onibus:</strong></label>
+                                <br>
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Id:</strong></label></div>
+                                    <div class="col-12 col-md-9">
+                                         <span id="id"></span>
+                                    </div>
+                                </div>
 
-                            <div class="container my-3">
-                                <ul>
-                                    <li><strong>Id:</strong> <span id="id"></span></li>
-                                    <li><strong>Modelo:</strong> <span id="modelo"></span></li>
-                                    <li><strong>Placa:</strong> <span id="placa"></span></li>
-                                    <li><strong>Capacidade:</strong> <span id="capacidade"></span></li>
-                                    <li><strong>Observações:</strong> <span id="observacoes"></span></li>
-                                   
-                                </ul>
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Modelo:</strong></label></div>
+                                    <div class="col-12 col-md-9">
+                                         <span id="modelo"></span>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Placa:</strong></label></div>
+                                    <div class="col-12 col-md-9">
+                                         <span id="placa"></span>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Capacidade:</strong></label></div>
+                                    <div class="col-12 col-md-9">
+                                         <span id="capacidade"></span>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Observações:</strong></label></div>
+                                    <div class="col-12 col-md-9">
+                                         <span id="observacoes"></span>
+                                    </div>
+                                </div>
                         
                                 <form id="form">
-                                    <input type="submit" value="Confirmar" class="btn btn-danger">
-                                    <a href="/onibus" class="btn btn-info my-2">Cancelar</a>
+                                    <input type="submit" value="Confirmar" class="btn btn-danger btn-sm">
+                                    <a href="/onibus" class="btn btn-primary btn-sm">Cancelar</a>
                                 </form>        
                             </div>   
-                            
+                            </div>
 
                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
