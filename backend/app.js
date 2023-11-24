@@ -13,6 +13,7 @@ var usuarioRouter = require('./routes/usuario');
 var viagemRouter = require('./routes/viagem');
 var viagemHasUsuarioRouter = require('./routes/viagem_has_usuario');
 var clienteRouter = require('./routes/cliente');
+var comentarioRouter = require('./routes/comentarios');
 const authRouter = require("./routes/auth");
 
 
@@ -37,5 +38,6 @@ app.use('/api/viagem', viagemRouter);
 app.use('/api/viagem_has_usuario', viagemHasUsuarioRouter);
 app.use('/api/cliente',clienteRouter );
 app.use("/api/auth", authRouter);
+app.use("/api/comentario", comentarioRouter);
 
 module.exports = app;

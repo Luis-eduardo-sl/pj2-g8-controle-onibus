@@ -24,6 +24,10 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
+    
+   <style>
+    body{background-color: #edeef3;}
+    </style>
 </head>
 <body>
     <!-- Left Panel -->
@@ -91,10 +95,10 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong>Excluir</strong> Usuario
+                                <strong>Excluir</strong> Linha
                             </div>
                             <div class="card-body card-block">
-                                <label for="text-input" class=" form-control-label"><strong>Tem certeza que deseja excluir o usuario :</strong></label>
+                                <label for="text-input" class=" form-control-label"><strong>Tem certeza que deseja excluir o comentario:</strong></label>
                                 <br>
                                 
                                 <div class="row form-group">
@@ -114,66 +118,28 @@
 
                                 
                                 <div class="row form-group">
-                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Telefone:</strong></label></div>
-                                    <div class="col-12 col-md-9">
-                                         <span id="telefone"></span>
-                                    </div>
-                                </div>
-
-                                
-                                <div class="row form-group">
-                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Tipo:</strong></label></div>
-                                    <div class="col-12 col-md-9">
-                                         <span id="tipo"></span>
-                                    </div>
-                                </div>
-
-                                
-                                <div class="row form-group">
                                     <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Email:</strong></label></div>
                                     <div class="col-12 col-md-9">
                                          <span id="email"></span>
                                     </div>
                                 </div>
-                                
-                                <div class="row form-group">
-                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>CPF:</strong></label></div>
-                                    <div class="col-12 col-md-9">
-                                         <span id="cpf"></span>
-                                    </div>
-                                </div>
 
                                 
                                 <div class="row form-group">
-                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Senha:</strong></label></div>
+                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Comentario:</strong></label></div>
                                     <div class="col-12 col-md-9">
-                                         <span id="senha"></span>
+                                         <span id="texto"></span>
                                     </div>
                                 </div>
 
-                                
-                                <div class="row form-group">
-                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Cartão:</strong></label></div>
-                                    <div class="col-12 col-md-9">
-                                         <span id="cartao_id"></span>
-                                    </div>
-                                </div>
-
-                                
-                                <div class="row form-group">
-                                    <div class="col col-md-1"><label for="text-input" class=" form-control-label"><strong>Observações:</strong></label></div>
-                                    <div class="col-12 col-md-9">
-                                         <span id="observacoes"></span>
-                                    </div>
-                                </div>
-                                
-                               
+                              
                                 <form id="form">
                                     <input type="submit" value="Confirmar" class="btn btn-danger btn-sm">
-                                    <a href="/usuarios" class="btn btn-primary btn-sm">Cancelar</a>
+                                    <a href="/comentario" class="btn btn-primary btn-sm">Cancelar</a>
                                 </form>        
-                            
+                            </div>   
                             </div>
+
                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                             crossorigin="anonymous"></script>
@@ -181,7 +147,7 @@
                             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
                             <script src="/site-adm/assets/js/flashMessage.js"></script>
-                            <script src="/site-adm/js/usuario/excluir-usuario.js"></script>
+                            <script src="/site-adm/js/comentario/excluir-comentario.js"></script>
                             
                     </div>
             </div>
@@ -196,7 +162,9 @@
     <div class="clearfix py-5"></div>
     <div class="clearfix py-5"></div>
     <div class="clearfix py-5"></div>
-    
+    <div class="clearfix py-5"></div>
+
+
     <footer class="site-footer">
         <div class="footer-inner bg-white">
             <div class="row">

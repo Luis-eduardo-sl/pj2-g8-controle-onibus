@@ -11,8 +11,6 @@ router.get('/', (req, res) => {
 
 /*-------------------rotas para linha------------------------------*/
 
-
-
 router.get("/linhas", function (req, res, next) {
   res.render("site-adm/forms-linhas");
 });
@@ -99,5 +97,15 @@ router.get("/senha", function (req, res, next) {
   res.render("site-adm/pages-forget");
 });
 
+/*-------------------rotas para comentario------------------------------*/
+
+router.get("/comentario", function (req, res, next) {
+  res.render("site-adm/comentario");
+});
+
+
+router.get("/comentario/excluir/:id", function (req, res, next) {
+  res.render("site-adm/comentario-excluir");
+});
 
 module.exports = router;
