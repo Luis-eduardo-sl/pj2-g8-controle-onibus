@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     const response = await axios.get(`http://localhost:3000/api/onibus/buscar/${urlId}`);
     const onibus = response.data;
 
-    document.querySelector("#id").textContent = onibus.id_onibus;
+    // document.querySelector("#id").textContent = onibus.id_onibus;
     document.querySelector("#placa").textContent = onibus.placa;
     document.querySelector("#modelo").textContent = onibus.modelo; // Adicione esta linha
     document.querySelector("#capacidade").textContent = onibus.capacidade; // Adicione esta linha

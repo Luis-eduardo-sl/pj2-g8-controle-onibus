@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       const response = await axios.get(`http://localhost:3000/api/linhas/buscar/${urlId}`);
       const linha = response.data;
     
-      document.querySelector("#id").textContent = linha.id_linha;
+      // document.querySelector("#id").textContent = linha.id_linha;
       document.querySelector("#nome").textContent = linha.nome;
       document.querySelector("#inicio").textContent = linha.inicio.substring(11, 16);
       document.querySelector("#termino").textContent = linha.termino.substring(11, 16);

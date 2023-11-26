@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       const response = await axios.get(`http://localhost:3000/api/comentario/buscar/${urlId}`);
       const comentario = response.data;
   
-      document.querySelector("#id").textContent = comentario.id_comentario;
+      // document.querySelector("#id").textContent = comentario.id_comentario;
       document.querySelector("#texto").textContent = comentario.texto;
       document.querySelector("#nome").textContent = comentario.nome; // Adicione esta linha
       document.querySelector("#email").textContent = comentario.email; // Adicione esta linha
