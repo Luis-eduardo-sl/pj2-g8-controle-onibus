@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
-    displayFlashMessage();
+    // displayFlashMessage();
   
     const url = window.location.href;
     const urlId = url.split("/").pop();
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         const response = await axios.delete(`http://localhost:3000/api/comentario/excluir/${urlId}`);
         
         window.location.href = "http://localhost:3001/comentario";
-        storeFlashMessage("success", "Exclusão realizada com sucesso");
+        // storeFlashMessage("success", "Exclusão realizada com sucesso");
         
       } catch (error) {
         triggerFlashMessage("danger", error.message);
