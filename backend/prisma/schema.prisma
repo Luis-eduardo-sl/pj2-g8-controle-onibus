@@ -57,7 +57,7 @@ model viagem_has_usuario {
   data                  DateTime @db.Date
   viagem_id             Int
   usuario_id            Int
-  id_viagem_has_usuario Int      @id
+  id_viagem_has_usuario Int      @id @default(autoincrement())
   usuario               usuario  @relation(fields: [usuario_id], references: [id_usuario], onUpdate: Restrict, map: "FK_USUARIO")
   viagem                viagem   @relation(fields: [viagem_id], references: [id_viagem], onUpdate: Restrict, map: "FK_VIAGEM")
 

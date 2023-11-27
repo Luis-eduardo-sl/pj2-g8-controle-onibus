@@ -204,7 +204,6 @@ router.get("/buscar/cartao/:cartao_id", async (req, res) => {
 });
 
 
-
 // Rota para cobrar automaticamente com base no tipo de usuário
 router.patch("/cobrar/:cartao_id", async (req, res) => {
   try {
@@ -246,19 +245,24 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
       case "Estudante":
         try {
           // Certifique-se de que cartao_id está definido antes de consultar
-          if (!usuario.cartao_id) {
-            throw new Error("Cartão não encontrado para o usuário.");
-          }
+          // if (!usuario.cartao_id) {
+          //   throw new Error("Cartão não encontrado para o usuário.");
+          // }
 
-          // Verifica quantas passagens o estudante já utilizou hoje
-          const hoje = new Date();
-          const inicioDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
-          const transacoesEstudanteHoje = await prisma.usuario.count({
+         // Verifica quantas passagens o estudante já utilizou hoje
+          const data = new Date();
+          // const inicioDoDia = new Date(getFullYear(), getMonth(), getDate()); 
+          const dia = String(data.getDate()).padStart(2, '0');
+          const mes = String(data.getMonth() + 1).padStart(2, '0');
+          const ano = data.getFullYear();
+
+          const dataAtualFormatada = `${ano}-${mes}-${dia}`
+          console.log(dataAtualFormatada);
+          const transacoesEstudanteHoje = await prisma.viagem_has_usuario.count({
             where: {
-              cartao_id: usuario.cartao_id,
-              tipo: "Estudante",
-              cadastro: {
-                gte: inicioDoDia,
+              usuario_id: usuario.id_usuario,
+              data: {
+                gte:`${dataAtualFormatada}T00:00:00.000Z` ,
               },
             },
           });
@@ -285,6 +289,16 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
     // Atualiza o saldo do usuário após a cobrança
     const novoSaldo = usuario.saldo - valorCobranca;
 
+    // Adiciona um registro na tabela viagem_has_usuario
+    const novaViagemUsuario = await prisma.viagem_has_usuario.create({
+      data: {
+        tarifa: valorCobranca,
+        data: new Date(),  // Use a data atual como a data de entrada
+        usuario_id: usuario.id_usuario,
+        viagem_id:12,
+      },
+    });
+
     await prisma.usuario.update({
       where: { id_usuario: usuario.id_usuario },
       data: {
@@ -298,7 +312,6 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
     res.status(500).json({ error: "Erro ao processar a cobrança." });
   }
 });
-
 
 
 
