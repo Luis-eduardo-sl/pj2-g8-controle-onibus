@@ -391,58 +391,78 @@
             });
 
 
-if ($('#traffic-chart').length) {
-   // Fazer uma solicitação AJAX para a API
-$.ajax({
-    url: 'http://localhost:3000/api/usuario/dados',
-    method: 'GET',
-    success: function (data) {
-        // Processar os dados recebidos da API
-        var labels = data.labels;
-        var seriesData = data.series;
+            if ($('#traffic-chart').length) {
+      // Fazer uma solicitação AJAX para a API
+      $.ajax({
+        url: 'http://localhost:3000/api/usuario/dados',
+        method: 'GET',
+        success: function (data) {
+          // Processar os dados recebidos da API
+          var labels = data.labels;
+          var seriesData = data.series;
 
-        // Converter o formato do objeto para um array de objetos
-        var seriesArray = Object.keys(seriesData).map(function (tipoUsuario) {
+          // Cores personalizadas para cada série
+          var colors = {
+            "Comum": '#00c292',
+            "Deficiente": '#fb9678',
+            "Estudante": '#03a9f3',
+            "Idoso": '#ab8ce4'
+          };
+
+          // Converter o formato do objeto para um array de objetos
+          var seriesArray = Object.keys(seriesData).map(function (tipoUsuario) {
             return {
-                name: tipoUsuario,
-                data: seriesData[tipoUsuario],
+              name: tipoUsuario,
+              data: seriesData[tipoUsuario],
+              lineSmooth: Chartist.Interpolation.cardinal({
+                fillHoles: false
+              }),
+              options: {
+                lineSmooth: Chartist.Interpolation.simple(),
+                fullWidth: true,
+                low: 0,
+                chartPadding: {
+                  right: 50
+                },
+                axisY: {
+                  onlyInteger: true,
+                  scaleMinSpace: 50,
+                  offset: 20
+                },
+                axisX: {
+                  showGrid: false
+                }
+              },
+              lineColor: colors[tipoUsuario]
             };
-        });
+          });
 
-        // Criar o gráfico Chartist com os dados da API
-        var chart = new Chartist.Line('#traffic-chart', {
+          // Criar o gráfico Chartist com os dados da API
+          var chart = new Chartist.Line('#traffic-chart', {
             labels: labels,
-            series: seriesArray,
-        }, {
-            low: 0,
-            showArea: true,
-            fullWidth: true,
-            axisX: {
-                showGrid: true,
-            },
-        });
+            series: seriesArray
+          });
 
-        // Adicionar animação
-        chart.on('draw', function (data) {
+          // Adicionar animação
+          chart.on('draw', function (data) {
             if (data.type === 'line' || data.type === 'area') {
-                data.element.animate({
-                    d: {
-                        begin: 2000 * data.index,
-                        dur: 2000,
-                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-                        to: data.path.clone().stringify(),
-                        easing: Chartist.Svg.Easing.easeOutQuint
-                    }
-                });
+              data.element.animate({
+                d: {
+                  begin: 2000 * data.index,
+                  dur: 2000,
+                  from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                  to: data.path.clone().stringify(),
+                  easing: Chartist.Svg.Easing.easeOutQuint
+                }
+              });
             }
-        });
-    },
-    error: function (error) {
-        console.error('Erro ao obter dados da API:', error);
-    },
- });
- 
-}
+          });
+        },
+        error: function (error) {
+          console.error('Erro ao obter dados da API:', error);
+        },
+      });
+    }
 
 });
     </script>
