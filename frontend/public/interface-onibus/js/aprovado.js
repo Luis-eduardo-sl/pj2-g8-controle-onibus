@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
         // Aguarda 5 segundos e redireciona de volta à tela de aproximar
         setTimeout(() => {
+             localStorage.removeItem("cartao_id");
             window.location.href = "http://localhost:3001/sistema/aproxime";
         }, 5000);
 

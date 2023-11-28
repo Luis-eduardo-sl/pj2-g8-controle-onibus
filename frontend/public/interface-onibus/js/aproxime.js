@@ -11,26 +11,23 @@ document.addEventListener("DOMContentLoaded", async () => {
                 try {
                     await cobrarUsuario(cartao_id);
 
-                    // Redirecione para a tela de aprovado
                     window.location.href = "http://localhost:3001/sistema/aprovado";
-                } catch (error) {
-                    // Exiba a mensagem de erro
-                    console.error(error);
 
-                    // Redirecione para a tela de erro
+                } catch (error) {
+
+                    localStorage.setItem("cartao_id", cartao_id);
+                    const errorM = localStorage.setItem("erro" ,error.response.data.error);
+
                     window.location.href = "http://localhost:3001/sistema/erro";
                 }
-            } else {
-                // Redirecione para a tela de erro se o cartao_id for inválido
-                console.error("ID do cartão inválido.");
-                window.location.href = "http://localhost:3001/sistema/erro";
-            }
+            } 
         }
     });
 
     async function cobrarUsuario(cartao_id) {
         try {
-            await axios.patch(`http://localhost:3000/api/usuario/cobrar/${cartao_id}`);
+        
+        const response=    await axios.patch(`http://localhost:3000/api/usuario/cobrar/${cartao_id}`);
             localStorage.setItem("cartao_id", cartao_id);
         } catch (error) {
             console.error(error);

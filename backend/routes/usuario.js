@@ -228,7 +228,7 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
     });
 
     if (!usuario) {
-      return res.status(404).json({ error: "Usuário não encontrado." });
+      return res.status(404).json({ error: "Cartão não encontrado, tente novamente." });
     }
 
     // Calcula o valor da cobrança com base no tipo de usuário
@@ -244,11 +244,6 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
         break;
       case "Estudante":
         try {
-          // Certifique-se de que cartao_id está definido antes de consultar
-          // if (!usuario.cartao_id) {
-          //   throw new Error("Cartão não encontrado para o usuário.");
-          // }
-
          // Verifica quantas passagens o estudante já utilizou hoje
           const data = new Date();
           // const inicioDoDia = new Date(getFullYear(), getMonth(), getDate()); 
