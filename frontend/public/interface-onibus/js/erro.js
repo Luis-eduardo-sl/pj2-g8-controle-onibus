@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Adicione um setTimeout para garantir que a mensagem de erro seja exibida antes do redirecionamento
         setTimeout(() => {
             localStorage.removeItem("cartao_id");
-            window.location.href = "http://localhost:3001/sistema/aproxime";
+            window.location.href = "http://localhost:3001/sistema";
         }, 5000);
 
     } catch (error) {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
          setTimeout(() => {
              localStorage.removeItem("cartao_id");
-             window.location.href = "http://localhost:3001/sistema/aproxime";
+             window.location.href = "http://localhost:3001/sistema";
          }, 5000);
         
     }
