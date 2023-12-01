@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const cpf = document.querySelector("#cpf").value;
         const telefone = document.querySelector("#telefone").value;
         const email = document.querySelector("#email").value;
-        const senha = document.querySelector("#senha").value;
+        // const senha = document.querySelector("#senha").value;
         const tipo = document.querySelector("#tipo").value;
         const cartao_id = document.querySelector("#cartao_id").value;
         const observacoes = document.querySelector("#observacoes").value;
         const cliente_id = await verifyToken();
 
-        const data = { nome, cpf, telefone, email, senha , tipo, cartao_id , observacoes, cliente_id };
+        const data = { nome, cpf, telefone, email , tipo, cartao_id , observacoes, cliente_id };
   
         try {
           const response = await axios.post("http://localhost:3000/api/usuario/cadastrar", data);

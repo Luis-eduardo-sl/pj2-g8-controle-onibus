@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       document.querySelector("#telefone").value = usuario.telefone;
       document.querySelector("#email").value = usuario.email;
       document.querySelector("#cpf").value = usuario.cpf;
-      document.querySelector("#senha").value = usuario.senha;
+      // document.querySelector("#senha").value = usuario.senha;
       document.querySelector("#observacoes").value = usuario.observacoes;
       document.querySelector("#tipo").value = usuario.tipo;
       document.querySelector("#cartao_id").value = usuario.cartao_id;
@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", async (event) => {
           const telefone = document.querySelector("#telefone").value;
           const email = document.querySelector("#email").value;
           const cpf = document.querySelector("#cpf").value;
-          const senha = document.querySelector("#senha").value;
+          // const senha = document.querySelector("#senha").value;
           const observacoes = document.querySelector("#observacoes").value;
           const tipo = document.querySelector("#tipo").value;
           const cartao_id = document.querySelector("#cartao_id").value;
   
-          const data = { id, nome, telefone, email, cpf, senha, observacoes, tipo, cartao_id};
+          const data = { id, nome, telefone, email, cpf, observacoes, tipo, cartao_id};
   
           try {
             const response = await axios.put(`http://localhost:3000/api/usuario/atualizar/${urlId}`, data);
