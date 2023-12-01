@@ -5,6 +5,13 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema onbus_data
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
 -- Schema onbus_data
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `onbus_data` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
@@ -20,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`cliente` (
   `email` VARCHAR(200) NULL DEFAULT NULL UNIQUE,
   `senha` VARCHAR(535) NULL DEFAULT NULL,
   PRIMARY KEY (`id_cliente`))
+  
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
@@ -104,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`usuario` (
   `cartao_id` VARCHAR(200) NULL DEFAULT NULL UNIQUE,
   `cadastro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id_usuario`),
+  
   CONSTRAINT `FK_CLIENTE`
     FOREIGN KEY (`cliente_id`)
     REFERENCES `onbus_data`.`cliente` (`id_cliente`)
@@ -125,6 +134,7 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`viagem` (
   `motorista_id` INT(11) NOT NULL,
   `onibus_id` INT(11) NOT NULL,
   PRIMARY KEY (`id_viagem`),
+  
   CONSTRAINT `FK_LINHA`
     FOREIGN KEY (`linha_id`)
     REFERENCES `onbus_data`.`linha` (`id_linha`),
@@ -147,8 +157,9 @@ CREATE TABLE IF NOT EXISTS `onbus_data`.`viagem_has_usuario` (
   `data` DATE NOT NULL,
   `viagem_id` INT(11) NOT NULL,
   `usuario_id` INT(11) NOT NULL,
-  `id_viagem_has_usuario` INT(11) NOT NULL,
+  `id_viagem_has_usuario` INT(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_viagem_has_usuario`),
+
   CONSTRAINT `FK_USUARIO`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `onbus_data`.`usuario` (`id_usuario`),
