@@ -62,7 +62,7 @@ router.get("/procurar/:cpf", async (req, res) => {
 // Rota para criar um novo usuário
 router.post("/cadastrar", async (req, res) => {
   try {
-    const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo, cartao_id } = req.body;
+    const { nome, telefone, email, cpf, senha, observacoes, saldo, tipo, cartao_id, cliente_id } = req.body;
 
     const novoUsuario = await prisma.usuario.create({
       data: {
@@ -75,6 +75,7 @@ router.post("/cadastrar", async (req, res) => {
         saldo,
         tipo,
         cartao_id,
+        cliente_id,
       },
     });
 
