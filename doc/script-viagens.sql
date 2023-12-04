@@ -1,4 +1,5 @@
 -- Crie uma tabela temporária para armazenar números de 0 a 23 (representando as horas do dia)
+use onbus_data;
 CREATE TEMPORARY TABLE IF NOT EXISTS numeros (numero INT);
 INSERT INTO numeros (numero) VALUES (0),(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14),(15),(16),(17),(18),(19),(20),(21),(22),(23);
 
