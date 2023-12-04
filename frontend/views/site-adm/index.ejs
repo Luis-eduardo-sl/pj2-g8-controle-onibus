@@ -20,7 +20,8 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
    <style>
-    body{background-color: #edeef3;}
+    body{background-color: #edeef3;};
+    count-usuario-idoso{background-color:#d70206;};
     </style>
 </head>
 
@@ -170,31 +171,32 @@
                                             <h4 class="por-title">Comum</h4>
                                             <div class="por-txt"><span class="mb-0" id="count-usuario-comum"></span> Usuarios </div>
                                             <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" style="width: 100%; background-color: #D70206;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
                                             <h4 class="por-title">Idoso</h4>
-                                            <div class="por-txt">    <span class="mb-0" id="count-usuario-idoso"></span> idosos </div>
+                                            <div class="por-txt"><span class="mb-0" id="count-usuario-idoso"></span> idosos </div>
                                             <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" style="width: 100%; background-color: #D17905;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
                                             <h4 class="por-title">Estudante</h4>
-                                            <div class="por-txt">    <span class="mb-0" id="count-usuario-estudante"></span> estudantes</div>
+                                            <div class="por-txt"><span class="mb-0" id="count-usuario-estudante"></span> estudantes</div>
                                             <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" style="width: 100%; background-color: #F4C63D;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
                                             <h4 class="por-title">Deficientes</h4>
-                                            <div class="por-txt">    <span class="mb-0" id="count-usuario-deficiente"></span> deficientes</div>
+                                            <div class="por-txt"><span class="mb-0" id="count-usuario-deficiente"></span> deficientes</div>
                                             <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" style="width: 100%; background-color: #F05B4F;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
-                                    </div> <!-- /.card-body -->
+                                    </div>
+                                    
                                 </div>
                             </div> <!-- /.row -->
                             <div class="card-body"></div>
@@ -206,7 +208,7 @@
                 <!-- Orders -->
                 
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" id="graficos">
                             <div class="row">
                                 
                                 <div class="col-lg-12">
@@ -495,7 +497,12 @@
             console.error("Erro ao verificar o token:", error);
             window.location.replace("/login");
         }
+
+    document.querySelector('#graficos').remove();
+
     });
 </script>
+
+
 </body>
 </html>
