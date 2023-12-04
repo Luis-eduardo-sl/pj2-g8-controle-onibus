@@ -33,15 +33,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       if (form.checkValidity()) {
         const formData = new FormData(form);
 
-          // const id = document.querySelector("#id_motorista").value;
-          // const nome = document.querySelector("#nome").value;
-          // const cpf = document.querySelector("#cpf").value;
-          // const telefone = document.querySelector("#telefone").value;
-          // const email = document.querySelector("#email").value;
-          // const foto = document.querySelector("#foto").value;
-          // const observacoes = document.querySelector("#observacoes").value;
-  
-          // const data = { id, nome, cpf, telefone, email, foto, observacoes };
+        
   
           try {
             const response = await axios.put(`http://localhost:3000/api/motorista/atualizar/${urlId}`, formData,{

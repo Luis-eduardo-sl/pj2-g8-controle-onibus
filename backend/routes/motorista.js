@@ -56,21 +56,15 @@ router.post("/cadastrar", upload.single("foto"), async (req, res) => {
     const foto = req.file?.path;
     const { nome, cpf, telefone, email, observacoes } = req.body;
 
-    // const upload= req.upload || null;
-    // if(upload){
-    //   console.log(upload);
-    //   data.foto = upload.path;
-    // }
-    console.log(req.file);
-
+    
     const novoMotorista = await prisma.motorista.create({
       data: {
         nome,
         cpf,
         telefone,
         email,
+        observacoes,
         foto,
-        observacoes
          
 
       },
@@ -97,8 +91,8 @@ router.put("/atualizar/:id",upload.single("foto"), async (req, res) => {
         cpf,
         telefone,
         email,
-        foto,
         observacoes,
+        foto,
       },
     });
 

@@ -7,17 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
   
       if (form.checkValidity()) {
-        // const headers = {"Content-Type": "multipart/form-data"};
-        const formData = new FormData(form);
 
-        // const nome = document.querySelector("#nome").value;
-        // const cpf = document.querySelector("#cpf").value;
-        // const telefone = document.querySelector("#telefone").value;
-        // const email = document.querySelector("#email").value;
-        // const foto = document.querySelector("#foto").value;
-        // const observacoes = document.querySelector("#observacoes").value;
-  
-        // const data = { nome, cpf, telefone, email, foto , observacoes };
+        const formData = new FormData(form);
   
         try {
           const response = await axios.post("http://localhost:3000/api/motorista/cadastrar", formData, {
