@@ -1,6 +1,6 @@
 # Projeto Integrador:   Sistema de Ônibus - Grupo 8
 
-##⚙ Configuração do Ambiente:
+## ⚙ Configuração do Ambiente:
 
 - Terminal 1:<br> cd frontend <br>
               npm install <br>
