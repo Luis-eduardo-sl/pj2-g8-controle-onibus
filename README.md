@@ -19,18 +19,19 @@ para acessar as rotas do frontend você precisa ligar o xamp e modificar o arqui
 
 - Site : <br>
                      - http://localhost:3001/site ->para o index <br>
-                     - http://localhost:3001/site/a pagina que deseja acessar <br>
+                     - http://localhost:3001/site/ a pagina que deseja acessar <br>
 
 - Interface Onibus: <br>
                      - http://localhost:3001/sistema ->para o index <br>
-                     - http://localhost:3001/sistema/a pagina que deseja acessar <br>
+                     - http://localhost:3001/sistema/ a pagina que deseja acessar <br>
 
 
                     
-## Autores:
+## 📜 Autores:
     
 - Luis Eduardo  - <luis.lucena@aluno.ifsp.edu.br>
 - Gabriel Teixeira  - <gabrielteixeiracorrea5@gmail.com>
+   <br>
    <br>
 IFSP - Campus Caraguatatuba - Brasil
 
