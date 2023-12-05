@@ -1,4 +1,18 @@
-# Projeto Integrador:   Sistema de Ônibus - Grupo 8
+# 💾 Projeto Integrador:   Sistema de Ônibus - Grupo 8
+
+<h1 align="center">Site Publico</h1>
+A função do site publico é que o proprio usuário possa fazer seu cadastro , sua recarga por meio do cpf, vizualizar o horário das linhas e dar sugestões  ou reclamações por meio da página sobre, que esta interligada com o site administrativo
+<br><br>
+<p align="center">
+  <img src="./doc/gifs/tela-site.gif" alt="GIF" width="700px" />
+</p>
+
+<h1 align="center">Sistema de catraca</h1>
+A função do sistema de catraca é que ao passar o numero do cartão o usuario seja redirecionado para uma tela de aprovado(onde vai receber a mensagem "Boa Viagem (nome do usuario) e o saldo restante " ou sera redirecionado para uma tela de erro(onde vai receber uma mensagem de erro relacionada ao problema como "saldo insuficiente" , "cartão não encontrado" , etc). Existem quatro tipos de usuários, comum(paga 5 em cada passagem), idoso e deficiente(passagens grátis ilimitadas) e estudante(duas passagens gratis por dia e após gastá-las paga 5 por passagem)
+<br><br>
+<p align="center">
+  <img src="./doc/gifs/tela-sistema.gif" alt="GIF" width="700px" />
+</p>
 
 ## ⚙ Configuração do Ambiente:
 
