@@ -210,7 +210,7 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
     const { cartao_id } = req.params;
 
     // Certifique-se de que o cartão seja um número antes de consultar
-    const cartaoNumero = parseInt(cartao_id);
+    const cartaoNumero = (cartao_id);
     if (isNaN(cartaoNumero)) {
       return res.status(400).json({ error: "Número do cartão inválido." });
     }
@@ -226,7 +226,7 @@ router.patch("/cobrar/:cartao_id", async (req, res) => {
         tipo: true,
       },
     });
-
+console.log(usuario);
     if (!usuario) {
       return res.status(404).json({ error: "Cartão não encontrado, tente novamente." });
     }
