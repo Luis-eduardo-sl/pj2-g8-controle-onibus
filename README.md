@@ -14,6 +14,23 @@ A função do sistema de catraca é que ao passar o numero do cartão o usuario 
   <img src="./doc/gifs/tela-sistema.gif" alt="GIF" width="700px" />
 </p>
 
+## 🛠 Construído com:
+
+- JavaScript<br>
+- Node.js<br>
+- EJS<br>
+- SCSS<br>
+- CSS<br>
+- DataTables<br>
+- Chart.js<br>
+- Axios<br>
+- Prisma<br>
+- Bootstrap<br>
+- Express.js<br>
+- Bcryptjs<br>
+- Cors<br>
+- JsonWebToken<br>
+
 ## ⚙ Configuração do Ambiente:
 
 - Terminal 1:<br>
@@ -56,7 +73,7 @@ para acessar as rotas do frontend você precisa ligar o xamp e modificar o arqui
                     
 ## 📜 Autores:
     
-- Luis Eduardo  - <luis.lucena@aluno.ifsp.edu.br>
+- Luis Eduardo  - <luis0202.eduardo@gmail.com>
 - Gabriel Teixeira  - <gabrielteixeiracorrea5@gmail.com>
    <br>
    <br>
