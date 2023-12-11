@@ -1,5 +1,12 @@
 # 💾 Projeto Integrador:   Sistema de Ônibus - Grupo 8
 
+<h1 align="center">Site Administrativo</h1>
+A função do site administrativo é que o administrador possa realizar os cruds de motorista, usuario, onibus e linhas, e tambem realizar a leitura dos comentarios deixados no site publico, na pagina inicial temos um grafico real feito com o chart.js e tambem contadores para cada tipo de usuario
+<br><br>
+<p align="center">
+  <img src="./doc/gifs/tela-site-adm.gif" alt="GIF" width="700px" />
+</p>
+
 <h1 align="center">Site Publico</h1>
 A função do site publico é que o proprio usuário possa fazer seu cadastro , sua recarga por meio do cpf, vizualizar o horário das linhas e dar sugestões  ou reclamações por meio da página sobre, que esta interligada com o site administrativo
 <br><br>
