@@ -1,7 +1,7 @@
 # 💾 Projeto Integrador:   Sistema de Ônibus - Grupo 8
 
 <h1 align="center">Site Administrativo</h1>
-A função do site administrativo é que o administrador possa realizar os cruds de motorista, usuario, onibus e linhas, e tambem realizar a leitura dos comentarios deixados no site publico, na pagina inicial temos um grafico real feito com o chart.js e tambem contadores para cada tipo de usuario
+A função do site administrativo é que o administrador possa realizar os cruds de motorista, usuario, onibus e linhas, e tambem realizar a leitura dos comentarios deixados no site publico. O site tambem conta com um sistema de login onde o administrador só vai ter acesso as paginas após ter feito seu cadastro e login, na pagina inicial temos um grafico real feito com o chart.js e tambem contadores para cada tipo de usuario
 <br><br>
 <p align="center">
   <img src="./doc/gifs/tela-site-adm.gif" alt="GIF" width="700px" />
@@ -61,8 +61,8 @@ A função do sistema de catraca é que ao passar o numero do cartão o usuario 
 ```
 ```bash
  npm run dev
-```
-para acessar as rotas do frontend você precisa ligar o xamp e modificar o arquivo .env(que esta dentro de backend) para a porta que ira usar e criar o banco de dados usando o arquivo "onbus.sql"(que esta dentro da pasta "doc"), depois disso pode acessar as rotas usando:
+``` 
+para acessar as rotas do frontend você precisa ligar o xamp e modificar o arquivo .env(que esta dentro de backend) para a porta que ira usar e criar o banco de dados pelo MySQL usando o arquivo "onbus.sql"(que esta dentro da pasta "doc") ou utilizar o arquivo onbus_dump.sql(que já contem dados) , depois disso pode acessar as rotas usando:
 
 - Site Adm : <br>
                      - http://localhost:3001/ -> para o index <br>
