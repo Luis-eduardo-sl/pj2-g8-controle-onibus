@@ -40,6 +40,8 @@ A função do sistema de catraca é que ao passar o numero do cartão o usuario 
 
 ## ⚙ Configuração do Ambiente:
 
+Para acessar as rotas do frontend você precisa ligar o xamp e modificar o arquivo .env(que esta dentro de backend) para a porta que ira usar e criar o banco de dados pelo MySQL usando o arquivo "onbus.sql"(que esta dentro da pasta "doc") ou utilizar o arquivo onbus_dump.sql(que já contem dados) 
+
 - Terminal 1:<br>
 ```bash
  cd frontend
@@ -60,9 +62,12 @@ A função do sistema de catraca é que ao passar o numero do cartão o usuario 
  npm install
 ```
 ```bash
+ npx prisma generate
+```
+```bash
  npm run dev
 ``` 
-para acessar as rotas do frontend você precisa ligar o xamp e modificar o arquivo .env(que esta dentro de backend) para a porta que ira usar e criar o banco de dados pelo MySQL usando o arquivo "onbus.sql"(que esta dentro da pasta "doc") ou utilizar o arquivo onbus_dump.sql(que já contem dados) , depois disso pode acessar as rotas usando:
+Depois disso pode acessar as rotas usando:
 
 - Site Adm : <br>
                      - http://localhost:3001/ -> para o index <br>
